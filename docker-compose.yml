@@ -1,0 +1,66 @@
+
+# Local development: Postgres, Redis, the API and the web app.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-jyotish}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-jyotish}
+      POSTGRES_DB: ${POSTGRES_DB:-jyotish}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-jyotish}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-jyotish}:${POSTGRES_PASSWORD:-jyotish}@db:5432/${POSTGRES_DB:-jyotish}
+      REDIS_URL: redis://redis:6379/0
+      WATCHFILES_FORCE_POLLING: "true"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/api/src:/app/apps/api/src
+      - ./apps/api/migrations:/app/apps/api/migrations
+      - ./packages/engine/src:/app/packages/engine/src
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./apps/web
+    environment:
+      API_URL: http://api:8000
+      WATCHPACK_POLLING: "true"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - api
+
+volumes:
+  db-data:

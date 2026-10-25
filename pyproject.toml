@@ -1,0 +1,24 @@
+
+[project]
+name = "jyotish-app"
+version = "0.0.0"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["apps/api", "packages/engine"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4",
+    "httpx>=0.28",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "apps/api/tests",
+    "packages/engine/tests",
+]

@@ -1,0 +1,22 @@
+[project]
+name = "jyotish-api"
+version = "0.1.0"
+description = "FastAPI backend for the Jyotish app"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jyotish-engine",
+    "fastapi[standard]>=0.115",
+    "pydantic-settings>=2.6",
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.2",
+    "alembic>=1.14",
+    "redis>=5.2",
+]
+
+[tool.uv.sources]
+jyotish-engine = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.8,<0.12"]
+build-backend = "uv_build"
