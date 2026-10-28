@@ -1,5 +1,6 @@
 
-# Local development: Postgres, Redis, the API and the web app.
+# Local development: Postgres, Redis, Mailpit, the API, the worker and the web app.
+# Sign-in emails go to Mailpit: open http://localhost:8025 to read them.
 services:
   db:
     image: postgres:17-alpine
@@ -27,6 +28,12 @@ services:
       timeout: 3s
       retries: 20
 
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
   api:
     build:
       context: .
@@ -34,6 +41,11 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-jyotish}:${POSTGRES_PASSWORD:-jyotish}@db:5432/${POSTGRES_DB:-jyotish}
       REDIS_URL: redis://redis:6379/0
+      WEB_URL: http://localhost:3000
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
       WATCHFILES_FORCE_POLLING: "true"
     ports:
       - "8000:8000"
@@ -46,6 +58,27 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      mailpit:
+        condition: service_started
+
+  # Background jobs: PDF reports, daily alerts, clean-up (Celery worker + beat).
+  worker:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    command: ["uv", "run", "--no-sync", "celery", "-A", "jyotish_api.worker", "worker", "--beat", "--loglevel=info"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-jyotish}:${POSTGRES_PASSWORD:-jyotish}@db:5432/${POSTGRES_DB:-jyotish}
+      REDIS_URL: redis://redis:6379/0
+      WEB_URL: http://localhost:3000
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+    volumes:
+      - ./apps/api/src:/app/apps/api/src
+      - ./packages/engine/src:/app/packages/engine/src
+    depends_on:
+      api:
+        condition: service_started
 
   web:
     build:
