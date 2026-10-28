@@ -99,3 +99,20 @@ def test_ashtakoota_points_never_exceed_max() -> None:
 def test_manglik() -> None:
     assert manglik(mars_sign=6, lagna_sign=0, moon_sign=3, venus_sign=3)["is_manglik"]  # Mars 7th from Lagna
     assert not manglik(mars_sign=2, lagna_sign=0, moon_sign=0, venus_sign=0)["is_manglik"]  # 3rd
+
+
+def test_shadbala_shape_and_ranges() -> None:
+    from jyotish_engine.settings import Ayanamsa
+    from jyotish_engine.shadbala import _drishti, shadbala
+
+    b = BirthData(date(1990, 5, 15), time(10, 30), 18.5204, 73.8567, "Asia/Kolkata")
+    c = compute_chart(b)
+    r = shadbala(c["input"]["julian_day_ut"], b.latitude, b.longitude, {p["id"]: p for p in c["planets"]}, c["lagna"]["longitude"], Ayanamsa.LAHIRI)
+    assert set(r["planets"]) == {"sun", "moon", "mars", "mercury", "jupiter", "venus", "saturn"}
+    for p in r["planets"].values():
+        assert 0 <= p["sthana"]["uchcha"] <= 60
+        assert 0 <= p["dig"] <= 60
+        assert p["total_virupas"] > 0
+    assert r["planets"]["mars"]["kala"]["vara"] == 45  # 15 May 1990 was a Tuesday
+    assert r["planets"]["mercury"]["motion"] == "vakra"  # Mercury was retrograde
+    assert _drishti(180) == 60 and _drishti(10) == 0

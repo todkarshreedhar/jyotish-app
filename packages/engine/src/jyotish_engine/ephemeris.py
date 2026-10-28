@@ -126,3 +126,11 @@ def rise_set(jd_ut_start: float, graha: Graha, lat: float, lon: float, alt: floa
 
 def swe_version() -> str:
     return str(swe.version)
+
+
+def declination(jd_ut: float, graha: Graha) -> float:
+    """Apparent declination in degrees (equatorial, of date)."""
+    with _lock:
+        _init()
+        xx, _ = swe.calc_ut(jd_ut, SWE_IDS[graha], swe.FLG_SWIEPH | swe.FLG_EQUATORIAL)
+    return float(xx[1])
