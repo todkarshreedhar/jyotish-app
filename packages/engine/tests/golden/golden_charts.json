@@ -1,0 +1,2962 @@
+[
+ {
+  "id": "GT-001",
+  "label": "Pune, spring morning",
+  "date": "1990-05-15",
+  "time": "10:30:00",
+  "lat": 18.5204,
+  "lon": 73.8567,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2448026.70833333,
+   "utc": "1990-05-15T05:00:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.7257921,
+   "lagna": {
+    "longitude": 93.073771,
+    "sign": "cancer"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 30.3890709,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 2,
+     "pada": 2,
+     "lord": "sun"
+    },
+    "moon": {
+     "longitude": 269.8424369,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 20,
+     "pada": 1,
+     "lord": "sun"
+    },
+    "mars": {
+     "longitude": 324.3914175,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "mercury": {
+     "longitude": 14.3249524,
+     "retrograde": true,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "jupiter": {
+     "longitude": 75.760826,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 5,
+     "pada": 3,
+     "lord": "rahu"
+    },
+    "venus": {
+     "longitude": 348.759904,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 1,
+     "lord": "mercury"
+    },
+    "saturn": {
+     "longitude": 271.5284802,
+     "retrograde": true,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 2,
+     "lord": "sun"
+    },
+    "rahu": {
+     "longitude": 287.6287852,
+     "retrograde": true,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 3,
+     "lord": "moon"
+    },
+    "ketu": {
+     "longitude": 107.6287852,
+     "retrograde": true,
+     "sign": "cancer",
+     "nakshatra_index": 8,
+     "pada": 1,
+     "lord": "mercury"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 9,
+    "moon": 8,
+    "mars": 1,
+    "mercury": 4,
+    "jupiter": 10,
+    "venus": 8,
+    "saturn": 9,
+    "rahu": 2,
+    "ketu": 8
+   },
+   "navamsa_lagna_index": 3,
+   "mahadashas": [
+    {
+     "lord": "sun",
+     "start_jd": 2447504.730798
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2449696.230798
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2453348.730798
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2455905.480798
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2462479.980798
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2468323.980798
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2475263.730798
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2481472.980798
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2484029.730798
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-002",
+  "label": "Mumbai, midnight",
+  "date": "1985-11-02",
+  "time": "00:00:00",
+  "lat": 19.076,
+  "lon": 72.8777,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2446371.27083333,
+   "utc": "1985-11-01T18:30:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.655845,
+   "lagna": {
+    "longitude": 102.1099741,
+    "sign": "cancer"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 195.6233631,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 14,
+     "pada": 3,
+     "lord": "rahu"
+    },
+    "moon": {
+     "longitude": 59.339312,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 4,
+     "pada": 2,
+     "lord": "mars"
+    },
+    "mars": {
+     "longitude": 159.5626197,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 11,
+     "pada": 4,
+     "lord": "sun"
+    },
+    "mercury": {
+     "longitude": 217.6980418,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 16,
+     "pada": 2,
+     "lord": "saturn"
+    },
+    "jupiter": {
+     "longitude": 284.8618617,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 2,
+     "lord": "moon"
+    },
+    "venus": {
+     "longitude": 176.5213308,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "saturn": {
+     "longitude": 214.549769,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 16,
+     "pada": 1,
+     "lord": "saturn"
+    },
+    "rahu": {
+     "longitude": 15.3537668,
+     "retrograde": true,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "ketu": {
+     "longitude": 195.3537668,
+     "retrograde": true,
+     "sign": "libra",
+     "nakshatra_index": 14,
+     "pada": 3,
+     "lord": "rahu"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 10,
+    "moon": 5,
+    "mars": 11,
+    "mercury": 5,
+    "jupiter": 1,
+    "venus": 4,
+    "saturn": 4,
+    "rahu": 4,
+    "ketu": 10
+   },
+   "navamsa_lagna_index": 6,
+   "mahadashas": [
+    {
+     "lord": "mars",
+     "start_jd": 2445219.586887
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2447776.336887
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2454350.836887
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2460194.836887
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2467134.586887
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2473343.836887
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2475900.586887
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2483205.586887
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2485397.086887
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-003",
+  "label": "Delhi, evening",
+  "date": "2001-08-21",
+  "time": "19:45:00",
+  "lat": 28.6139,
+  "lon": 77.209,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2452143.09375,
+   "utc": "2001-08-21T14:15:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.8754938,
+   "lagna": {
+    "longitude": 323.2305093,
+    "sign": "aquarius"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 124.7109254,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 2,
+     "lord": "ketu"
+    },
+    "moon": {
+     "longitude": 159.8148655,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 11,
+     "pada": 4,
+     "lord": "sun"
+    },
+    "mars": {
+     "longitude": 237.9663745,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 17,
+     "pada": 4,
+     "lord": "mercury"
+    },
+    "mercury": {
+     "longitude": 139.4447911,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "jupiter": {
+     "longitude": 74.2556013,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 5,
+     "pada": 3,
+     "lord": "rahu"
+    },
+    "venus": {
+     "longitude": 89.5139423,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 6,
+     "pada": 3,
+     "lord": "jupiter"
+    },
+    "saturn": {
+     "longitude": 49.9202982,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 3,
+     "pada": 3,
+     "lord": "moon"
+    },
+    "rahu": {
+     "longitude": 69.4932264,
+     "retrograde": true,
+     "sign": "gemini",
+     "nakshatra_index": 5,
+     "pada": 1,
+     "lord": "rahu"
+    },
+    "ketu": {
+     "longitude": 249.4932264,
+     "retrograde": true,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 3,
+     "lord": "ketu"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 1,
+    "moon": 11,
+    "mars": 11,
+    "mercury": 5,
+    "jupiter": 10,
+    "venus": 2,
+    "saturn": 2,
+    "rahu": 8,
+    "ketu": 2
+   },
+   "navamsa_lagna_index": 0,
+   "mahadashas": [
+    {
+     "lord": "sun",
+     "start_jd": 2449982.022919
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2452173.522919
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2455826.022919
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2458382.772919
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2464957.272919
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2470801.272919
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2477741.022919
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2483950.272919
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2486507.022919
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-004",
+  "label": "Kolkata, war time (UTC+06:30)",
+  "date": "1943-03-10",
+  "time": "06:10:00",
+  "lat": 22.5726,
+  "lon": 88.3639,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2430793.48611111,
+   "utc": "1943-03-09T23:40:00+00:00",
+   "utc_offset_minutes": 390,
+   "ayanamsa": 23.0608421,
+   "lagna": {
+    "longitude": 310.9790883,
+    "sign": "aquarius"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 325.4696618,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "moon": {
+     "longitude": 11.2507708,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "mars": {
+     "longitude": 278.0269226,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 4,
+     "lord": "sun"
+    },
+    "mercury": {
+     "longitude": 305.0451537,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 22,
+     "pada": 4,
+     "lord": "mars"
+    },
+    "jupiter": {
+     "longitude": 82.1183642,
+     "retrograde": true,
+     "sign": "gemini",
+     "nakshatra_index": 6,
+     "pada": 1,
+     "lord": "jupiter"
+    },
+    "venus": {
+     "longitude": 352.3271452,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 2,
+     "lord": "mercury"
+    },
+    "saturn": {
+     "longitude": 43.451173,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 3,
+     "pada": 2,
+     "lord": "moon"
+    },
+    "rahu": {
+     "longitude": 120.8524481,
+     "retrograde": true,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 1,
+     "lord": "ketu"
+    },
+    "ketu": {
+     "longitude": 300.8524481,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 22,
+     "pada": 3,
+     "lord": "mars"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 1,
+    "moon": 3,
+    "mars": 11,
+    "mercury": 7,
+    "jupiter": 0,
+    "venus": 9,
+    "saturn": 1,
+    "rahu": 0,
+    "ketu": 6
+   },
+   "navamsa_lagna_index": 9,
+   "mahadashas": [
+    {
+     "lord": "ketu",
+     "start_jd": 2428636.080493
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2431192.830493
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2438497.830493
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2440689.330493
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2444341.830493
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2446898.580493
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2453473.080493
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2459317.080493
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2466256.830493
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-005",
+  "label": "Pune 1950 (US-15 example)",
+  "date": "1950-03-10",
+  "time": "10:30:00",
+  "lat": 18.5204,
+  "lon": 73.8567,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2433350.70833333,
+   "utc": "1950-03-10T05:00:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.1607793,
+   "lagna": {
+    "longitude": 31.9952952,
+    "sign": "taurus"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 325.8973514,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "moon": {
+     "longitude": 224.1632391,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 16,
+     "pada": 4,
+     "lord": "saturn"
+    },
+    "mars": {
+     "longitude": 163.6074649,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 2,
+     "lord": "moon"
+    },
+    "mercury": {
+     "longitude": 310.6148257,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 2,
+     "lord": "rahu"
+    },
+    "jupiter": {
+     "longitude": 299.327901,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 22,
+     "pada": 2,
+     "lord": "mars"
+    },
+    "venus": {
+     "longitude": 285.2666099,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 2,
+     "lord": "moon"
+    },
+    "saturn": {
+     "longitude": 142.6507332,
+     "retrograde": true,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 3,
+     "lord": "venus"
+    },
+    "rahu": {
+     "longitude": 345.3399681,
+     "retrograde": true,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 4,
+     "lord": "saturn"
+    },
+    "ketu": {
+     "longitude": 165.3399681,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 2,
+     "lord": "moon"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 1,
+    "moon": 7,
+    "mars": 1,
+    "mercury": 9,
+    "jupiter": 5,
+    "venus": 1,
+    "saturn": 6,
+    "rahu": 7,
+    "ketu": 1
+   },
+   "navamsa_lagna_index": 9,
+   "mahadashas": [
+    {
+     "lord": "saturn",
+     "start_jd": 2427713.945443
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2434653.695443
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2440862.945443
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2443419.695443
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2450724.695443
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2452916.195443
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2456568.695443
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2459125.445443
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2465699.945443
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-006",
+  "label": "Chennai, pre-dawn",
+  "date": "1972-01-26",
+  "time": "04:05:00",
+  "lat": 13.0827,
+  "lon": 80.2707,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2441342.44097222,
+   "utc": "1972-01-25T22:35:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.4710988,
+   "lagna": {
+    "longitude": 244.3094017,
+    "sign": "sagittarius"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 281.5986512,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 1,
+     "lord": "moon"
+    },
+    "moon": {
+     "longitude": 44.9088364,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 3,
+     "pada": 2,
+     "lord": "moon"
+    },
+    "mars": {
+     "longitude": 356.2095947,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 3,
+     "lord": "mercury"
+    },
+    "mercury": {
+     "longitude": 267.0656665,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 20,
+     "pada": 1,
+     "lord": "sun"
+    },
+    "jupiter": {
+     "longitude": 244.2047745,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 2,
+     "lord": "ketu"
+    },
+    "venus": {
+     "longitude": 317.8874085,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 4,
+     "lord": "rahu"
+    },
+    "saturn": {
+     "longitude": 36.1361104,
+     "retrograde": true,
+     "sign": "taurus",
+     "nakshatra_index": 2,
+     "pada": 3,
+     "lord": "sun"
+    },
+    "rahu": {
+     "longitude": 281.8416808,
+     "retrograde": true,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 1,
+     "lord": "moon"
+    },
+    "ketu": {
+     "longitude": 101.8416808,
+     "retrograde": true,
+     "sign": "cancer",
+     "nakshatra_index": 7,
+     "pada": 3,
+     "lord": "saturn"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 0,
+    "moon": 1,
+    "mars": 10,
+    "mercury": 8,
+    "jupiter": 1,
+    "venus": 11,
+    "saturn": 10,
+    "rahu": 0,
+    "ketu": 6
+   },
+   "navamsa_lagna_index": 1,
+   "mahadashas": [
+    {
+     "lord": "moon",
+     "start_jd": 2439997.726601
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2443650.226601
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2446206.976601
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2452781.476601
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2458625.476601
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2465565.226601
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2471774.476601
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2474331.226601
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2481636.226601
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-007",
+  "label": "Varanasi, noon",
+  "date": "1964-07-04",
+  "time": "12:00:00",
+  "lat": 25.3176,
+  "lon": 82.9739,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2438580.77083333,
+   "utc": "1964-07-04T06:30:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.3566198,
+   "lagna": {
+    "longitude": 168.1809629,
+    "sign": "virgo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 78.9400883,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 5,
+     "pada": 4,
+     "lord": "rahu"
+    },
+    "moon": {
+     "longitude": 7.1073029,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 3,
+     "lord": "ketu"
+    },
+    "mars": {
+     "longitude": 48.4997021,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 3,
+     "pada": 3,
+     "lord": "moon"
+    },
+    "mercury": {
+     "longitude": 87.1677855,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 6,
+     "pada": 3,
+     "lord": "jupiter"
+    },
+    "jupiter": {
+     "longitude": 25.2232254,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 4,
+     "lord": "venus"
+    },
+    "venus": {
+     "longitude": 58.0390416,
+     "retrograde": true,
+     "sign": "taurus",
+     "nakshatra_index": 4,
+     "pada": 2,
+     "lord": "mars"
+    },
+    "saturn": {
+     "longitude": 311.3871161,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 2,
+     "lord": "rahu"
+    },
+    "rahu": {
+     "longitude": 68.1882224,
+     "retrograde": true,
+     "sign": "gemini",
+     "nakshatra_index": 5,
+     "pada": 1,
+     "lord": "rahu"
+    },
+    "ketu": {
+     "longitude": 248.1882224,
+     "retrograde": true,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 3,
+     "lord": "ketu"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 11,
+    "moon": 2,
+    "mars": 2,
+    "mercury": 2,
+    "jupiter": 7,
+    "venus": 5,
+    "saturn": 9,
+    "rahu": 8,
+    "ketu": 2
+   },
+   "navamsa_lagna_index": 2,
+   "mahadashas": [
+    {
+     "lord": "ketu",
+     "start_jd": 2437217.901082
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2439774.651082
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2447079.651082
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2449271.151082
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2452923.651082
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2455480.401082
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2462054.901082
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2467898.901082
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2474838.651082
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-008",
+  "label": "Nagpur, leap day",
+  "date": "2000-02-29",
+  "time": "15:20:00",
+  "lat": 21.1458,
+  "lon": 79.0882,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2451603.90972222,
+   "utc": "2000-02-29T09:50:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 23.8555103,
+   "lagna": {
+    "longitude": 97.1028996,
+    "sign": "cancer"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 316.2596756,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 3,
+     "lord": "rahu"
+    },
+    "moon": {
+     "longitude": 250.6137034,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "mars": {
+     "longitude": 349.2981698,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 1,
+     "lord": "mercury"
+    },
+    "mercury": {
+     "longitude": 318.741672,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 4,
+     "lord": "rahu"
+    },
+    "jupiter": {
+     "longitude": 8.7045203,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 3,
+     "lord": "ketu"
+    },
+    "venus": {
+     "longitude": 289.9895134,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 3,
+     "lord": "moon"
+    },
+    "saturn": {
+     "longitude": 18.5029205,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "rahu": {
+     "longitude": 98.0656718,
+     "retrograde": true,
+     "sign": "cancer",
+     "nakshatra_index": 7,
+     "pada": 2,
+     "lord": "saturn"
+    },
+    "ketu": {
+     "longitude": 278.0656718,
+     "retrograde": true,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 4,
+     "lord": "sun"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 10,
+    "moon": 3,
+    "mars": 8,
+    "mercury": 11,
+    "jupiter": 2,
+    "venus": 2,
+    "saturn": 5,
+    "rahu": 5,
+    "ketu": 11
+   },
+   "navamsa_lagna_index": 5,
+   "mahadashas": [
+    {
+     "lord": "ketu",
+     "start_jd": 2449568.66576
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2452125.41576
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2459430.41576
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2461621.91576
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2465274.41576
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2467831.16576
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2474405.66576
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2480249.66576
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2487189.41576
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-009",
+  "label": "Kathmandu (UTC+05:45)",
+  "date": "1995-12-31",
+  "time": "23:59:00",
+  "lat": 27.7172,
+  "lon": 85.324,
+  "tz": "Asia/Kathmandu",
+  "expected": {
+   "julian_day_ut": 2450083.25972222,
+   "utc": "1995-12-31T18:14:00+00:00",
+   "utc_offset_minutes": 345,
+   "ayanamsa": 23.8031402,
+   "lagna": {
+    "longitude": 163.7619282,
+    "sign": "virgo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 255.7919523,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 19,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "moon": {
+     "longitude": 19.9684288,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "mars": {
+     "longitude": 270.1797275,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 2,
+     "lord": "sun"
+    },
+    "mercury": {
+     "longitude": 275.0556952,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 3,
+     "lord": "sun"
+    },
+    "jupiter": {
+     "longitude": 245.6203627,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 2,
+     "lord": "ketu"
+    },
+    "venus": {
+     "longitude": 288.5222712,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 3,
+     "lord": "moon"
+    },
+    "saturn": {
+     "longitude": 325.5760476,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "rahu": {
+     "longitude": 178.6479765,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 2,
+     "lord": "mars"
+    },
+    "ketu": {
+     "longitude": 358.6479765,
+     "retrograde": true,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 4,
+     "lord": "mercury"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 4,
+    "moon": 5,
+    "mars": 9,
+    "mercury": 10,
+    "jupiter": 1,
+    "venus": 2,
+    "saturn": 1,
+    "rahu": 5,
+    "ketu": 11
+   },
+   "navamsa_lagna_index": 1,
+   "mahadashas": [
+    {
+     "lord": "venus",
+     "start_jd": 2446448.056793
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2453753.056793
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2455944.556793
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2459597.056793
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2462153.806793
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2468728.306793
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2474572.306793
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2481512.056793
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2487721.306793
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-010",
+  "label": "New York, summer time",
+  "date": "1978-07-15",
+  "time": "08:15:00",
+  "lat": 40.7128,
+  "lon": -74.006,
+  "tz": "America/New_York",
+  "expected": {
+   "julian_day_ut": 2443705.01041667,
+   "utc": "1978-07-15T12:15:00+00:00",
+   "utc_offset_minutes": -240,
+   "ayanamsa": 23.5574639,
+   "lagna": {
+    "longitude": 119.1674243,
+    "sign": "cancer"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 89.0979213,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 6,
+     "pada": 3,
+     "lord": "jupiter"
+    },
+    "moon": {
+     "longitude": 204.8932761,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 15,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "mars": {
+     "longitude": 144.3940961,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 4,
+     "lord": "venus"
+    },
+    "mercury": {
+     "longitude": 115.0521685,
+     "retrograde": false,
+     "sign": "cancer",
+     "nakshatra_index": 8,
+     "pada": 3,
+     "lord": "mercury"
+    },
+    "jupiter": {
+     "longitude": 85.4047988,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 6,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "venus": {
+     "longitude": 130.3309915,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "saturn": {
+     "longitude": 125.1849059,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 2,
+     "lord": "ketu"
+    },
+    "rahu": {
+     "longitude": 156.6443158,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 11,
+     "pada": 3,
+     "lord": "sun"
+    },
+    "ketu": {
+     "longitude": 336.6443158,
+     "retrograde": true,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 1,
+     "lord": "saturn"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 2,
+    "moon": 1,
+    "mars": 7,
+    "mercury": 10,
+    "jupiter": 1,
+    "venus": 3,
+    "saturn": 1,
+    "rahu": 10,
+    "ketu": 4
+   },
+   "navamsa_lagna_index": 11,
+   "mahadashas": [
+    {
+     "lord": "jupiter",
+     "start_jd": 2441560.287502
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2447404.287502
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2454344.037502
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2460553.287502
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2463110.037502
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2470415.037502
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2472606.537502
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2476259.037502
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2478815.787502
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-011",
+  "label": "London, winter",
+  "date": "1969-12-10",
+  "time": "21:30:00",
+  "lat": 51.5074,
+  "lon": -0.1278,
+  "tz": "Europe/London",
+  "expected": {
+   "julian_day_ut": 2440566.35416667,
+   "utc": "1969-12-10T20:30:00+00:00",
+   "utc_offset_minutes": 60,
+   "ayanamsa": 23.4382058,
+   "lagna": {
+    "longitude": 112.2126905,
+    "sign": "cancer"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 235.1890525,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 17,
+     "pada": 3,
+     "lord": "mercury"
+    },
+    "moon": {
+     "longitude": 255.4187541,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 19,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "mars": {
+     "longitude": 303.0262944,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 22,
+     "pada": 3,
+     "lord": "mars"
+    },
+    "mercury": {
+     "longitude": 248.5537693,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 3,
+     "lord": "ketu"
+    },
+    "jupiter": {
+     "longitude": 185.57462,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 13,
+     "pada": 4,
+     "lord": "mars"
+    },
+    "venus": {
+     "longitude": 224.4118516,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 16,
+     "pada": 4,
+     "lord": "saturn"
+    },
+    "saturn": {
+     "longitude": 9.1414781,
+     "retrograde": true,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 3,
+     "lord": "ketu"
+    },
+    "rahu": {
+     "longitude": 322.968104,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 1,
+     "lord": "jupiter"
+    },
+    "ketu": {
+     "longitude": 142.968104,
+     "retrograde": true,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 3,
+     "lord": "venus"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 10,
+    "moon": 4,
+    "mars": 6,
+    "mercury": 2,
+    "jupiter": 7,
+    "venus": 7,
+    "saturn": 2,
+    "rahu": 0,
+    "ketu": 6
+   },
+   "navamsa_lagna_index": 9,
+   "mahadashas": [
+    {
+     "lord": "venus",
+     "start_jd": 2439423.804264
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2446728.804264
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2448920.304264
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2452572.804264
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2455129.554264
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2461704.054264
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2467548.054264
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2474487.804264
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2480697.054264
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-012",
+  "label": "Sydney, southern hemisphere",
+  "date": "1988-04-03",
+  "time": "16:40:00",
+  "lat": -33.8688,
+  "lon": 151.2093,
+  "tz": "Australia/Sydney",
+  "expected": {
+   "julian_day_ut": 2447254.77777778,
+   "utc": "1988-04-03T06:40:00+00:00",
+   "utc_offset_minutes": 600,
+   "ayanamsa": 23.6934568,
+   "lagna": {
+    "longitude": 145.6206774,
+    "sign": "leo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 350.03514,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 2,
+     "lord": "mercury"
+    },
+    "moon": {
+     "longitude": 180.1642305,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 13,
+     "pada": 3,
+     "lord": "mars"
+    },
+    "mars": {
+     "longitude": 273.8641562,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 3,
+     "lord": "sun"
+    },
+    "mercury": {
+     "longitude": 333.4331358,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 1,
+     "lord": "saturn"
+    },
+    "jupiter": {
+     "longitude": 11.9681348,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "venus": {
+     "longitude": 35.8794153,
+     "retrograde": false,
+     "sign": "taurus",
+     "nakshatra_index": 2,
+     "pada": 3,
+     "lord": "sun"
+    },
+    "saturn": {
+     "longitude": 248.8097379,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 3,
+     "lord": "ketu"
+    },
+    "rahu": {
+     "longitude": 328.5349459,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 3,
+     "lord": "jupiter"
+    },
+    "ketu": {
+     "longitude": 148.5349459,
+     "retrograde": true,
+     "sign": "leo",
+     "nakshatra_index": 11,
+     "pada": 1,
+     "lord": "sun"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 9,
+    "moon": 6,
+    "mars": 10,
+    "mercury": 4,
+    "jupiter": 3,
+    "venus": 10,
+    "saturn": 2,
+    "rahu": 2,
+    "ketu": 8
+   },
+   "navamsa_lagna_index": 7,
+   "mahadashas": [
+    {
+     "lord": "mars",
+     "start_jd": 2445944.910553
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2448501.660553
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2455076.160553
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2460920.160553
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2467859.910553
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2474069.160553
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2476625.910553
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2483930.910553
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2486122.410553
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-013",
+  "label": "Sao Paulo, west and south",
+  "date": "2010-09-09",
+  "time": "09:09:00",
+  "lat": -23.5505,
+  "lon": -46.6333,
+  "tz": "America/Sao_Paulo",
+  "expected": {
+   "julian_day_ut": 2455449.00625,
+   "utc": "2010-09-09T12:09:00+00:00",
+   "utc_offset_minutes": -180,
+   "ayanamsa": 24.011235,
+   "lagna": {
+    "longitude": 199.6512109,
+    "sign": "libra"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 142.7051354,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 3,
+     "lord": "venus"
+    },
+    "moon": {
+     "longitude": 157.974945,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 11,
+     "pada": 4,
+     "lord": "sun"
+    },
+    "mars": {
+     "longitude": 182.3768608,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 13,
+     "pada": 3,
+     "lord": "mars"
+    },
+    "mercury": {
+     "longitude": 132.2377846,
+     "retrograde": true,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "jupiter": {
+     "longitude": 335.9501297,
+     "retrograde": true,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 1,
+     "lord": "saturn"
+    },
+    "venus": {
+     "longitude": 186.6334023,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 13,
+     "pada": 4,
+     "lord": "mars"
+    },
+    "saturn": {
+     "longitude": 161.1065661,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 1,
+     "lord": "moon"
+    },
+    "rahu": {
+     "longitude": 254.3062956,
+     "retrograde": true,
+     "sign": "sagittarius",
+     "nakshatra_index": 19,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "ketu": {
+     "longitude": 74.3062956,
+     "retrograde": true,
+     "sign": "gemini",
+     "nakshatra_index": 5,
+     "pada": 3,
+     "lord": "rahu"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 6,
+    "moon": 11,
+    "mars": 6,
+    "mercury": 3,
+    "jupiter": 4,
+    "venus": 7,
+    "saturn": 0,
+    "rahu": 4,
+    "ketu": 10
+   },
+   "navamsa_lagna_index": 11,
+   "mahadashas": [
+    {
+     "lord": "sun",
+     "start_jd": 2453590.349352
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2455781.849352
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2459434.349352
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2461991.099352
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2468565.599352
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2474409.599352
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2481349.349352
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2487558.599352
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2490115.349352
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-014",
+  "label": "Oslo, high latitude",
+  "date": "1959-06-21",
+  "time": "13:00:00",
+  "lat": 59.9139,
+  "lon": 10.7522,
+  "tz": "Europe/Oslo",
+  "expected": {
+   "julian_day_ut": 2436740.95833333,
+   "utc": "1959-06-21T11:00:00+00:00",
+   "utc_offset_minutes": 120,
+   "ayanamsa": 23.2917533,
+   "lagna": {
+    "longitude": 153.3727332,
+    "sign": "virgo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 66.0394516,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 4,
+     "pada": 4,
+     "lord": "mars"
+    },
+    "moon": {
+     "longitude": 254.7844937,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 19,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "mars": {
+     "longitude": 108.9444228,
+     "retrograde": false,
+     "sign": "cancer",
+     "nakshatra_index": 8,
+     "pada": 1,
+     "lord": "mercury"
+    },
+    "mercury": {
+     "longitude": 85.4018839,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 6,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "jupiter": {
+     "longitude": 210.0672365,
+     "retrograde": true,
+     "sign": "scorpio",
+     "nakshatra_index": 15,
+     "pada": 4,
+     "lord": "jupiter"
+    },
+    "venus": {
+     "longitude": 111.4093902,
+     "retrograde": false,
+     "sign": "cancer",
+     "nakshatra_index": 8,
+     "pada": 2,
+     "lord": "mercury"
+    },
+    "saturn": {
+     "longitude": 250.8224818,
+     "retrograde": true,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "rahu": {
+     "longitude": 165.6836545,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 2,
+     "lord": "moon"
+    },
+    "ketu": {
+     "longitude": 345.6836545,
+     "retrograde": true,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 4,
+     "lord": "saturn"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 7,
+    "moon": 4,
+    "mars": 8,
+    "mercury": 1,
+    "jupiter": 3,
+    "venus": 9,
+    "saturn": 3,
+    "rahu": 1,
+    "ketu": 7
+   },
+   "navamsa_lagna_index": 10,
+   "mahadashas": [
+    {
+     "lord": "venus",
+     "start_jd": 2435945.903847
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2443250.903847
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2445442.403847
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2449094.903847
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2451651.653847
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2458226.153847
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2464070.153847
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2471009.903847
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2477219.153847
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-015",
+  "label": "Dubai",
+  "date": "2015-03-20",
+  "time": "17:30:00",
+  "lat": 25.2048,
+  "lon": 55.2708,
+  "tz": "Asia/Dubai",
+  "expected": {
+   "julian_day_ut": 2457102.0625,
+   "utc": "2015-03-20T13:30:00+00:00",
+   "utc_offset_minutes": 240,
+   "ayanamsa": 24.0705912,
+   "lagna": {
+    "longitude": 142.8566223,
+    "sign": "leo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 335.5461698,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 1,
+     "lord": "saturn"
+    },
+    "moon": {
+     "longitude": 337.8437682,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 25,
+     "pada": 2,
+     "lord": "saturn"
+    },
+    "mars": {
+     "longitude": 357.6348454,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 4,
+     "lord": "mercury"
+    },
+    "mercury": {
+     "longitude": 317.5004769,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 4,
+     "lord": "rahu"
+    },
+    "jupiter": {
+     "longitude": 109.0954695,
+     "retrograde": true,
+     "sign": "cancer",
+     "nakshatra_index": 8,
+     "pada": 1,
+     "lord": "mercury"
+    },
+    "venus": {
+     "longitude": 9.7092017,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 3,
+     "lord": "ketu"
+    },
+    "saturn": {
+     "longitude": 220.8294614,
+     "retrograde": true,
+     "sign": "scorpio",
+     "nakshatra_index": 16,
+     "pada": 3,
+     "lord": "saturn"
+    },
+    "rahu": {
+     "longitude": 166.7075416,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 3,
+     "lord": "moon"
+    },
+    "ketu": {
+     "longitude": 346.7075416,
+     "retrograde": true,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 1,
+     "lord": "mercury"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 4,
+    "moon": 5,
+    "mars": 11,
+    "mercury": 11,
+    "jupiter": 8,
+    "venus": 2,
+    "saturn": 6,
+    "rahu": 2,
+    "ketu": 8
+   },
+   "navamsa_lagna_index": 6,
+   "mahadashas": [
+    {
+     "lord": "saturn",
+     "start_jd": 2454754.465723
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2461694.215723
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2467903.465723
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2470460.215723
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2477765.215723
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2479956.715723
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2483609.215723
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2486165.965723
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2492740.465723
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-016",
+  "label": "Bengaluru, recent",
+  "date": "2023-10-14",
+  "time": "11:11:00",
+  "lat": 12.9716,
+  "lon": 77.5946,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2460231.73680556,
+   "utc": "2023-10-14T05:41:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 24.187023,
+   "lagna": {
+    "longitude": 245.4745476,
+    "sign": "sagittarius"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 176.4339539,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "moon": {
+     "longitude": 170.6655445,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 4,
+     "lord": "moon"
+    },
+    "mars": {
+     "longitude": 187.2115674,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 14,
+     "pada": 1,
+     "lord": "rahu"
+    },
+    "mercury": {
+     "longitude": 172.1039409,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 4,
+     "lord": "moon"
+    },
+    "jupiter": {
+     "longitude": 18.9057491,
+     "retrograde": true,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "venus": {
+     "longitude": 130.3905605,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "saturn": {
+     "longitude": 306.7008583,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 23,
+     "pada": 1,
+     "lord": "rahu"
+    },
+    "rahu": {
+     "longitude": 0.8598667,
+     "retrograde": true,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 1,
+     "lord": "ketu"
+    },
+    "ketu": {
+     "longitude": 180.8598667,
+     "retrograde": true,
+     "sign": "libra",
+     "nakshatra_index": 13,
+     "pada": 3,
+     "lord": "mars"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 4,
+    "moon": 3,
+    "mars": 8,
+    "mercury": 3,
+    "jupiter": 5,
+    "venus": 3,
+    "saturn": 8,
+    "rahu": 0,
+    "ketu": 6
+   },
+   "navamsa_lagna_index": 1,
+   "mahadashas": [
+    {
+     "lord": "moon",
+     "start_jd": 2457310.044209
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2460962.544209
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2463519.294209
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2470093.794209
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2475937.794209
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2482877.544209
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2489086.794209
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2491643.544209
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2498948.544209
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-017",
+  "label": "Ahmedabad, 1920s",
+  "date": "1925-09-05",
+  "time": "07:30:00",
+  "lat": 23.0225,
+  "lon": 72.5714,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2424398.58333333,
+   "utc": "1925-09-05T02:00:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 22.8151538,
+   "lagna": {
+    "longitude": 153.7196821,
+    "sign": "virgo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 139.1663159,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "moon": {
+     "longitude": 349.6458031,
+     "retrograde": false,
+     "sign": "pisces",
+     "nakshatra_index": 26,
+     "pada": 1,
+     "lord": "mercury"
+    },
+    "mars": {
+     "longitude": 141.9500209,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 10,
+     "pada": 3,
+     "lord": "venus"
+    },
+    "mercury": {
+     "longitude": 123.5535817,
+     "retrograde": false,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 2,
+     "lord": "ketu"
+    },
+    "jupiter": {
+     "longitude": 259.8976551,
+     "retrograde": true,
+     "sign": "sagittarius",
+     "nakshatra_index": 19,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "venus": {
+     "longitude": 174.0670075,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "saturn": {
+     "longitude": 197.1731736,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 14,
+     "pada": 4,
+     "lord": "rahu"
+    },
+    "rahu": {
+     "longitude": 99.7316089,
+     "retrograde": true,
+     "sign": "cancer",
+     "nakshatra_index": 7,
+     "pada": 2,
+     "lord": "saturn"
+    },
+    "ketu": {
+     "longitude": 279.7316089,
+     "retrograde": true,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 4,
+     "lord": "sun"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 5,
+    "moon": 8,
+    "mars": 6,
+    "mercury": 1,
+    "jupiter": 5,
+    "venus": 4,
+    "saturn": 11,
+    "rahu": 5,
+    "ketu": 11
+   },
+   "navamsa_lagna_index": 10,
+   "mahadashas": [
+    {
+     "lord": "mercury",
+     "start_jd": 2423011.218116
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2429220.468116
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2431777.218116
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2439082.218116
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2441273.718116
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2444926.218116
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2447482.968116
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2454057.468116
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2459901.468116
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-018",
+  "label": "Singapore",
+  "date": "1981-05-01",
+  "time": "02:22:00",
+  "lat": 1.3521,
+  "lon": 103.8198,
+  "tz": "Asia/Singapore",
+  "expected": {
+   "julian_day_ut": 2444725.28611111,
+   "utc": "1981-04-30T18:52:00+00:00",
+   "utc_offset_minutes": 450,
+   "ayanamsa": 23.5920535,
+   "lagna": {
+    "longitude": 309.6743471,
+    "sign": "aquarius"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 16.7315503,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 2,
+     "lord": "venus"
+    },
+    "moon": {
+     "longitude": 329.1031206,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 3,
+     "lord": "jupiter"
+    },
+    "mars": {
+     "longitude": 10.5121488,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 4,
+     "lord": "ketu"
+    },
+    "mercury": {
+     "longitude": 20.3858138,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 3,
+     "lord": "venus"
+    },
+    "jupiter": {
+     "longitude": 157.9321454,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 11,
+     "pada": 4,
+     "lord": "sun"
+    },
+    "venus": {
+     "longitude": 22.8109251,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 1,
+     "pada": 3,
+     "lord": "venus"
+    },
+    "saturn": {
+     "longitude": 160.4172066,
+     "retrograde": true,
+     "sign": "virgo",
+     "nakshatra_index": 12,
+     "pada": 1,
+     "lord": "moon"
+    },
+    "rahu": {
+     "longitude": 102.5778343,
+     "retrograde": true,
+     "sign": "cancer",
+     "nakshatra_index": 7,
+     "pada": 3,
+     "lord": "saturn"
+    },
+    "ketu": {
+     "longitude": 282.5778343,
+     "retrograde": true,
+     "sign": "capricorn",
+     "nakshatra_index": 21,
+     "pada": 1,
+     "lord": "moon"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 5,
+    "moon": 2,
+    "mars": 3,
+    "mercury": 6,
+    "jupiter": 11,
+    "venus": 6,
+    "saturn": 0,
+    "rahu": 6,
+    "ketu": 0
+   },
+   "navamsa_lagna_index": 8,
+   "mahadashas": [
+    {
+     "lord": "jupiter",
+     "start_jd": 2440735.388352
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2446579.388352
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2453519.138352
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2459728.388352
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2462285.138352
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2469590.138352
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2471781.638352
+    },
+    {
+     "lord": "mars",
+     "start_jd": 2475434.138352
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2477990.888352
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-019",
+  "label": "Los Angeles",
+  "date": "1999-01-01",
+  "time": "00:01:00",
+  "lat": 34.0522,
+  "lon": -118.2437,
+  "tz": "America/Los_Angeles",
+  "expected": {
+   "julian_day_ut": 2451179.83402778,
+   "utc": "1999-01-01T08:01:00+00:00",
+   "utc_offset_minutes": -480,
+   "ayanamsa": 23.8404221,
+   "lagna": {
+    "longitude": 166.7214682,
+    "sign": "virgo"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 256.6056254,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 19,
+     "pada": 1,
+     "lord": "venus"
+    },
+    "moon": {
+     "longitude": 66.0202579,
+     "retrograde": false,
+     "sign": "gemini",
+     "nakshatra_index": 4,
+     "pada": 4,
+     "lord": "mars"
+    },
+    "mars": {
+     "longitude": 174.7072148,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "mercury": {
+     "longitude": 237.8965207,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 17,
+     "pada": 4,
+     "lord": "mercury"
+    },
+    "jupiter": {
+     "longitude": 328.1490432,
+     "retrograde": false,
+     "sign": "aquarius",
+     "nakshatra_index": 24,
+     "pada": 3,
+     "lord": "jupiter"
+    },
+    "venus": {
+     "longitude": 271.9611003,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 20,
+     "pada": 2,
+     "lord": "sun"
+    },
+    "saturn": {
+     "longitude": 2.9340679,
+     "retrograde": false,
+     "sign": "aries",
+     "nakshatra_index": 0,
+     "pada": 1,
+     "lord": "ketu"
+    },
+    "rahu": {
+     "longitude": 120.5382958,
+     "retrograde": true,
+     "sign": "leo",
+     "nakshatra_index": 9,
+     "pada": 1,
+     "lord": "ketu"
+    },
+    "ketu": {
+     "longitude": 300.5382958,
+     "retrograde": true,
+     "sign": "aquarius",
+     "nakshatra_index": 22,
+     "pada": 3,
+     "lord": "mars"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 4,
+    "moon": 7,
+    "mars": 4,
+    "mercury": 11,
+    "jupiter": 2,
+    "venus": 9,
+    "saturn": 0,
+    "rahu": 0,
+    "ketu": 6
+   },
+   "navamsa_lagna_index": 2,
+   "mahadashas": [
+    {
+     "lord": "mars",
+     "start_jd": 2448747.036949
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2451303.786949
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2457878.286949
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2463722.286949
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2470662.036949
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2476871.286949
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2479428.036949
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2486733.036949
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2488924.536949
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ },
+ {
+  "id": "GT-020",
+  "label": "Hyderabad, future date",
+  "date": "2040-11-11",
+  "time": "18:18:00",
+  "lat": 17.385,
+  "lon": 78.4867,
+  "tz": "Asia/Kolkata",
+  "expected": {
+   "julian_day_ut": 2466470.03333333,
+   "utc": "2040-11-11T12:48:00+00:00",
+   "utc_offset_minutes": 330,
+   "ayanamsa": 24.4237826,
+   "lagna": {
+    "longitude": 36.1347096,
+    "sign": "taurus"
+   },
+   "planets": {
+    "sun": {
+     "longitude": 205.3198103,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 15,
+     "pada": 2,
+     "lord": "jupiter"
+    },
+    "moon": {
+     "longitude": 293.8984447,
+     "retrograde": false,
+     "sign": "capricorn",
+     "nakshatra_index": 22,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "mars": {
+     "longitude": 215.4548926,
+     "retrograde": false,
+     "sign": "scorpio",
+     "nakshatra_index": 16,
+     "pada": 1,
+     "lord": "saturn"
+    },
+    "mercury": {
+     "longitude": 187.6790671,
+     "retrograde": false,
+     "sign": "libra",
+     "nakshatra_index": 14,
+     "pada": 1,
+     "lord": "rahu"
+    },
+    "jupiter": {
+     "longitude": 175.7813013,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "venus": {
+     "longitude": 246.3136846,
+     "retrograde": false,
+     "sign": "sagittarius",
+     "nakshatra_index": 18,
+     "pada": 2,
+     "lord": "ketu"
+    },
+    "saturn": {
+     "longitude": 174.7720157,
+     "retrograde": false,
+     "sign": "virgo",
+     "nakshatra_index": 13,
+     "pada": 1,
+     "lord": "mars"
+    },
+    "rahu": {
+     "longitude": 30.2801863,
+     "retrograde": true,
+     "sign": "taurus",
+     "nakshatra_index": 2,
+     "pada": 2,
+     "lord": "sun"
+    },
+    "ketu": {
+     "longitude": 210.2801863,
+     "retrograde": true,
+     "sign": "scorpio",
+     "nakshatra_index": 15,
+     "pada": 4,
+     "lord": "jupiter"
+    }
+   },
+   "navamsa_sign_index": {
+    "sun": 1,
+    "moon": 4,
+    "mars": 4,
+    "mercury": 8,
+    "jupiter": 4,
+    "venus": 1,
+    "saturn": 4,
+    "rahu": 9,
+    "ketu": 3
+   },
+   "navamsa_lagna_index": 10,
+   "mahadashas": [
+    {
+     "lord": "mars",
+     "start_jd": 2466361.669697
+    },
+    {
+     "lord": "rahu",
+     "start_jd": 2468918.419697
+    },
+    {
+     "lord": "jupiter",
+     "start_jd": 2475492.919697
+    },
+    {
+     "lord": "saturn",
+     "start_jd": 2481336.919697
+    },
+    {
+     "lord": "mercury",
+     "start_jd": 2488276.669697
+    },
+    {
+     "lord": "ketu",
+     "start_jd": 2494485.919697
+    },
+    {
+     "lord": "venus",
+     "start_jd": 2497042.669697
+    },
+    {
+     "lord": "sun",
+     "start_jd": 2504347.669697
+    },
+    {
+     "lord": "moon",
+     "start_jd": 2506539.169697
+    }
+   ]
+  },
+  "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+  "expert_check": {
+   "jagannatha_hora": null,
+   "signed_off_by": null
+  }
+ }
+]
