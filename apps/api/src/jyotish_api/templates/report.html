@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: "Noto Sans"; src: url("{{ font_dir }}/NotoSans.ttf"); }
+@font-face { font-family: "Noto Sans Devanagari"; src: url("{{ font_dir }}/NotoSansDevanagari.ttf"); }
+@page { size: A4; margin: 16mm 14mm 18mm; @bottom-center { content: counter(page) " / " counter(pages); font: 9px "Noto Sans"; color: #777; } }
+body { font-family: "Noto Sans", "Noto Sans Devanagari", sans-serif; font-size: 10.5px; color: #2a1a08; }
+h1 { font-size: 20px; color: #7a3e0c; margin: 0 0 4px; }
+h2 { font-size: 14px; color: #7a3e0c; border-bottom: 1px solid #e5cfa8; padding-bottom: 3px; margin: 16px 0 8px; }
+.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; color: #555; }
+.brand img { height: 36px; }
+table { width: 100%; border-collapse: collapse; }
+td, th { padding: 3px 5px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
+th { background: #fbf3e4; font-weight: 600; }
+.grid { display: flex; gap: 14px; }
+.grid > div { flex: 1; text-align: center; }
+.kundli { position: relative; width: 300px; height: 300px; margin: 0 auto; }
+.kundli svg { position: absolute; left: 0; top: 0; width: 300px; height: 300px; }
+.kundli span { position: absolute; white-space: nowrap; line-height: 1; }
+.k-planet, .k-retro, .k-title { font-size: 10px; font-weight: 600; color: #3b2207; }
+.k-retro { color: #b3261e; }
+.k-sign { font-size: 8px; color: #9a6a35; }
+.k-asc { font-size: 8px; font-weight: 700; color: #b3261e; }
+.note { background: #fff6e0; border-left: 3px solid #e0a12c; padding: 6px 8px; margin: 8px 0; }
+.small { color: #666; font-size: 9px; }
+.reading { margin: 0 0 8px; page-break-inside: avoid; }
+.reading b { color: #5a2d06; }
+.cur { background: #fff1cc; font-weight: 600; }
+.score { font-size: 28px; color: #7a3e0c; font-weight: 700; }
+</style>
+</head>
+<body>
+{% if brand_name or brand_logo %}<div class="brand">{% if brand_logo %}<img src="{{ brand_logo }}" alt="">{% endif %}<span>{{ L.prepared_by }}: {{ brand_name or "" }}</span></div>{% endif %}
+{% block content %}{% endblock %}
+<p class="small" style="margin-top:18px">{{ footer }}</p>
+</body>
+</html>

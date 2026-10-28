@@ -1,0 +1,47 @@
+{% extends "report.html" %}
+{% block content %}
+<h1>{{ L.title }}</h1>
+<div>{{ profile.name }}</div>
+<h2>{{ L.birth_details }}</h2>
+<table>
+<tr><th>{{ L.date }}</th><td>{{ profile.birth_date }}</td><th>{{ L.time }}</th><td>{{ profile.birth_time }}</td></tr>
+<tr><th>{{ L.place }}</th><td>{{ profile.place_name or "" }}</td><th>{{ L.coords }}</th><td>{{ "%.4f"|format(profile.latitude) }}, {{ "%.4f"|format(profile.longitude) }}</td></tr>
+<tr><th>{{ L.tz }}</th><td>{{ chart.input.tz_name or "" }} (UTC{{ offset }})</td><th>{{ L.ayanamsa }}</th><td>{{ N.ayanamsas[chart.meta.ayanamsa] }} {{ ayanamsa_dms }}</td></tr>
+<tr><th>{{ L.lagna }}</th><td>{{ N.signs[chart.lagna.sign] }} {{ chart.lagna.dms }}</td><th>{{ L.moon_sign }}</th><td>{{ N.signs[moon.sign] }} — {{ N.nakshatras[moon.nakshatra] }} {{ moon.pada }}</td></tr>
+</table>
+{% if time_note %}<div class="note">{{ time_note }}</div>{% endif %}
+<div class="grid">
+<div><h2>{{ L.chart }}</h2>{{ svg_d1 | safe }}</div>
+<div><h2>{{ L.navamsa }}</h2>{{ svg_d9 | safe }}</div>
+</div>
+<h2>{{ L.planets }}</h2>
+<table>
+<tr><th>{{ L.planet }}</th><th>{{ L.sign }}</th><th>{{ L.degree }}</th><th>{{ L.nakshatra }}</th><th>{{ L.pada }}</th><th>{{ L.house }}</th><th>{{ L.dignity }}</th><th>{{ L.status }}</th></tr>
+<tr><td>{{ L.lagna }}</td><td>{{ N.signs[chart.lagna.sign] }}</td><td>{{ chart.lagna.dms }}</td><td>{{ N.nakshatras[chart.lagna.nakshatra] }}</td><td>{{ chart.lagna.pada }}</td><td>1</td><td></td><td></td></tr>
+{% for p in chart.planets %}
+<tr><td>{{ N.planets[p.id] }}</td><td>{{ N.signs[p.sign] }}</td><td>{{ p.dms }}</td><td>{{ N.nakshatras[p.nakshatra] }}</td><td>{{ p.pada }}</td><td>{{ p.house }}</td><td>{{ N.dignities[p.dignity] }}</td>
+<td>{% if p.retrograde and p.id not in ("rahu","ketu") %}{{ L.retro }} {% endif %}{% if p.combust %}{{ L.combust }}{% endif %}</td></tr>
+{% endfor %}
+</table>
+<h2>{{ L.dasha }}</h2>
+<table>
+<tr><th>{{ L.mahadasha }}</th><th>{{ L.start }}</th><th>{{ L.end }}</th></tr>
+{% for m in chart.dasha.mahadashas %}
+<tr class="{{ 'cur' if m.lord == current_maha else '' }}"><td>{{ N.planets[m.lord] }}</td><td>{{ m.start[:10] }}</td><td>{{ m.end[:10] }}</td></tr>
+{% endfor %}
+</table>
+{% if antars %}
+<h2>{{ L.antardasha }}</h2>
+<table>
+<tr><th>{{ L.mahadasha }} / </th><th>{{ L.start }}</th><th>{{ L.end }}</th></tr>
+{% for a in antars %}
+<tr class="{{ 'cur' if a.current else '' }}"><td>{{ N.planets[current_maha] }} / {{ N.planets[a.lord] }}</td><td>{{ a.start[:10] }}</td><td>{{ a.end[:10] }}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+<h2>{{ L.readings }}</h2>
+{% for topic, items in readings %}
+<h3 style="font-size:12px;margin:10px 0 4px">{{ N.topics[topic] }}</h3>
+{% for r in items %}<p class="reading"><b>{{ r.title }}.</b> {{ r.text }} <span class="small">({{ L.source }}: {{ r.source }}; {{ r.id }})</span></p>{% endfor %}
+{% endfor %}
+{% endblock %}

@@ -12,6 +12,15 @@ dependencies = [
     "psycopg[binary]>=3.2",
     "alembic>=1.14",
     "redis>=5.2",
+    "geonamescache>=3.0.2",
+    "timezonefinder>=9.2.0",
+    "cryptography>=50.0.2",
+    "celery[redis]>=5.6.3",
+    "weasyprint>=70.0",
+    "jinja2>=3.1.6",
+    "pyjwt[crypto]>=2.15.1",
+    "httpx>=0.28.1",
+    "email-validator>=2.3.0",
 ]
 
 [tool.uv.sources]
