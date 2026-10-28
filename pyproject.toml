@@ -20,6 +20,8 @@ dev = [
     "ruff>=0.17.3",
     "mypy>=2.4.0",
     "pyyaml>=6.0.3",
+    "pip-audit>=2.10.1",
+    "bandit>=1.9.4",
 ]
 
 [tool.pytest.ini_options]
@@ -41,3 +43,8 @@ ignore = ["E501"]
 python_version = "3.13"
 ignore_missing_imports = true
 warn_unused_ignores = true
+
+[tool.bandit]
+# B101: asserts are only used for type narrowing.
+# B110: the Redis cache falls back to an in-process cache on purpose.
+skips = ["B101", "B110"]

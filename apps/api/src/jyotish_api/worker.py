@@ -45,12 +45,14 @@ def build_report(report_id: str) -> str:
         try:
             user = db.get(User, r.user_id)
             p = db.get(Profile, r.profile_id)
-            assert user is not None and p is not None
+            if user is None or p is None:
+                raise LookupError("the profile or its owner was deleted")
             style = (p.settings or {}).get("chart_style", "north")
             if r.kind == "match":
                 from jyotish_api.routers.tools import match_data
 
-                assert r.partner_profile_id is not None
+                if r.partner_profile_id is None:
+                    raise LookupError("a match report needs a second profile")
                 data = match_data(db, user, str(r.profile_id), str(r.partner_profile_id), r.lang)
                 r.pdf = pdf.match_pdf(data, r.lang, style, user)
             else:

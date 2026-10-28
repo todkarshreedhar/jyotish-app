@@ -20,7 +20,7 @@ from jyotish_api.settings import settings
 router = APIRouter(prefix="/v1/auth", tags=["auth"])
 
 GOOGLE_AUTH = "https://accounts.google.com/o/oauth2/v2/auth"
-GOOGLE_TOKEN = "https://oauth2.googleapis.com/token"
+GOOGLE_TOKEN = "https://oauth2.googleapis.com/token"  # a URL, not a secret
 GOOGLE_JWKS = "https://www.googleapis.com/oauth2/v3/certs"
 GOOGLE_ISSUERS = ("https://accounts.google.com", "accounts.google.com")
 STATE_COOKIE = "jy_oauth"

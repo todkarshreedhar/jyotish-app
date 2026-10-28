@@ -41,3 +41,5 @@ def check_production_secrets() -> None:
             raise RuntimeError("SECRET_KEY must be set to a strong value in production")
         if _DEV_KEY in settings.data_encryption_keys:
             raise RuntimeError("DATA_ENCRYPTION_KEYS must be set in production")
+        if not settings.ip_rate_limits:
+            raise RuntimeError("IP_RATE_LIMITS cannot be turned off in production")

@@ -16,11 +16,14 @@ from jyotish_api.routers.profiles import _inputs, get_owned
 from jyotish_api.schemas import ChartRequest, MatchRequest
 from jyotish_api.security import DB, ConsentedUser
 from jyotish_api.services import charts, places
+from jyotish_api.settings import settings
 
 router = APIRouter(prefix="/v1", tags=["tools"])
 
 
 def _rate_limit(request: Request, bucket: str, per_minute: int) -> None:
+    if not settings.ip_rate_limits:
+        return
     ip = request.client.host if request.client else "?"
     if cache.incr_window(f"jy:rl:{bucket}:{ip}", 60) > per_minute:
         raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, "too many requests; slow down")

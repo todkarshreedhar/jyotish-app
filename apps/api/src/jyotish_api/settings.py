@@ -49,6 +49,10 @@ class Settings(BaseSettings):
     # Celery runs tasks inline when true (tests, simple deployments).
     tasks_eager: bool = False
 
+    # Per-IP limits on anonymous tools. Turn off only for load tests on a
+    # staging copy; the API refuses to start in production with this off.
+    ip_rate_limits: bool = True
+
     @property
     def is_production(self) -> bool:
         return self.environment == "production"

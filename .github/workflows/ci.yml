@@ -113,6 +113,18 @@ jobs:
           for i in $(seq 1 60); do curl -sf -o /dev/null localhost:3000 && break; sleep 1; done
       - run: pnpm e2e
         working-directory: apps/web
+      # US-54: OWASP ZAP passive scan of the running app. Fails on any FAIL-level
+      # rule; warnings are listed in the report artifact.
+      - name: OWASP ZAP baseline scan
+        run: |
+          mkdir -p zap && chmod 777 zap
+          docker run --rm --network host -v "$PWD/zap:/zap/wrk" ghcr.io/zaproxy/zaproxy:stable \
+            zap-baseline.py -t http://localhost:3000 -r zap-report.html -J zap-report.json -I
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-report
+          path: zap
       - if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -121,6 +133,28 @@ jobs:
             apps/web/test-results
             apps/api/api.log
             apps/web/web.log
+
+  security:
+    name: Security (dependency audits, code scan)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+      - run: uv sync --all-packages --frozen
+      - name: Python dependencies (pip-audit)
+        run: |
+          uv export --all-packages --no-dev --no-emit-workspace --frozen --no-hashes > requirements-audit.txt
+          uv run pip-audit -r requirements-audit.txt --disable-pip --no-deps
+      - name: Python code (bandit, medium and high)
+        run: uv run bandit -c pyproject.toml -ll -r apps/api/src packages/engine/src
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: apps/web/package.json
+      - name: Web dependencies (pnpm audit, high and critical)
+        working-directory: apps/web
+        run: pnpm audit --audit-level high
 
   docker:
     name: Docker images build
