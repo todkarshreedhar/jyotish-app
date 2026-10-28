@@ -729,10 +729,14 @@ version = "0.1.0"
 source = { editable = "packages/engine" }
 dependencies = [
     { name = "pyswisseph" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pyswisseph", specifier = ">=2.10.3.2" }]
+requires-dist = [
+    { name = "pyswisseph", specifier = ">=2.10.3.2" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
+]
 
 [[package]]
 name = "librt"

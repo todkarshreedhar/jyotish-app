@@ -1,0 +1,161 @@
+# Placement readings. Gate M4: the domain expert reviews each one.
+
+- id: P-SUN-10
+  topic: career
+  kind: placement
+  source: "BPHS, Bhava phala (Sun in the 10th)"
+  when: {in_house: {planet: sun, houses: [10]}}
+  text_key: P-SUN-10
+  reviewed: false
+
+- id: P-MOON-4
+  topic: family
+  kind: placement
+  source: "BPHS, Bhava phala (Moon in the 4th)"
+  when: {in_house: {planet: moon, houses: [4]}}
+  text_key: P-MOON-4
+  reviewed: false
+
+- id: P-JUPITER-1
+  topic: personality
+  kind: placement
+  source: "BPHS, Bhava phala (Jupiter in the Lagna)"
+  when: {in_house: {planet: jupiter, houses: [1]}}
+  text_key: P-JUPITER-1
+  reviewed: false
+
+- id: P-JUPITER-5
+  topic: family
+  kind: placement
+  source: "BPHS, Bhava phala (Jupiter in the 5th)"
+  when: {in_house: {planet: jupiter, houses: [5]}}
+  text_key: P-JUPITER-5
+  reviewed: false
+
+- id: P-JUPITER-9
+  topic: spirituality
+  kind: placement
+  source: "BPHS, Bhava phala (Jupiter in the 9th)"
+  when: {in_house: {planet: jupiter, houses: [9]}}
+  text_key: P-JUPITER-9
+  reviewed: false
+
+- id: P-VENUS-7
+  topic: relationships
+  kind: placement
+  source: "BPHS, Bhava phala (Venus in the 7th)"
+  when: {in_house: {planet: venus, houses: [7]}}
+  text_key: P-VENUS-7
+  reviewed: false
+
+- id: P-SATURN-10
+  topic: career
+  kind: placement
+  source: "BPHS, Bhava phala (Saturn in the 10th)"
+  when: {in_house: {planet: saturn, houses: [10]}}
+  text_key: P-SATURN-10
+  reviewed: false
+
+- id: P-SATURN-7
+  topic: relationships
+  kind: placement
+  source: "BPHS, Bhava phala (Saturn in the 7th)"
+  when: {in_house: {planet: saturn, houses: [7]}}
+  text_key: P-SATURN-7
+  reviewed: false
+
+- id: P-MERCURY-1
+  topic: personality
+  kind: placement
+  source: "BPHS, Bhava phala (Mercury in the Lagna)"
+  when: {in_house: {planet: mercury, houses: [1]}}
+  text_key: P-MERCURY-1
+  reviewed: false
+
+- id: P-MARS-10
+  topic: career
+  kind: placement
+  source: "BPHS, Bhava phala (Mars in the 10th)"
+  when: {in_house: {planet: mars, houses: [10]}}
+  text_key: P-MARS-10
+  reviewed: false
+
+- id: P-LORD1-KENDRA-TRIKONA
+  topic: personality
+  kind: placement
+  source: "BPHS, Lagna lord in kendra or trikona"
+  when: {lord_in_house: {lord_of: 1, houses: [1, 4, 5, 7, 9, 10]}}
+  text_key: P-LORD1-KENDRA-TRIKONA
+  reviewed: false
+
+- id: P-LORD1-DUSTHANA
+  topic: health
+  kind: placement
+  source: "BPHS, Lagna lord in 6, 8 or 12"
+  when: {lord_in_house: {lord_of: 1, houses: [6, 8, 12]}}
+  text_key: P-LORD1-DUSTHANA
+  reviewed: false
+
+- id: P-LORD10-KENDRA
+  topic: career
+  kind: placement
+  source: "BPHS, effects of the 10th lord"
+  when: {lord_in_house: {lord_of: 10, houses: [1, 4, 7, 10]}}
+  text_key: P-LORD10-KENDRA
+  reviewed: false
+
+- id: P-LORD7-7
+  topic: relationships
+  kind: placement
+  source: "BPHS, effects of the 7th lord"
+  when: {lord_in_house: {lord_of: 7, houses: [7]}}
+  text_key: P-LORD7-7
+  reviewed: false
+
+- id: P-LORD2-11
+  topic: wealth
+  kind: placement
+  source: "BPHS, effects of the 2nd lord"
+  when: {lord_in_house: {lord_of: 2, houses: [11]}}
+  text_key: P-LORD2-11
+  reviewed: false
+
+- id: P-LORD5-5-9
+  topic: family
+  kind: placement
+  source: "BPHS, effects of the 5th lord"
+  when: {lord_in_house: {lord_of: 5, houses: [5, 9]}}
+  text_key: P-LORD5-5-9
+  reviewed: false
+
+- id: P-MOON-EXALTED
+  topic: personality
+  kind: placement
+  source: "BPHS ch. 3 (dignities)"
+  when: {dignity: {planet: moon, is: [exalted, moolatrikona, own]}}
+  text_key: P-MOON-STRONG
+  reviewed: false
+
+- id: P-SUN-DEBILITATED
+  topic: personality
+  kind: placement
+  source: "BPHS ch. 3 (dignities)"
+  when: {dignity: {planet: sun, is: [debilitated]}}
+  text_key: P-SUN-DEBILITATED
+  reviewed: false
+
+- id: P-SATURN-RETRO
+  topic: general
+  kind: placement
+  source: "Common tradition (retrograde Saturn)"
+  when: {retrograde: saturn}
+  text_key: P-SATURN-RETRO
+  reviewed: false
+
+- id: P-MERCURY-COMBUST
+  topic: career
+  kind: placement
+  source: "Common tradition (combust Mercury)"
+  when: {combust: mercury}
+  text_key: P-MERCURY-COMBUST
+  reviewed: false

@@ -1,0 +1,46 @@
+Y-RUCHAKA: {title: "Ruchaka Yoga", text: "Mars is strong in a kendra. Tradition links this with courage, drive and the ability to lead in demanding situations."}
+Y-BHADRA: {title: "Bhadra Yoga", text: "Mercury is strong in a kendra. Tradition links this with sharp intelligence, good speech and skill in learning, trade or writing."}
+Y-HAMSA: {title: "Hamsa Yoga", text: "Jupiter is strong in a kendra. Tradition links this with wisdom, good character and respect from others."}
+Y-MALAVYA: {title: "Malavya Yoga", text: "Venus is strong in a kendra. Tradition links this with comfort, artistic taste and pleasant relationships."}
+Y-SASA: {title: "Sasa Yoga", text: "Saturn is strong in a kendra. Tradition links this with discipline, endurance and authority gained through steady work."}
+Y-GAJAKESARI: {title: "Gaja Kesari Yoga", text: "Jupiter is in a kendra from the Moon. Tradition links this with good reputation, intelligence and lasting prosperity."}
+Y-SUNAPHA: {title: "Sunapha Yoga", text: "A planet occupies the 2nd house from the Moon. Tradition links this with self-earned wealth and a good name."}
+Y-ANAPHA: {title: "Anapha Yoga", text: "A planet occupies the 12th house from the Moon. Tradition links this with good health, a pleasing personality and contentment."}
+Y-DURUDHARA: {title: "Durudhara Yoga", text: "Planets occupy both the 2nd and 12th houses from the Moon. Tradition links this with comforts, generosity and support from others."}
+Y-KEMADRUMA: {title: "Kemadruma Yoga", text: "No planet supports the Moon from the 2nd or 12th house and none is in a kendra from the Lagna. Tradition reads this as periods of feeling unsupported; many cancelling factors exist, so read it alongside the whole chart."}
+Y-VESI: {title: "Vesi Yoga", text: "A planet occupies the 2nd house from the Sun. Tradition links this with balanced character and steady effort."}
+Y-VASI: {title: "Vasi Yoga", text: "A planet occupies the 12th house from the Sun. Tradition links this with generosity and skill."}
+Y-UBHAYACHARI: {title: "Ubhayachari Yoga", text: "Planets occupy both the 2nd and 12th houses from the Sun. Tradition links this with capability and recognition."}
+Y-BUDHADITYA: {title: "Budha-Aditya Yoga", text: "The Sun and Mercury are together and Mercury is not combust. Tradition links this with intelligence and clear communication."}
+Y-CHANDRAMANGALA: {title: "Chandra-Mangala Yoga", text: "The Moon and Mars are together. Tradition links this with enterprise and the ability to earn, with a quick temperament."}
+Y-ADHI: {title: "Adhi Yoga", text: "Mercury, Jupiter and Venus are in the 6th, 7th or 8th from the Moon. Tradition links this with leadership and a comfortable life."}
+Y-AMALA: {title: "Amala Yoga", text: "A natural benefic is in the 10th house from the Lagna or the Moon. Tradition links this with a clean reputation and good deeds."}
+Y-RAJA-KENDRA-TRIKONA: {title: "Raja Yoga", text: "The lord of a kendra and the lord of a trikona are together. Tradition links this with status and success, especially in their Dasha periods."}
+Y-DHANA: {title: "Dhana Yoga", text: "A wealth lord (2nd or 11th) is together with a fortune lord (5th or 9th). Tradition links this with gains and financial growth."}
+Y-HARSHA: {title: "Harsha Yoga (Viparita Raja)", text: "The 6th lord sits in a dusthana. Tradition links this with overcoming rivals and recovering well from difficulties."}
+Y-SARALA: {title: "Sarala Yoga (Viparita Raja)", text: "The 8th lord sits in a dusthana. Tradition links this with resilience and fearlessness."}
+Y-VIMALA: {title: "Vimala Yoga (Viparita Raja)", text: "The 12th lord sits in a dusthana. Tradition links this with careful spending and an independent nature."}
+Y-NEECHABHANGA: {title: "Neecha Bhanga", text: "A debilitated planet has its weakness cancelled because its sign lord, or the planet exalted there, is in a kendra. Tradition reads this as weakness turning into strength over time."}
+Y-SHAKATA: {title: "Shakata Yoga", text: "The Moon is in the 6th, 8th or 12th from Jupiter. Tradition reads this as ups and downs in fortune; Jupiter in a kendra from the Lagna cancels it."}
+D-MANGLIK: {title: "Manglik (Kuja dosha)", text: "Mars is in the 1st, 2nd, 4th, 7th, 8th or 12th from the Lagna or the Moon. Many traditions check this in marriage matching; there are several cancelling conditions, so an astrologer should look at the full picture."}
+D-KALASARPA: {title: "Kala Sarpa", text: "All seven planets lie on one side of the Rahu-Ketu axis. This is a later tradition and is not described in BPHS; read it with care."}
+P-SUN-10: {title: "Sun in the 10th house", text: "The Sun in the 10th is traditionally strong for career, authority and public recognition."}
+P-MOON-4: {title: "Moon in the 4th house", text: "The Moon in the 4th is traditionally linked with attachment to home, mother and emotional comfort."}
+P-JUPITER-1: {title: "Jupiter in the Lagna", text: "Jupiter in the 1st is traditionally linked with optimism, good judgement and protection."}
+P-JUPITER-5: {title: "Jupiter in the 5th house", text: "Jupiter in the 5th is traditionally linked with learning, good advice and blessings through children."}
+P-JUPITER-9: {title: "Jupiter in the 9th house", text: "Jupiter in the 9th is traditionally linked with faith, good fortune and respect for teachers."}
+P-VENUS-7: {title: "Venus in the 7th house", text: "Venus in the 7th is traditionally linked with an attractive, affectionate partner and social charm."}
+P-SATURN-10: {title: "Saturn in the 10th house", text: "Saturn in the 10th is traditionally linked with a career built slowly through hard work and responsibility."}
+P-SATURN-7: {title: "Saturn in the 7th house", text: "Saturn in the 7th is traditionally linked with a mature or delayed partnership that grows stronger with time."}
+P-MERCURY-1: {title: "Mercury in the Lagna", text: "Mercury in the 1st is traditionally linked with a quick mind, wit and a youthful manner."}
+P-MARS-10: {title: "Mars in the 10th house", text: "Mars in the 10th is traditionally linked with energy at work and success in technical or competitive fields."}
+P-LORD1-KENDRA-TRIKONA: {title: "Lagna lord well placed", text: "The lord of the Lagna is in a kendra or trikona, which tradition reads as a strong foundation for health and self-confidence."}
+P-LORD1-DUSTHANA: {title: "Lagna lord in 6, 8 or 12", text: "The lord of the Lagna is in a dusthana. Tradition advises extra care with health and routine; this is not medical advice."}
+P-LORD10-KENDRA: {title: "10th lord in a kendra", text: "The lord of the 10th is in a kendra, which tradition reads as good support for career and standing."}
+P-LORD7-7: {title: "7th lord in the 7th", text: "The lord of the 7th is in its own house, which tradition reads as support for partnership and marriage."}
+P-LORD2-11: {title: "2nd lord in the 11th", text: "The lord of the 2nd is in the 11th, a traditional sign of gains and income growth."}
+P-LORD5-5-9: {title: "5th lord in 5 or 9", text: "The lord of the 5th is in a trikona, which tradition links with intelligence, merit and children."}
+P-MOON-STRONG: {title: "Strong Moon", text: "The Moon is exalted, in Moolatrikona or in its own sign. Tradition links a strong Moon with emotional steadiness."}
+P-SUN-DEBILITATED: {title: "Debilitated Sun", text: "The Sun is in Libra, its sign of debilitation. Tradition reads this as needing to build confidence; check for cancellation."}
+P-SATURN-RETRO: {title: "Retrograde Saturn", text: "Saturn was retrograde at birth. Tradition reads this as lessons that repeat until they are learned."}
+P-MERCURY-COMBUST: {title: "Combust Mercury", text: "Mercury is close to the Sun (combust). Tradition reads this as needing care with hasty words and decisions."}
