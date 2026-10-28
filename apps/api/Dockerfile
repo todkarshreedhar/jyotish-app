@@ -1,6 +1,11 @@
-
-# Development image for the Jyotish API
+# Image for the Jyotish API and its Celery worker.
+# python:3.13 (not -slim) because pyswisseph needs a C compiler to build.
 FROM python:3.13
+
+# WeasyPrint (PDF reports) needs Pango; the fonts it uses are bundled in the app.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir "uv==0.11.*"
 
@@ -29,5 +34,6 @@ WORKDIR /app/apps/api
 
 EXPOSE 8000
 
-# Apply migrations and start the API server
+# Development default: apply migrations and start the API with reload.
+# Production overrides the command (see infra/README.md).
 CMD ["sh", "-c", "uv run --no-sync alembic upgrade head && uv run --no-sync uvicorn jyotish_api.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir /app/apps/api/src --reload-dir /app/packages/engine/src"]

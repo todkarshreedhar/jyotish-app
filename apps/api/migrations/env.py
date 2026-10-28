@@ -1,10 +1,7 @@
-
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
 # Alembic configuration
 config = context.config
@@ -20,7 +17,10 @@ if config.config_file_name is not None:
 
 # No ORM models are registered yet.
 # Connect your SQLAlchemy Base.metadata here when models are added.
-target_metadata = None
+from jyotish_api import models  # noqa: E402,F401  (registers tables)
+from jyotish_api.db import Base  # noqa: E402
+
+target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:

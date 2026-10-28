@@ -1,35 +1,31 @@
-import { getHealth, summary } from "@/lib/health";
-
-// Always ask the API on each request, so the page shows live status.
-export const dynamic = "force-dynamic";
+import { getTranslations } from "next-intl/server";
+import { ButtonLink } from "@/components/ui";
 
 export default async function Home() {
-  // Inside Docker the web container reaches the API at http://api:8000.
-  const apiUrl = process.env.API_URL ?? "http://localhost:8000";
-  const health = await getHealth(apiUrl);
-
-  const rows: [string, string][] = [
-    ["API", health ? "up" : "down"],
-    ["Database", health?.database ?? "unknown"],
-    ["Redis", health?.redis ?? "unknown"],
-    ["Engine version", health?.engine_version ?? "unknown"],
-    ["Swiss Ephemeris", health?.swiss_ephemeris_version ?? "unknown"],
-  ];
-
+  const t = await getTranslations("home");
+  const features = ["accuracy", "charts", "dasha", "readings", "languages", "privacy"] as const;
   return (
-    <main className="mx-auto max-w-xl p-8">
-      <h1 className="text-2xl font-semibold">Jyotish App</h1>
-      <p className="mt-2 text-lg">{summary(health)}</p>
-      <table className="mt-6 w-full text-left">
-        <tbody>
-          {rows.map(([name, value]) => (
-            <tr key={name} className="border-b">
-              <th className="py-2 font-medium">{name}</th>
-              <td className="py-2">{value}</td>
-            </tr>
+    <div className="flex flex-col gap-10">
+      <section className="rounded-2xl bg-surface-2 px-6 py-10 sm:px-10">
+        <h1 className="max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">{t("title")}</h1>
+        <p className="mt-3 max-w-2xl text-lg text-muted">{t("lead")}</p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <ButtonLink href="/login">{t("start")}</ButtonLink>
+          <ButtonLink href="/try" variant="secondary">{t("try")}</ButtonLink>
+        </div>
+        <p className="mt-4 text-sm text-muted">{t("free")}</p>
+      </section>
+      <section aria-labelledby="features">
+        <h2 id="features" className="sr-only">{t("featuresTitle")}</h2>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f) => (
+            <li key={f} className="rounded-xl border border-border bg-surface p-5">
+              <h3 className="font-semibold">{t(`features.${f}.title`)}</h3>
+              <p className="mt-1 text-sm text-muted">{t(`features.${f}.text`)}</p>
+            </li>
           ))}
-        </tbody>
-      </table>
-    </main>
+        </ul>
+      </section>
+    </div>
   );
 }

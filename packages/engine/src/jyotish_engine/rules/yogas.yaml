@@ -1,0 +1,230 @@
+# Yogas. Gate M4: the domain expert checks each rule, its source and its text,
+# then sets reviewed: true. Sources name the classical text and chapter as
+# commonly cited; the expert confirms the exact verse.
+
+- id: Y-RUCHAKA
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Pancha Mahapurusha)"
+  when: {all: [{in_house: {planet: mars, houses: [1, 4, 7, 10]}}, {dignity: {planet: mars, is: [exalted, own, moolatrikona]}}]}
+  text_key: Y-RUCHAKA
+  reviewed: false
+
+- id: Y-BHADRA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Pancha Mahapurusha)"
+  when: {all: [{in_house: {planet: mercury, houses: [1, 4, 7, 10]}}, {dignity: {planet: mercury, is: [exalted, own, moolatrikona]}}]}
+  text_key: Y-BHADRA
+  reviewed: false
+
+- id: Y-HAMSA
+  topic: spirituality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Pancha Mahapurusha)"
+  when: {all: [{in_house: {planet: jupiter, houses: [1, 4, 7, 10]}}, {dignity: {planet: jupiter, is: [exalted, own, moolatrikona]}}]}
+  text_key: Y-HAMSA
+  reviewed: false
+
+- id: Y-MALAVYA
+  topic: relationships
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Pancha Mahapurusha)"
+  when: {all: [{in_house: {planet: venus, houses: [1, 4, 7, 10]}}, {dignity: {planet: venus, is: [exalted, own, moolatrikona]}}]}
+  text_key: Y-MALAVYA
+  reviewed: false
+
+- id: Y-SASA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Pancha Mahapurusha)"
+  when: {all: [{in_house: {planet: saturn, houses: [1, 4, 7, 10]}}, {dignity: {planet: saturn, is: [exalted, own, moolatrikona]}}]}
+  text_key: Y-SASA
+  reviewed: false
+
+- id: Y-GAJAKESARI
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {in_house: {planet: jupiter, houses: [1, 4, 7, 10], from: moon}}
+  text_key: Y-GAJAKESARI
+  reviewed: false
+
+- id: Y-SUNAPHA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Chandra yogas)"
+  when: {all: [
+    {any_planet_in_house: {houses: [2], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {no_planet_in_house: {houses: [12], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-SUNAPHA
+  reviewed: false
+
+- id: Y-ANAPHA
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Chandra yogas)"
+  when: {all: [
+    {any_planet_in_house: {houses: [12], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {no_planet_in_house: {houses: [2], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-ANAPHA
+  reviewed: false
+
+- id: Y-DURUDHARA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Chandra yogas)"
+  when: {all: [
+    {any_planet_in_house: {houses: [2], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {any_planet_in_house: {houses: [12], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-DURUDHARA
+  reviewed: false
+
+- id: Y-KEMADRUMA
+  topic: general
+  kind: dosha
+  source: "Phaladeepika ch. 6 (Chandra yogas)"
+  when: {all: [
+    {no_planet_in_house: {houses: [2, 12], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {no_planet_in_house: {houses: [1, 4, 7, 10], from: lagna, planets: [moon, mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-KEMADRUMA
+  reviewed: false
+
+- id: Y-VESI
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Surya yogas)"
+  when: {all: [
+    {any_planet_in_house: {houses: [2], from: sun, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {no_planet_in_house: {houses: [12], from: sun, planets: [mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-VESI
+  reviewed: false
+
+- id: Y-VASI
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Surya yogas)"
+  when: {all: [
+    {any_planet_in_house: {houses: [12], from: sun, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {no_planet_in_house: {houses: [2], from: sun, planets: [mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-VASI
+  reviewed: false
+
+- id: Y-UBHAYACHARI
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Surya yogas)"
+  when: {all: [
+    {any_planet_in_house: {houses: [2], from: sun, planets: [mars, mercury, jupiter, venus, saturn]}},
+    {any_planet_in_house: {houses: [12], from: sun, planets: [mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-UBHAYACHARI
+  reviewed: false
+
+- id: Y-BUDHADITYA
+  topic: career
+  kind: yoga
+  source: "Common tradition (Sun-Mercury conjunction)"
+  when: {all: [{conjunct: [sun, mercury]}, {not: {combust: mercury}}]}
+  text_key: Y-BUDHADITYA
+  reviewed: false
+
+- id: Y-CHANDRAMANGALA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {conjunct: [moon, mars]}
+  text_key: Y-CHANDRAMANGALA
+  reviewed: false
+
+- id: Y-ADHI
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [
+    {in_house: {planet: mercury, houses: [6, 7, 8], from: moon}},
+    {in_house: {planet: jupiter, houses: [6, 7, 8], from: moon}},
+    {in_house: {planet: venus, houses: [6, 7, 8], from: moon}}]}
+  text_key: Y-ADHI
+  reviewed: false
+
+- id: Y-AMALA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {any: [
+    {any_planet_in_house: {houses: [10], from: lagna, planets: [jupiter, venus, mercury]}},
+    {any_planet_in_house: {houses: [10], from: moon, planets: [jupiter, venus, mercury]}}]}
+  text_key: Y-AMALA
+  reviewed: false
+
+- id: Y-RAJA-KENDRA-TRIKONA
+  topic: career
+  kind: yoga
+  source: "BPHS, Raja yoga chapter (kendra and trikona lords together)"
+  when: {lords_conjunct: {a: [1, 4, 7, 10], b: [1, 5, 9], distinct: true}}
+  text_key: Y-RAJA-KENDRA-TRIKONA
+  reviewed: false
+
+- id: Y-DHANA
+  topic: wealth
+  kind: yoga
+  source: "BPHS, Dhana yoga chapter (lords of 2/11 with lords of 5/9)"
+  when: {lords_conjunct: {a: [2, 11], b: [5, 9], distinct: true}}
+  text_key: Y-DHANA
+  reviewed: false
+
+- id: Y-HARSHA
+  topic: health
+  kind: yoga
+  source: "Uttara Kalamrita (Viparita Raja yogas)"
+  when: {lord_in_house: {lord_of: 6, houses: [6, 8, 12]}}
+  text_key: Y-HARSHA
+  reviewed: false
+
+- id: Y-SARALA
+  topic: general
+  kind: yoga
+  source: "Uttara Kalamrita (Viparita Raja yogas)"
+  when: {lord_in_house: {lord_of: 8, houses: [6, 8, 12]}}
+  text_key: Y-SARALA
+  reviewed: false
+
+- id: Y-VIMALA
+  topic: spirituality
+  kind: yoga
+  source: "Uttara Kalamrita (Viparita Raja yogas)"
+  when: {lord_in_house: {lord_of: 12, houses: [6, 8, 12]}}
+  text_key: Y-VIMALA
+  reviewed: false
+
+- id: Y-NEECHABHANGA
+  topic: general
+  kind: yoga
+  source: "Phaladeepika ch. 7 (Neecha Bhanga)"
+  when: {debilitated_with_cancellation: true}
+  text_key: Y-NEECHABHANGA
+  reviewed: false
+
+- id: Y-SHAKATA
+  topic: wealth
+  kind: dosha
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: moon, houses: [6, 8, 12], from: jupiter}}, {not: {in_house: {planet: jupiter, houses: [1, 4, 7, 10]}}}]}
+  text_key: Y-SHAKATA
+  reviewed: false
+
+- id: D-MANGLIK
+  topic: relationships
+  kind: dosha
+  source: "Common tradition (Kuja dosha: Mars in 1, 2, 4, 7, 8, 12)"
+  when: {any: [{in_house: {planet: mars, houses: [1, 2, 4, 7, 8, 12]}}, {in_house: {planet: mars, houses: [1, 2, 4, 7, 8, 12], from: moon}}]}
+  text_key: D-MANGLIK
+  reviewed: false
+
+- id: D-KALASARPA
+  topic: general
+  kind: dosha
+  source: "Later tradition (not in BPHS): all planets on one side of the Rahu-Ketu axis"
+  when: {all_between_nodes: true}
+  text_key: D-KALASARPA
+  reviewed: false

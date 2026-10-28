@@ -5,7 +5,9 @@ Rule: this package never touches a database, the network or the clock.
 
 import swisseph as swe
 
-ENGINE_VERSION = "0.1.0"
+from jyotish_engine.version import ENGINE_VERSION
+
+__all__ = ["ENGINE_VERSION", "engine_info"]
 
 
 def engine_info() -> dict[str, str]:

@@ -15,6 +15,11 @@ members = ["apps/api", "packages/engine"]
 dev = [
     "pytest>=8.4",
     "httpx>=0.28",
+    "skyfield>=1.55",
+    "skyfield-data>=7.0.0",
+    "ruff>=0.17.3",
+    "mypy>=2.4.0",
+    "pyyaml>=6.0.3",
 ]
 
 [tool.pytest.ini_options]
@@ -22,3 +27,17 @@ testpaths = [
     "apps/api/tests",
     "packages/engine/tests",
 ]
+
+[tool.ruff]
+line-length = 130
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# Long lines are mostly translated text; the formatter keeps code within the limit.
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+warn_unused_ignores = true

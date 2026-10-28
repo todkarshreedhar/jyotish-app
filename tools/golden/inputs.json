@@ -1,0 +1,22 @@
+[
+  {"id": "GT-001", "label": "Pune, spring morning", "date": "1990-05-15", "time": "10:30:00", "lat": 18.5204, "lon": 73.8567, "tz": "Asia/Kolkata"},
+  {"id": "GT-002", "label": "Mumbai, midnight", "date": "1985-11-02", "time": "00:00:00", "lat": 19.0760, "lon": 72.8777, "tz": "Asia/Kolkata"},
+  {"id": "GT-003", "label": "Delhi, evening", "date": "2001-08-21", "time": "19:45:00", "lat": 28.6139, "lon": 77.2090, "tz": "Asia/Kolkata"},
+  {"id": "GT-004", "label": "Kolkata, war time (UTC+06:30)", "date": "1943-03-10", "time": "06:10:00", "lat": 22.5726, "lon": 88.3639, "tz": "Asia/Kolkata"},
+  {"id": "GT-005", "label": "Pune 1950 (US-15 example)", "date": "1950-03-10", "time": "10:30:00", "lat": 18.5204, "lon": 73.8567, "tz": "Asia/Kolkata"},
+  {"id": "GT-006", "label": "Chennai, pre-dawn", "date": "1972-01-26", "time": "04:05:00", "lat": 13.0827, "lon": 80.2707, "tz": "Asia/Kolkata"},
+  {"id": "GT-007", "label": "Varanasi, noon", "date": "1964-07-04", "time": "12:00:00", "lat": 25.3176, "lon": 82.9739, "tz": "Asia/Kolkata"},
+  {"id": "GT-008", "label": "Nagpur, leap day", "date": "2000-02-29", "time": "15:20:00", "lat": 21.1458, "lon": 79.0882, "tz": "Asia/Kolkata"},
+  {"id": "GT-009", "label": "Kathmandu (UTC+05:45)", "date": "1995-12-31", "time": "23:59:00", "lat": 27.7172, "lon": 85.3240, "tz": "Asia/Kathmandu"},
+  {"id": "GT-010", "label": "New York, summer time", "date": "1978-07-15", "time": "08:15:00", "lat": 40.7128, "lon": -74.0060, "tz": "America/New_York"},
+  {"id": "GT-011", "label": "London, winter", "date": "1969-12-10", "time": "21:30:00", "lat": 51.5074, "lon": -0.1278, "tz": "Europe/London"},
+  {"id": "GT-012", "label": "Sydney, southern hemisphere", "date": "1988-04-03", "time": "16:40:00", "lat": -33.8688, "lon": 151.2093, "tz": "Australia/Sydney"},
+  {"id": "GT-013", "label": "Sao Paulo, west and south", "date": "2010-09-09", "time": "09:09:00", "lat": -23.5505, "lon": -46.6333, "tz": "America/Sao_Paulo"},
+  {"id": "GT-014", "label": "Oslo, high latitude", "date": "1959-06-21", "time": "13:00:00", "lat": 59.9139, "lon": 10.7522, "tz": "Europe/Oslo"},
+  {"id": "GT-015", "label": "Dubai", "date": "2015-03-20", "time": "17:30:00", "lat": 25.2048, "lon": 55.2708, "tz": "Asia/Dubai"},
+  {"id": "GT-016", "label": "Bengaluru, recent", "date": "2023-10-14", "time": "11:11:00", "lat": 12.9716, "lon": 77.5946, "tz": "Asia/Kolkata"},
+  {"id": "GT-017", "label": "Ahmedabad, 1920s", "date": "1925-09-05", "time": "07:30:00", "lat": 23.0225, "lon": 72.5714, "tz": "Asia/Kolkata"},
+  {"id": "GT-018", "label": "Singapore", "date": "1981-05-01", "time": "02:22:00", "lat": 1.3521, "lon": 103.8198, "tz": "Asia/Singapore"},
+  {"id": "GT-019", "label": "Los Angeles", "date": "1999-01-01", "time": "00:01:00", "lat": 34.0522, "lon": -118.2437, "tz": "America/Los_Angeles"},
+  {"id": "GT-020", "label": "Hyderabad, future date", "date": "2040-11-11", "time": "18:18:00", "lat": 17.3850, "lon": 78.4867, "tz": "Asia/Kolkata"}
+]

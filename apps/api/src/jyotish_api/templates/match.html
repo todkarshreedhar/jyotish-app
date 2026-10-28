@@ -1,0 +1,20 @@
+{% extends "report.html" %}
+{% block content %}
+<h1>{{ L.match_title }}</h1>
+<div>{{ boy.profile.name }} &amp; {{ girl.profile.name }}</div>
+<h2>{{ L.score }}</h2>
+<p><span class="score">{{ score.total }} / 36</span> &nbsp; {{ L.verdict[score.verdict] }}</p>
+<table>
+<tr><th>{{ L.koota }}</th><th>{{ L.boy }}</th><th>{{ L.girl }}</th><th>{{ L.points }}</th><th>{{ L.max }}</th></tr>
+{% for k in score.kootas %}
+<tr><td>{{ N.kootas[k.koota] }}</td><td>{{ k.boy or "" }}</td><td>{{ k.girl or "" }}</td><td>{{ k.points }}</td><td>{{ k.max }}</td></tr>
+{% endfor %}
+<tr><th>{{ L.manglik }}</th><td>{{ L.yes if boy.manglik.is_manglik else L.no }}</td><td>{{ L.yes if girl.manglik.is_manglik else L.no }}</td><td></td><td></td></tr>
+</table>
+<div class="grid">
+<div><h2>{{ L.boy }}: {{ boy.profile.name }}</h2>{{ svg_boy | safe }}
+<p>{{ L.lagna }}: {{ N.signs[boy.chart.lagna.sign] }} · {{ L.moon_sign }}: {{ N.signs[boy_moon.sign] }} · {{ N.nakshatras[boy_moon.nakshatra] }}</p></div>
+<div><h2>{{ L.girl }}: {{ girl.profile.name }}</h2>{{ svg_girl | safe }}
+<p>{{ L.lagna }}: {{ N.signs[girl.chart.lagna.sign] }} · {{ L.moon_sign }}: {{ N.signs[girl_moon.sign] }} · {{ N.nakshatras[girl_moon.nakshatra] }}</p></div>
+</div>
+{% endblock %}

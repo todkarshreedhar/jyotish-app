@@ -1,0 +1,131 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Engine and API (lint, types, tests)
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: jyotish
+          POSTGRES_PASSWORD: jyotish
+          POSTGRES_DB: jyotish_test
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U jyotish" --health-interval 3s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0
+      - run: uv sync --all-packages --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy apps/api/src packages/engine/src
+      # Includes the 20 golden charts checked against JPL DE421 (accuracy gate).
+      - run: uv run pytest -q
+
+  web:
+    name: Web (lint, types, unit tests, build)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: apps/web/package.json
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+
+  e2e:
+    name: Browser tests (desktop and phone, accessibility)
+    runs-on: ubuntu-24.04
+    needs: [python, web]
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: jyotish
+          POSTGRES_PASSWORD: jyotish
+          POSTGRES_DB: jyotish
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U jyotish" --health-interval 3s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+      mailpit:
+        image: axllent/mailpit:v1.27
+        ports: ["1025:1025", "8025:8025"]
+    env:
+      TASKS_EAGER: "true"
+      MAILPIT_URL: http://localhost:8025
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libpango-1.0-0 libpangoft2-1.0-0
+      - run: uv sync --all-packages --frozen
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: apps/web/package.json
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+      - name: Start API
+        working-directory: apps/api
+        run: |
+          uv run alembic upgrade head
+          nohup uv run uvicorn jyotish_api.main:app --port 8000 > api.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf localhost:8000/health && break; sleep 1; done
+      - name: Build and start web
+        working-directory: apps/web
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm exec playwright install --with-deps chromium
+          pnpm build
+          API_URL=http://localhost:8000 nohup pnpm start -p 3000 > web.log 2>&1 &
+          for i in $(seq 1 60); do curl -sf -o /dev/null localhost:3000 && break; sleep 1; done
+      - run: pnpm e2e
+        working-directory: apps/web
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results
+          path: |
+            apps/web/test-results
+            apps/api/api.log
+            apps/web/web.log
+
+  docker:
+    name: Docker images build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker build -f apps/api/Dockerfile -t jyotish-api .
+      - run: docker build -t jyotish-web apps/web
