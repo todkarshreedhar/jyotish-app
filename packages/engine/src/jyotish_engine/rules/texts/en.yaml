@@ -44,3 +44,78 @@ P-MOON-STRONG: {title: "Strong Moon", text: "The Moon is exalted, in Moolatrikon
 P-SUN-DEBILITATED: {title: "Debilitated Sun", text: "The Sun is in Libra, its sign of debilitation. Tradition reads this as needing to build confidence; check for cancellation."}
 P-SATURN-RETRO: {title: "Retrograde Saturn", text: "Saturn was retrograde at birth. Tradition reads this as lessons that repeat until they are learned."}
 P-MERCURY-COMBUST: {title: "Combust Mercury", text: "Mercury is close to the Sun (combust). Tradition reads this as needing care with hasty words and decisions."}
+# --- Nabhasa and more classical yogas (generated layout, edit freely) ---
+Y-RAJJU: {title: "Rajju Yoga", text: "All seven planets are in movable signs. Tradition links this with love of travel, ambition and work away from home."}
+Y-MUSALA: {title: "Musala Yoga", text: "All seven planets are in fixed signs. Tradition links this with firmness, pride and steady wealth."}
+Y-NALA: {title: "Nala Yoga", text: "All seven planets are in dual signs. Tradition links this with versatility and skill in many things."}
+Y-MALA: {title: "Mala Yoga", text: "Benefics (Moon, Mercury, Jupiter, Venus) occupy three of the four kendras. Tradition links this with comfort, good company and a happy life."}
+Y-SARPA: {title: "Sarpa Yoga", text: "Malefics (Sun, Mars, Saturn) occupy three of the four kendras. Tradition reads this as a life with more struggle; benefic influences soften it."}
+Y-GADA: {title: "Gada Yoga", text: "All planets sit in two neighbouring kendras. Tradition links this with effort that brings wealth and respect."}
+Y-NABHASA-SHAKATA: {title: "Shakata Yoga (Nabhasa)", text: "All planets are in the 1st and 7th houses. Tradition links this with a working life of travel and changing fortunes."}
+Y-VIHAGA: {title: "Vihaga Yoga", text: "All planets are in the 4th and 10th houses. Tradition links this with travel, messages and work as a go-between."}
+Y-SRINGATAKA: {title: "Sringataka Yoga", text: "All planets are in the trikonas (1st, 5th and 9th). Tradition links this with a happy married life and good fortune later in life."}
+Y-HALA: {title: "Hala Yoga", text: "All planets are in mutual trines other than those of the Lagna. Tradition links this with farming, land and hard-working habits."}
+Y-VAJRA: {title: "Vajra Yoga", text: "Mercury, Jupiter and Venus are in the 1st and 7th, and the Sun, Mars and Saturn in the 4th and 10th. Tradition links this with happiness at the start and end of life."}
+Y-YAVA: {title: "Yava Yoga", text: "The Sun, Mars and Saturn are in the 1st and 7th, and Mercury, Jupiter and Venus in the 4th and 10th. Tradition links this with a happy middle part of life."}
+Y-KAMALA: {title: "Kamala Yoga", text: "All planets are in the four kendras, with each kendra occupied. Tradition links this with fame, virtue and a long, respected life."}
+Y-VAPI: {title: "Vapi Yoga", text: "All planets avoid the kendras and sit in the succeedent or cadent houses. Tradition links this with saving and keeping wealth."}
+Y-YUPA: {title: "Yupa Yoga", text: "All planets fill the four houses from the 1st to the 4th. Tradition links this with charity, ritual and self-control."}
+Y-SHARA: {title: "Shara Yoga", text: "All planets fill the four houses from the 4th to the 7th. Tradition links this with skill in making things and outdoor work."}
+Y-SHAKTI: {title: "Shakti Yoga", text: "All planets fill the four houses from the 7th to the 10th. Tradition reads this as success that comes slowly, through persistence."}
+Y-DANDA: {title: "Danda Yoga", text: "All planets fill the four houses from the 10th to the 1st. Tradition reads this as distance from family and the need to rely on oneself."}
+Y-NAUKA: {title: "Nauka Yoga", text: "All planets fill seven houses in a row from the 1st. Tradition links this with earnings from water, trade or travel, and a restless mind."}
+Y-KOOTA: {title: "Koota Yoga", text: "All planets fill seven houses in a row from the 4th. Tradition reads this as a hard path that calls for honesty and care."}
+Y-CHHATRA: {title: "Chhatra Yoga", text: "All planets fill seven houses in a row from the 7th. Tradition links this with caring for one's family and happiness later in life."}
+Y-CHAPA: {title: "Chapa Yoga", text: "All planets fill seven houses in a row from the 10th. Tradition links this with courage and positions of guarding or protecting."}
+Y-ARDHACHANDRA: {title: "Ardhachandra Yoga", text: "All planets fill seven houses in a row that starts away from a kendra. Tradition links this with an attractive personality and leadership."}
+Y-CHAKRA: {title: "Chakra Yoga", text: "All planets are in the six odd houses from the Lagna, each occupied. Tradition links this with high status and authority."}
+Y-SAMUDRA: {title: "Samudra Yoga", text: "All planets are in the six even houses from the Lagna, each occupied. Tradition links this with wealth, comforts and a generous nature."}
+Y-VALLAKI: {title: "Vallaki (Veena) Yoga", text: "The planets occupy seven different signs. Tradition links this with fondness for music, arts and learning. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-DAMINI: {title: "Damini Yoga", text: "The planets occupy six signs. Tradition links this with helpfulness, patience and comfortable means. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-PASA: {title: "Pasa Yoga", text: "The planets occupy five signs. Tradition links this with skill in work and a wide circle of contacts. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-KEDARA: {title: "Kedara Yoga", text: "The planets occupy four signs. Tradition links this with farming, land and being useful to many. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-SHULA: {title: "Shula Yoga", text: "The planets occupy only three signs. Tradition links this with sharpness, courage and a quick temper. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-YUGA: {title: "Yuga Yoga", text: "The planets occupy only two signs. Tradition links this with an unconventional path and independence from custom. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-GOLA: {title: "Gola Yoga", text: "All the planets are in a single sign. Tradition links this with a simple life that needs effort and learning to prosper. BPHS applies the count yogas only when no other Nabhasa shape yoga is present."}
+Y-DHARMA-KARMADHIPATI: {title: "Dharma-Karmadhipati Yoga", text: "The lords of the 9th (fortune) and 10th (work) are together or exchange signs. Tradition counts this among the strongest Raja yogas, for success in one's calling."}
+Y-MAHA-PARIVARTANA: {title: "Maha Parivartana Yoga", text: "Two lords of good houses exchange signs. Tradition links this with wealth, comforts and support that grows over time."}
+Y-KHALA-PARIVARTANA: {title: "Khala Yoga (Parivartana)", text: "The 3rd lord exchanges signs with the lord of a good house. Tradition reads this as changing fortunes, with gains that come through bold effort."}
+Y-DAINYA-PARIVARTANA: {title: "Dainya Yoga (Parivartana)", text: "The lord of the 6th, 8th or 12th exchanges signs with another lord. Tradition reads this as struggles that are overcome with patience; read it with the strength of both planets."}
+Y-LAKSHMI: {title: "Lakshmi Yoga", text: "The 9th lord is strong in a kendra or trikona and the Lagna lord is well placed. Tradition links this with wealth, culture and a noble reputation."}
+Y-SARASWATI: {title: "Saraswati Yoga", text: "Mercury, Jupiter and Venus are in kendras, trikonas or the 2nd, with Jupiter well placed. Tradition links this with learning, eloquence and skill in the arts."}
+Y-CHAMARA: {title: "Chamara Yoga", text: "The Lagna lord is exalted in a kendra and aspected by Jupiter. Tradition links this with honour from those in power, learning and a long life."}
+Y-SHANKHA: {title: "Shankha Yoga", text: "The lords of the 5th and 6th are in kendras from each other and the Lagna lord is well placed. Tradition links this with a kind nature, a good family and comfort."}
+Y-KAHALA: {title: "Kahala Yoga", text: "The lords of the 4th and 9th are in kendras from each other and the Lagna lord is well placed. Tradition links this with boldness and leadership."}
+Y-BHERI: {title: "Bheri Yoga", text: "Venus, Jupiter and the Lagna lord are in kendras and the 9th lord is strong. Tradition links this with a long, healthy life, a good family and fame."}
+Y-PARVATA: {title: "Parvata Yoga", text: "A benefic is in a kendra and no malefic occupies the 6th or 8th. Tradition links this with prosperity, generosity and a good name."}
+Y-VASUMATI: {title: "Vasumati Yoga", text: "Mercury, Jupiter and Venus are all in growth houses (3rd, 6th, 10th, 11th) from the Lagna or the Moon. Tradition links this with wealth that keeps growing."}
+Y-SHUBHA-KARTARI: {title: "Shubha Kartari Yoga", text: "Benefics occupy both the 2nd and 12th houses, enclosing the Lagna. Tradition links this with protection, good health and a pleasant life."}
+D-PAPA-KARTARI: {title: "Papa Kartari", text: "Malefics occupy both the 2nd and 12th houses, hemming in the Lagna. Tradition reads this as pressure from circumstances; benefic aspects on the Lagna ease it."}
+Y-LAGNADHI: {title: "Lagnadhi Yoga", text: "Mercury, Jupiter and Venus are in the 6th, 7th and 8th from the Lagna. Tradition links this with a respected position, learning and comfort."}
+Y-GURU-MANGALA: {title: "Guru-Mangala Yoga", text: "Jupiter and Mars are together. Tradition links this with energy guided by good judgement, and success in technical or leadership roles."}
+D-GURU-CHANDALA: {title: "Guru-Chandala", text: "Jupiter is with Rahu. Later tradition reads this as unconventional beliefs or doubts about advice; Jupiter's strength decides how much it matters."}
+D-GRAHANA-SURYA: {title: "Surya Grahana", text: "The Sun is with Rahu or Ketu. Later tradition reads this as challenges to confidence or with authority figures; it is not about physical health on its own."}
+D-GRAHANA-CHANDRA: {title: "Chandra Grahana", text: "The Moon is with Rahu or Ketu. Later tradition reads this as emotional ups and downs; a strong Moon and benefic aspects reduce it."}
+D-ANGARAKA: {title: "Angaraka Yoga", text: "Mars is with Rahu. Later tradition reads this as strong drive that needs patience and care to channel well."}
+D-VISHA: {title: "Visha Yoga", text: "The Moon is with Saturn. Later tradition reads this as a serious, cautious mind that can tend to worry; it also gives endurance."}
+Y-KALANIDHI: {title: "Kalanidhi Yoga", text: "Jupiter is in the 2nd or 5th, joined or aspected by Mercury and Venus. Tradition links this with wealth, good qualities and respect."}
+Y-BHASKARA: {title: "Bhaskara Yoga", text: "Mercury is 2nd from the Sun, the Moon 11th from Mercury and Jupiter in a trine from the Moon. Tradition links this with learning, courage and a strong position."}
+Y-MARUT: {title: "Marut Yoga", text: "Jupiter is in a trine from Venus, the Moon 5th from Jupiter and the Sun in a kendra from the Moon. Tradition links this with eloquence, generosity and success in trade."}
+Y-BUDHA: {title: "Budha Yoga", text: "Jupiter is in the Lagna, the Moon in a kendra from Jupiter, Rahu 2nd from the Moon, and the Sun and Mars 3rd from Rahu. Tradition links this with intelligence and a high position."}
+Y-INDRA: {title: "Indra Yoga", text: "The lords of the 5th and 11th exchange signs and the Moon is in the 5th. Tradition links this with courage, fame and a position of authority."}
+Y-SHIVA: {title: "Shiva Yoga", text: "The 5th lord is in the 9th, the 9th lord in the 10th and the 10th lord in the 5th. Tradition links this with wisdom, virtue and success in one's work."}
+Y-SREENATHA: {title: "Sreenatha Yoga", text: "The 7th lord is exalted in the 10th and the 10th lord is with the 9th lord. Tradition links this with wealth, good speech and honour."}
+Y-KHADGA: {title: "Khadga Yoga", text: "The lords of the 2nd and 9th exchange signs and the Lagna lord is in a kendra or trikona. Tradition links this with wealth, learning and skill."}
+Y-JAYA: {title: "Jaya Yoga", text: "The 6th lord is debilitated and the 10th lord exalted. Tradition links this with victory over rivals and success in one's undertakings."}
+Y-TRILOCHANA: {title: "Trilochana Yoga", text: "The Sun, Moon and Mars are in trines from each other. Tradition links this with wealth, intelligence and overcoming opponents."}
+Y-KURMA: {title: "Kurma Yoga", text: "Mercury, Jupiter and Venus are in the 5th to 7th, and the Sun, Mars and Saturn in the 1st, 3rd or 11th. Tradition links this with fame, happiness and leadership."}
+Y-DHWAJA: {title: "Dhwaja Yoga", text: "The Sun, Mars and Saturn are in the 8th and a benefic is in the Lagna. Tradition links this with leadership and standing out from the crowd."}
+Y-PRAVRAJYA: {title: "Pravrajya Yoga", text: "Four or more planets are in one sign. Tradition links this with a pull towards renunciation, spiritual discipline or a life devoted to a cause."}
+Y-DARIDRA: {title: "Daridra Yoga", text: "The 11th lord (gains) is in the 6th, 8th or 12th. Tradition reads this as gains that need extra effort and careful spending; other wealth yogas can outweigh it."}
+Y-DURYOGA: {title: "Duryoga", text: "The 10th lord (work) is in the 6th, 8th or 12th. Tradition reads this as recognition that comes late or behind the scenes; persistence and service bring results."}
+Y-KEMADRUMA-BHANGA: {title: "Kemadruma cancelled", text: "No planet is next to the Moon, but a planet is in a kendra from the Moon. Tradition says this cancels Kemadruma and gives support when it is needed."}
+Y-CHATUSSAGARA: {title: "Chatussagara Yoga", text: "Every kendra (1st, 4th, 7th and 10th) has a planet. Tradition links this with a wide reputation, good children and lasting success."}
+Y-SHUBHAMALA: {title: "Shubhamala Yoga", text: "Mercury, Jupiter and Venus occupy the 5th, 6th and 7th houses. Tradition links this with a garland of good fortune: comfort, family and respect."}
+D-ASHUBHAMALA: {title: "Ashubhamala", text: "The Sun, Mars and Saturn occupy the 5th, 6th and 7th houses. Tradition reads this as obstacles that call for patience; benefic aspects soften it."}
+Y-DEVENDRA: {title: "Devendra Yoga", text: "The Lagna is a fixed sign, the lords of the 1st and 11th exchange signs, and so do the lords of the 2nd and 10th. Tradition links this with high status, comfort and fame."}
+Y-RAJALAKSHANA: {title: "Rajalakshana Yoga", text: "The Moon, Mercury, Jupiter and Venus are all in the Lagna or other kendras. Tradition links this with a dignified appearance and good qualities."}

@@ -1,0 +1,291 @@
+# Nabhasa yogas (BPHS ch. 13, Brihat Jataka ch. 12): patterns made by where the
+# seven planets (Sun to Saturn) sit, ignoring Rahu and Ketu. Gate M4: the domain
+# expert checks each rule, its source and its text, then sets reviewed: true.
+# `example` gives sign numbers (1 = Aries) for a chart where the yoga is present.
+- id: Y-RAJJU
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {sign_type: {type: movable}}
+  example: {lagna: 1, sun: 1, moon: 4, mars: 7, mercury: 1, jupiter: 10, venus: 1, saturn: 4}
+  text_key: Y-RAJJU
+  reviewed: false
+
+- id: Y-MUSALA
+  topic: personality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {sign_type: {type: fixed}}
+  example: {lagna: 1, sun: 2, moon: 5, mars: 8, mercury: 2, jupiter: 11, venus: 2, saturn: 5}
+  text_key: Y-MUSALA
+  reviewed: false
+
+- id: Y-NALA
+  topic: personality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {sign_type: {type: dual}}
+  example: {lagna: 1, sun: 3, moon: 6, mars: 9, mercury: 3, jupiter: 12, venus: 3, saturn: 6}
+  text_key: Y-NALA
+  reviewed: false
+
+- id: Y-MALA
+  topic: wealth
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {any: [{houses_occupied: {houses: [1, 4, 7], planets: [moon, mercury, jupiter, venus]}}, {houses_occupied: {houses: [1, 4, 10], planets: [moon, mercury, jupiter, venus]}}, {houses_occupied: {houses: [1, 7, 10], planets: [moon, mercury, jupiter, venus]}}, {houses_occupied: {houses: [4, 7, 10], planets: [moon, mercury, jupiter, venus]}}]}
+  example: {lagna: 1, sun: 1, moon: 4, mars: 3, mercury: 1, jupiter: 7, venus: 2, saturn: 5}
+  text_key: Y-MALA
+  reviewed: false
+
+- id: Y-SARPA
+  topic: general
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {any: [{houses_occupied: {houses: [1, 4, 7], planets: [sun, mars, saturn]}}, {houses_occupied: {houses: [1, 4, 10], planets: [sun, mars, saturn]}}, {houses_occupied: {houses: [1, 7, 10], planets: [sun, mars, saturn]}}, {houses_occupied: {houses: [4, 7, 10], planets: [sun, mars, saturn]}}]}
+  example: {lagna: 1, sun: 1, moon: 2, mars: 4, mercury: 1, jupiter: 2, venus: 2, saturn: 7}
+  text_key: Y-SARPA
+  reviewed: false
+
+- id: Y-GADA
+  topic: wealth
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {any: [{planets_within: {houses: [1, 4], occupy_all: true}}, {planets_within: {houses: [4, 7], occupy_all: true}}, {planets_within: {houses: [7, 10], occupy_all: true}}, {planets_within: {houses: [10, 1], occupy_all: true}}]}
+  example: {lagna: 1, sun: 1, moon: 4, mars: 1, mercury: 1, jupiter: 4, venus: 4, saturn: 1}
+  text_key: Y-GADA
+  reviewed: false
+
+- id: Y-NABHASA-SHAKATA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {planets_within: {houses: [1, 7], occupy_all: true}}
+  example: {lagna: 1, sun: 1, moon: 7, mars: 1, mercury: 1, jupiter: 7, venus: 7, saturn: 1}
+  text_key: Y-NABHASA-SHAKATA
+  reviewed: false
+
+- id: Y-VIHAGA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {planets_within: {houses: [4, 10], occupy_all: true}}
+  example: {lagna: 1, sun: 4, moon: 10, mars: 4, mercury: 4, jupiter: 10, venus: 10, saturn: 4}
+  text_key: Y-VIHAGA
+  reviewed: false
+
+- id: Y-SRINGATAKA
+  topic: family
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {planets_within: {houses: [1, 5, 9], occupy_all: true}}
+  example: {lagna: 1, sun: 1, moon: 5, mars: 9, mercury: 1, jupiter: 5, venus: 9, saturn: 1}
+  text_key: Y-SRINGATAKA
+  reviewed: false
+
+- id: Y-HALA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {any: [{planets_within: {houses: [2, 6, 10], occupy_all: true}}, {planets_within: {houses: [3, 7, 11], occupy_all: true}}, {planets_within: {houses: [4, 8, 12], occupy_all: true}}]}
+  example: {lagna: 1, sun: 2, moon: 6, mars: 10, mercury: 2, jupiter: 6, venus: 10, saturn: 2}
+  text_key: Y-HALA
+  reviewed: false
+
+- id: Y-VAJRA
+  topic: general
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {all: [{planets_within: {houses: [1, 7], occupy_all: true, planets: [mercury, jupiter, venus]}}, {planets_within: {houses: [4, 10], occupy_all: true, planets: [sun, mars, saturn]}}]}
+  example: {lagna: 1, sun: 4, moon: 2, mars: 10, mercury: 1, jupiter: 7, venus: 1, saturn: 4}
+  text_key: Y-VAJRA
+  reviewed: false
+
+- id: Y-YAVA
+  topic: general
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {all: [{planets_within: {houses: [1, 7], occupy_all: true, planets: [sun, mars, saturn]}}, {planets_within: {houses: [4, 10], occupy_all: true, planets: [mercury, jupiter, venus]}}]}
+  example: {lagna: 1, sun: 1, moon: 2, mars: 7, mercury: 4, jupiter: 10, venus: 4, saturn: 1}
+  text_key: Y-YAVA
+  reviewed: false
+
+- id: Y-KAMALA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {planets_within: {houses: [1, 4, 7, 10], occupy_all: true}}
+  example: {lagna: 1, sun: 1, moon: 4, mars: 7, mercury: 1, jupiter: 10, venus: 4, saturn: 7}
+  text_key: Y-KAMALA
+  reviewed: false
+
+- id: Y-VAPI
+  topic: wealth
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {any: [{planets_within: {houses: [2, 5, 8, 11]}}, {planets_within: {houses: [3, 6, 9, 12]}}]}
+  example: {lagna: 1, sun: 2, moon: 5, mars: 8, mercury: 2, jupiter: 11, venus: 2, saturn: 5}
+  text_key: Y-VAPI
+  reviewed: false
+
+- id: Y-YUPA
+  topic: spirituality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 4, start: [1]}}
+  example: {lagna: 1, sun: 1, moon: 2, mars: 3, mercury: 4, jupiter: 1, venus: 2, saturn: 3}
+  text_key: Y-YUPA
+  reviewed: false
+
+- id: Y-SHARA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 4, start: [4]}}
+  example: {lagna: 1, sun: 4, moon: 5, mars: 6, mercury: 7, jupiter: 4, venus: 5, saturn: 6}
+  text_key: Y-SHARA
+  reviewed: false
+
+- id: Y-SHAKTI
+  topic: general
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 4, start: [7]}}
+  example: {lagna: 1, sun: 7, moon: 8, mars: 9, mercury: 10, jupiter: 7, venus: 8, saturn: 9}
+  text_key: Y-SHAKTI
+  reviewed: false
+
+- id: Y-DANDA
+  topic: family
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 4, start: [10]}}
+  example: {lagna: 1, sun: 10, moon: 11, mars: 12, mercury: 1, jupiter: 10, venus: 11, saturn: 12}
+  text_key: Y-DANDA
+  reviewed: false
+
+- id: Y-NAUKA
+  topic: wealth
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 7, start: [1]}}
+  example: {lagna: 1, sun: 1, moon: 2, mars: 3, mercury: 4, jupiter: 5, venus: 6, saturn: 7}
+  text_key: Y-NAUKA
+  reviewed: false
+
+- id: Y-KOOTA
+  topic: general
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 7, start: [4]}}
+  example: {lagna: 1, sun: 4, moon: 5, mars: 6, mercury: 7, jupiter: 8, venus: 9, saturn: 10}
+  text_key: Y-KOOTA
+  reviewed: false
+
+- id: Y-CHHATRA
+  topic: family
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 7, start: [7]}}
+  example: {lagna: 1, sun: 7, moon: 8, mars: 9, mercury: 10, jupiter: 11, venus: 12, saturn: 1}
+  text_key: Y-CHHATRA
+  reviewed: false
+
+- id: Y-CHAPA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 7, start: [10]}}
+  example: {lagna: 1, sun: 10, moon: 11, mars: 12, mercury: 1, jupiter: 2, venus: 3, saturn: 4}
+  text_key: Y-CHAPA
+  reviewed: false
+
+- id: Y-ARDHACHANDRA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {consecutive: {length: 7, start: [2, 3, 5, 6, 8, 9, 11, 12]}}
+  example: {lagna: 1, sun: 2, moon: 3, mars: 4, mercury: 5, jupiter: 6, venus: 7, saturn: 8}
+  text_key: Y-ARDHACHANDRA
+  reviewed: false
+
+- id: Y-CHAKRA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {planets_within: {houses: [1, 3, 5, 7, 9, 11], occupy_all: true}}
+  example: {lagna: 1, sun: 1, moon: 3, mars: 5, mercury: 7, jupiter: 9, venus: 11, saturn: 1}
+  text_key: Y-CHAKRA
+  reviewed: false
+
+- id: Y-SAMUDRA
+  topic: wealth
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {planets_within: {houses: [2, 4, 6, 8, 10, 12], occupy_all: true}}
+  example: {lagna: 1, sun: 2, moon: 4, mars: 6, mercury: 8, jupiter: 10, venus: 12, saturn: 2}
+  text_key: Y-SAMUDRA
+  reviewed: false
+
+- id: Y-VALLAKI
+  topic: personality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [7]}}
+  example: {lagna: 4, sun: 1, moon: 2, mars: 3, mercury: 4, jupiter: 5, venus: 6, saturn: 7}
+  text_key: Y-VALLAKI
+  reviewed: false
+
+- id: Y-DAMINI
+  topic: personality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [6]}}
+  example: {lagna: 4, sun: 1, moon: 2, mars: 3, mercury: 4, jupiter: 5, venus: 6, saturn: 1}
+  text_key: Y-DAMINI
+  reviewed: false
+
+- id: Y-PASA
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [5]}}
+  example: {lagna: 4, sun: 1, moon: 2, mars: 3, mercury: 4, jupiter: 5, venus: 1, saturn: 2}
+  text_key: Y-PASA
+  reviewed: false
+
+- id: Y-KEDARA
+  topic: wealth
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [4]}}
+  example: {lagna: 6, sun: 1, moon: 2, mars: 3, mercury: 4, jupiter: 1, venus: 2, saturn: 3}
+  text_key: Y-KEDARA
+  reviewed: false
+
+- id: Y-SHULA
+  topic: personality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [3]}}
+  example: {lagna: 6, sun: 1, moon: 2, mars: 3, mercury: 1, jupiter: 2, venus: 3, saturn: 1}
+  text_key: Y-SHULA
+  reviewed: false
+
+- id: Y-YUGA
+  topic: spirituality
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [2]}}
+  example: {lagna: 6, sun: 1, moon: 2, mars: 1, mercury: 2, jupiter: 1, venus: 2, saturn: 1}
+  text_key: Y-YUGA
+  reviewed: false
+
+- id: Y-GOLA
+  topic: general
+  kind: yoga
+  source: "BPHS ch. 13 (Nabhasa yogas); Brihat Jataka ch. 12"
+  when: {occupied_signs: {count: [1]}}
+  example: {lagna: 6, sun: 1, moon: 1, mars: 1, mercury: 1, jupiter: 1, venus: 1, saturn: 1}
+  text_key: Y-GOLA
+  reviewed: false

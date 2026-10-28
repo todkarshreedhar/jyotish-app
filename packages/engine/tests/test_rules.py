@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 from jyotish_engine.chart import BirthData, compute_chart
-from jyotish_engine.rules import Facts, RuleError, evaluate, load_rules, run_rules, texts
+from jyotish_engine.rules import Facts, RuleError, evaluate, example_chart, load_rules, run_rules, texts
 
 RULES = load_rules()
 
@@ -27,10 +27,18 @@ def test_at_least_forty_rules() -> None:
     assert len(RULES) >= 40
 
 
+def test_yoga_library_has_100_combinations() -> None:
+    """US-63: a library of 100+ yogas (and doshas) besides single placements."""
+    assert sum(1 for r in RULES if r.kind != "placement") >= 100
+
+
 @pytest.mark.parametrize("rule", RULES, ids=[r.id for r in RULES])
 def test_rule_fires_and_does_not_fire(rule) -> None:  # type: ignore[no-untyped-def]
     results = [evaluate(rule.when, Facts(c)) for c in SAMPLES]
-    assert any(results), f"{rule.id} never fires on the sample charts"
+    if rule.example:
+        assert evaluate(rule.when, Facts(example_chart(rule.example))), f"{rule.id} does not fire on its own example"
+    else:
+        assert any(results), f"{rule.id} never fires on the sample charts and has no example"
     assert not all(results), f"{rule.id} fires on every sample chart"
 
 
@@ -81,3 +89,44 @@ def test_gajakesari_by_construction() -> None:
     assert evaluate(rule.when, Facts(chart))
     planets[4]["sign_index"] = 1  # Jupiter to Taurus: 2nd from Moon
     assert not evaluate(rule.when, Facts(chart))
+
+
+def _facts(lagna: int, **signs: int) -> Facts:
+    return Facts(example_chart({"lagna": lagna, **signs}))
+
+
+def test_exchange_needs_both_planets_in_each_others_signs() -> None:
+    # Aries Lagna: Mars (1st lord) in Leo and the Sun (5th lord) in Aries exchange.
+    assert evaluate({"exchange": {"a": [1], "b": [5]}}, _facts(1, mars=5, sun=1))
+    # Sun moved to Taurus: no exchange.
+    assert not evaluate({"exchange": {"a": [1], "b": [5]}}, _facts(1, mars=5, sun=2))
+
+
+def test_consecutive_needs_every_house_occupied() -> None:
+    cond = {"consecutive": {"length": 4, "start": [1]}}
+    assert evaluate(cond, _facts(1, sun=1, moon=2, mars=3, mercury=4, jupiter=1, venus=2, saturn=3))
+    assert not evaluate(cond, _facts(1, sun=1, moon=2, mars=2, mercury=4, jupiter=1, venus=2, saturn=1))
+
+
+def test_aspects_use_special_aspects() -> None:
+    # Saturn in Aries aspects the 3rd, 7th and 10th signs from it.
+    for target, expected in ((3, True), (7, True), (10, True), (5, False)):
+        assert evaluate({"aspects": {"by": "saturn", "to": "moon"}}, _facts(1, saturn=1, moon=target)) is expected
+    # Jupiter in Cancer aspects the Lagna (Capricorn) by its 7th aspect.
+    assert evaluate({"aspects": {"by": "jupiter", "to": "lagna"}}, _facts(10, jupiter=4))
+
+
+def test_occupied_signs_and_sign_type() -> None:
+    gola = _facts(1, sun=5, moon=5, mars=5, mercury=5, jupiter=5, venus=5, saturn=5)
+    assert evaluate({"occupied_signs": {"count": [1]}}, gola)
+    assert evaluate({"sign_type": {"type": "fixed"}}, gola)
+    assert not evaluate({"sign_type": {"type": "movable"}}, gola)
+
+
+def test_bad_example_is_rejected(tmp_path: Path) -> None:
+    _write(
+        tmp_path,
+        "- id: A\n  topic: career\n  kind: yoga\n  source: x\n  when: {retrograde: mars}\n  example: {sun: 13}\n  text_key: A\n",
+    )
+    with pytest.raises(RuleError, match=r"bad.yaml:1: 'example' needs lagna"):
+        load_rules(tmp_path)
