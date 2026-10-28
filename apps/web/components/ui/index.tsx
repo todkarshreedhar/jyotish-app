@@ -42,12 +42,13 @@ export function ButtonLink({ href, variant = "primary", className, children }: {
   );
 }
 
-export function Card({ children, className, title, actions }: { children: ReactNode; className?: string; title?: ReactNode; actions?: ReactNode }) {
+export function Card({ children, className, title, actions, level = 2 }: { children: ReactNode; className?: string; title?: ReactNode; actions?: ReactNode; level?: 1 | 2 }) {
+  const H = level === 1 ? "h1" : "h2";
   return (
     <section className={cx("rounded-xl border border-border bg-surface p-4 shadow-sm sm:p-5", className)}>
       {(title || actions) && (
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          {title && <h2 className="text-lg font-semibold">{title}</h2>}
+          {title && <H className={level === 1 ? "text-xl font-bold" : "text-lg font-semibold"}>{title}</H>}
           {actions}
         </div>
       )}
@@ -153,8 +154,9 @@ export function Term({ children, meaning }: { children: ReactNode; meaning: stri
 }
 
 export function Table({ children, caption }: { children: ReactNode; caption?: string }) {
+  // The wrapper scrolls sideways on phones, so it must be reachable by keyboard.
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={caption}>
       <table className="w-full min-w-[560px] border-collapse text-sm [&_td]:border-b [&_td]:border-border [&_td]:px-2 [&_td]:py-2 [&_th]:border-b [&_th]:border-border [&_th]:bg-surface-2 [&_th]:px-2 [&_th]:py-2 [&_th]:text-left [&_th]:font-semibold">
         {caption && <caption className="sr-only">{caption}</caption>}
         {children}

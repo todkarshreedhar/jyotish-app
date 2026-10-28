@@ -151,3 +151,19 @@ def test_all_sixteen_vargas_defined() -> None:
     for code in VARGAS:
         for lon in (0.0, 15.0, 29.999, 359.999):
             assert 0 <= varga_sign(code, lon) < 12
+
+
+def test_ephemeris_files_used_in_every_thread():
+    """Swiss Ephemeris settings are per thread; a new thread must not fall back to Moshier."""
+    import threading
+
+    from jyotish_engine import ephemeris
+    from jyotish_engine.constants import Graha
+    from jyotish_engine.settings import Ayanamsa
+
+    ephemeris.body(2447907.0, Graha.SUN, Ayanamsa.LAHIRI)  # initialise the main thread first
+    sources: list[str] = []
+    t = threading.Thread(target=lambda: sources.append(ephemeris.body(2447907.0, Graha.MOON, Ayanamsa.LAHIRI).source))
+    t.start()
+    t.join()
+    assert sources == ["swiss_ephemeris"]

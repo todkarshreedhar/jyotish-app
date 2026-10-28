@@ -15,7 +15,7 @@ export default function NewProfilePage() {
     <RequireUser>
       {(me) => (
         <div className="mx-auto max-w-2xl">
-          <Card title={t("newTitle")}>
+          <Card level={1} title={t("newTitle")}>
             <BirthForm
               defaults={me.default_settings}
               submitLabel={t("save")}

@@ -37,7 +37,7 @@ export default function EditProfilePage() {
           <Spinner />
         ) : (
           <div className="mx-auto flex max-w-2xl flex-col gap-4">
-            <Card title={t("editTitle", { name: profile.name })}>
+            <Card level={1} title={t("editTitle", { name: profile.name })}>
               <BirthForm
                 initial={profile}
                 defaults={me.default_settings}

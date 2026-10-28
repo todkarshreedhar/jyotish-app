@@ -98,7 +98,7 @@ function South({ lagnaSign, planets, abbr, signShort, ascLabel, centreText }: Pr
         const y0 = row * c;
         return (
           <g key={s}>
-            <text x={x0 + 6} y={y0 + 14} className="kundli-sign">{signShort[sign]}</text>
+            <text x={x0 + (sign === lagnaSign ? 22 : 6)} y={y0 + 14} className="kundli-sign">{signShort[sign]}</text>
             {sign === lagnaSign && (
               <>
                 <path d={`M${x0} ${y0 + 24}L${x0 + 24} ${y0}`} {...LINE} />

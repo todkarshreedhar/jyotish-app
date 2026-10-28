@@ -57,7 +57,7 @@
     "sent": "We sent a sign-in link to {email}. It works for 15 minutes.",
     "signingIn": "Signing you in…",
     "googleFailed": "Google sign-in did not work. Please try again.",
-    "tryAgain": "This link has expired or was already used. Please ask for a new one."
+    "tryAgain": "Ask for a new link"
   },
   "consent": {
     "title": "Before we start",

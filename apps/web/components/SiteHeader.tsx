@@ -1,7 +1,7 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,7 +16,14 @@ export function SiteHeader() {
   const path = usePathname();
   const router = useRouter();
   const qc = useQueryClient();
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
+  // Close the phone menu after moving to another page or language.
+  const [seen, setSeen] = useState(`${path}|${locale}`);
+  if (seen !== `${path}|${locale}`) {
+    setSeen(`${path}|${locale}`);
+    setOpen(false);
+  }
 
   const links = me
     ? [

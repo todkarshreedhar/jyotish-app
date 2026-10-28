@@ -34,7 +34,7 @@ function LoginForm() {
 
   return (
     <div className="mx-auto max-w-md">
-      <Card title={<span>{t("title")}</span>}>
+      <Card level={1} title={t("title")}>
         {sent ? (
           <Alert kind="ok">{t("sent", { email })}</Alert>
         ) : (

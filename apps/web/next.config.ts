@@ -30,6 +30,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // Put <title> and meta tags in <head> for every visitor (no streamed metadata),
+  // so screen readers always announce a page title.
+  htmlLimitedBots: /.*/,
   poweredByHeader: false,
   async rewrites() {
     return [

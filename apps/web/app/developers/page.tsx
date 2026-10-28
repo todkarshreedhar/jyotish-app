@@ -43,9 +43,9 @@ export default async function Developers() {
       <p className="text-sm">{t.rich("docs", { link: (c) => <a className="underline" href="/api/docs">{c}</a> })}</p>
       <p className="text-sm">{t("limits")}</p>
       <h2 className="text-lg font-semibold">Python</h2>
-      <pre className="overflow-auto rounded-lg bg-surface-2 p-3 text-xs"><code>{PY}</code></pre>
+      <pre tabIndex={0} className="overflow-auto rounded-lg bg-surface-2 p-3 text-xs"><code>{PY}</code></pre>
       <h2 className="text-lg font-semibold">JavaScript</h2>
-      <pre className="overflow-auto rounded-lg bg-surface-2 p-3 text-xs"><code>{JS}</code></pre>
+      <pre tabIndex={0} className="overflow-auto rounded-lg bg-surface-2 p-3 text-xs"><code>{JS}</code></pre>
       <p className="text-sm text-muted">{t("license")}</p>
     </article>
   );

@@ -17,16 +17,18 @@ from jyotish_engine.settings import AYANAMSA_SWE, Ayanamsa, NodeType
 
 EPHE_PATH = Path(__file__).parent / "ephe"
 _lock = threading.RLock()
-_initialised = False
+# The Swiss Ephemeris C library keeps its settings per thread, so every
+# thread (for example each web server worker thread) must set the path itself.
+# Without this, other threads silently fall back to the less precise Moshier method.
+_thread = threading.local()
 
 BASE_FLAGS = swe.FLG_SWIEPH | swe.FLG_SPEED
 
 
 def _init() -> None:
-    global _initialised
-    if not _initialised:
+    if not getattr(_thread, "initialised", False):
         swe.set_ephe_path(str(EPHE_PATH))
-        _initialised = True
+        _thread.initialised = True
 
 
 @dataclass(frozen=True, slots=True)

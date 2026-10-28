@@ -72,7 +72,8 @@ def south_layout(lagna_sign: int, planets: list[dict[str, Any]], abbr: dict[str,
     labels: list[Label] = []
     for s, (col, row) in SOUTH.items():
         x0, y0 = col * c, row * c
-        labels.append(Label(x0 + 6, y0 + 10, sign_short[s], "sign", "start"))
+        # Lagna cell: the sign name sits right of the diagonal Lagna mark.
+        labels.append(Label(x0 + (22 if s == lagna_sign else 6), y0 + 10, sign_short[s], "sign", "start"))
         if s == lagna_sign:
             parts.append(f'<path d="M{x0} {y0 + 24}L{x0 + 24} {y0}" {LINE}/>')
             labels.append(Label(x0 + c - 6, y0 + 10, asc_label, "asc", "end"))

@@ -56,9 +56,9 @@ export function PlaceSearch({ value, onPick, invalid, inputId }: { value: string
         id={inputId}
         role="combobox"
         aria-expanded={open && items.length > 0}
-        aria-controls={listId}
+        aria-controls={open && items.length > 0 ? listId : undefined}
         aria-autocomplete="list"
-        aria-activedescendant={active >= 0 ? `${listId}-${active}` : undefined}
+        aria-activedescendant={open && items.length > 0 && active >= 0 ? `${listId}-${active}` : undefined}
         autoComplete="off"
         placeholder={t("placePlaceholder")}
         value={q}

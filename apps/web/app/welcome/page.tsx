@@ -34,7 +34,7 @@ function Welcome() {
 
   return (
     <div className="mx-auto max-w-2xl">
-      <Card title={t("title")}>
+      <Card level={1} title={t("title")}>
         <div className="flex flex-col gap-3 text-sm">
           <p>{t("intro")}</p>
           <ul className="list-disc space-y-1 pl-5">
