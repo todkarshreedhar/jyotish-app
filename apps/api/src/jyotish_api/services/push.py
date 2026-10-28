@@ -25,7 +25,9 @@ def valid_token(token: str) -> bool:
 def send(tokens: list[str], title: str, body: str, data: dict[str, Any] | None = None) -> list[str]:
     """Send one message to each token. Returns the tokens Expo says are dead
     (the app was removed), so the caller can delete them."""
-    messages = [{"to": t, "title": title, "body": body, "data": data or {}, "sound": "default"} for t in tokens]
+    messages: list[dict[str, Any]] = [
+        {"to": t, "title": title, "body": body, "data": data or {}, "sound": "default"} for t in tokens
+    ]
     if not messages:
         return []
     if settings.environment == "test":

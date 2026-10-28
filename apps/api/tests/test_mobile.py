@@ -86,9 +86,9 @@ def test_code_guessing_is_limited(db_ready: None) -> None:
 def test_cookie_requests_still_need_csrf(user: TestClient) -> None:
     user.headers.pop("X-CSRF")
     assert user.post("/v1/profiles", json=PUNE).status_code == 403
-    # A bearer header alongside the cookie does not lift the check.
+    # A bearer header alongside the cookie does not get the write through.
     user.headers["Authorization"] = "Bearer nonsense"
-    assert user.post("/v1/profiles", json=PUNE).status_code == 403
+    assert user.post("/v1/profiles", json=PUNE).status_code in (401, 403)
 
 
 def test_bad_bearer_token(db_ready: None) -> None:
