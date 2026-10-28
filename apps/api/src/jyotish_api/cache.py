@@ -81,3 +81,14 @@ def incr_window(key: str, seconds: int) -> int:
         n = int(_local.get(key, "0")) + 1
         _local[key] = str(n)
         return n
+
+
+def delete(key: str) -> None:
+    r = _redis()
+    if r is not None:
+        try:
+            r.delete(key)
+        except Exception:
+            pass
+    with _lock:
+        _local.pop(key, None)

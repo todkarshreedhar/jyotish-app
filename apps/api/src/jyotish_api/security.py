@@ -24,11 +24,19 @@ def now() -> datetime:
     return datetime.now(UTC)
 
 
-def create_session(db: Session, user: User, response: Response) -> None:
+def issue_token(db: Session, user: User) -> str:
+    """Create a session and return its token. The web app keeps it in a
+    cookie; the mobile app keeps it in the phone's secure storage and sends
+    it as `Authorization: Bearer <token>`."""
     token = new_token()
     db.add(SessionRow(token_hash=token_hash(token), user_id=user.id, expires_at=now() + timedelta(days=settings.session_days)))
     user.last_login_at = now()
     db.commit()
+    return token
+
+
+def create_session(db: Session, user: User, response: Response) -> None:
+    token = issue_token(db, user)
     response.set_cookie(
         COOKIE,
         token,
@@ -40,8 +48,19 @@ def create_session(db: Session, user: User, response: Response) -> None:
     )
 
 
+def bearer_token(request: Request) -> str | None:
+    h = request.headers.get("authorization", "")
+    if h[:7].lower() == "bearer ":
+        return h[7:].strip() or None
+    return None
+
+
+def session_token(request: Request) -> str | None:
+    return bearer_token(request) or request.cookies.get(COOKIE)
+
+
 def end_session(db: Session, request: Request, response: Response) -> None:
-    token = request.cookies.get(COOKIE)
+    token = session_token(request)
     if token:
         db.execute(delete(SessionRow).where(SessionRow.token_hash == token_hash(token)))
         db.commit()
@@ -54,11 +73,15 @@ def csrf_ok(request: Request) -> bool:
     our CORS policy refuses for other origins."""
     if request.method not in UNSAFE:
         return True
+    # A bearer token is never sent by the browser on its own, so a request
+    # that carries one (and no cookie) cannot be a cross-site forgery.
+    if bearer_token(request) and COOKIE not in request.cookies:
+        return True
     return request.headers.get("x-csrf") == "1"
 
 
 def optional_user(request: Request, db: DB) -> User | None:
-    token = request.cookies.get(COOKIE)
+    token = session_token(request)
     if not token:
         return None
     row = db.scalar(select(SessionRow).where(SessionRow.token_hash == token_hash(token)))

@@ -42,7 +42,9 @@ def _migrate() -> None:
     _migrated = True
 
 
-TABLES = "api_usage, api_keys, alert_prefs, reports, audit_log, profiles, sessions, login_tokens, consents, users, places"
+TABLES = (
+    "push_tokens, api_usage, api_keys, alert_prefs, reports, audit_log, profiles, sessions, login_tokens, consents, users, places"
+)
 
 
 @pytest.fixture

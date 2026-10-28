@@ -30,6 +30,12 @@ class Settings(BaseSettings):
     # Google sign-in (OpenID Connect). Empty = Google button hidden.
     google_client_id: str = ""
     google_client_secret: str = ""
+    # OAuth client IDs of the Android and iOS apps (their ID tokens carry these).
+    google_mobile_client_ids: list[str] = []
+
+    # Push notifications for the mobile app go through Expo's push service.
+    expo_push_url: str = "https://exp.host/--/api/v2/push/send"
+    expo_access_token: str = ""
 
     # Email (magic links, alerts). Local development uses Mailpit.
     smtp_host: str = "localhost"

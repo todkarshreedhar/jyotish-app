@@ -1,10 +1,12 @@
 """Birth profiles (US-13 to US-18, US-32) and everything computed from them."""
 
 import uuid
+from dataclasses import asdict
 from datetime import UTC, date, datetime
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from fastapi import APIRouter, HTTPException, Query, Response, status
+from jyotish_engine.names import names
 from jyotish_engine.settings import ChartSettings
 from jyotish_engine.timeutil import InputError
 from sqlalchemy import func, select
@@ -13,7 +15,8 @@ from jyotish_api.crypto import decrypt_json, encrypt_json
 from jyotish_api.models import Profile
 from jyotish_api.schemas import VARGA_CODES, Lang, ProfileIn, SettingsIn
 from jyotish_api.security import DB, ConsentedUser
-from jyotish_api.services import charts
+from jyotish_api.services import charts, svg
+from jyotish_api.services.report_text import ASC
 from jyotish_api.settings import settings
 
 router = APIRouter(prefix="/v1/profiles", tags=["profiles"])
@@ -164,6 +167,34 @@ def profile_chart(
     except ValueError as exc:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, str(exc)) from exc
     return Response(charts.chart(birth, cs, codes, bhava_chalit), media_type="application/json")
+
+
+@router.get("/{profile_id}/chart-layout")
+def profile_chart_layout(
+    profile_id: str,
+    user: ConsentedUser,
+    db: DB,
+    varga: str = "D1",
+    style: Literal["north", "south"] | None = None,
+    lang: Lang = "en",
+) -> dict[str, Any]:
+    """Chart drawing as lines plus positioned labels, for the mobile app
+    (US-83). It is the same layout the PDF reports and the web app use."""
+    p = get_owned(db, user, profile_id)
+    code = varga.strip().upper()
+    if code not in VARGA_CODES:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, f"unknown divisional chart: {varga}")
+    birth, cs = _inputs(p)
+    style = style or (p.settings or {}).get("chart_style", "north")
+    c = charts.chart_dict(birth, cs, (code,))
+    lines, labels = svg.layout(c, code, style or "north", names(lang), ASC[lang], "" if code == "D1" else code)
+    return {
+        "size": svg.SIZE,
+        "varga": code,
+        "style": style,
+        "svg": f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svg.SIZE} {svg.SIZE}">{lines}</svg>',
+        "labels": [asdict(lb) for lb in labels],
+    }
 
 
 @router.get("/{profile_id}/readings")
