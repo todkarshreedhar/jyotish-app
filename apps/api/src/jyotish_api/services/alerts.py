@@ -1,8 +1,8 @@
 """Daily alerts (US-69 to US-71): Dasha changes and major transits.
 
-Sent once per event, by email, only for the user's main profile, and only
-for alert types the user has switched on. Every email has a one-click
-unsubscribe link.
+Sent once per event, by email and as a push message to the mobile app
+(US-85), only for the user's main profile, and only for alert types the
+user has switched on. Every email has a one-click unsubscribe link.
 """
 
 from datetime import UTC, datetime, timedelta
@@ -12,13 +12,13 @@ from jyotish_engine.constants import Graha
 from jyotish_engine.names import names
 from jyotish_engine.timeutil import julian_day_ut
 from jyotish_engine.transits import sign_ingresses
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from jyotish_api import emailer
 from jyotish_api.crypto import decrypt_json, new_token
-from jyotish_api.models import AlertPrefs, Profile, User
-from jyotish_api.services import charts
+from jyotish_api.models import AlertPrefs, Profile, PushToken, User
+from jyotish_api.services import charts, push
 from jyotish_api.settings import settings
 
 SLOW = (Graha.SATURN, Graha.JUPITER, Graha.RAHU)
@@ -83,6 +83,11 @@ def events_for(
 
 
 def render(lang: str, events: list[dict[str, Any]], unsub_url: str) -> str:
+    t = LINES.get(lang, LINES["en"])
+    return "\n".join(event_lines(lang, events)) + "\n\n" + t["unsub"].format(url=unsub_url)
+
+
+def event_lines(lang: str, events: list[dict[str, Any]]) -> list[str]:
     n = names(lang)
     t = LINES.get(lang, LINES["en"])
     signs = list(n["signs"].values())
@@ -94,7 +99,7 @@ def render(lang: str, events: list[dict[str, Any]], unsub_url: str) -> str:
             lines.append(t["antar"].format(maha=n["planets"][e["maha"]], lord=n["planets"][e["lord"]]))
         else:
             lines.append(t["transit"].format(planet=n["planets"][e["planet"]], sign=signs[e["sign"]], house=e["house"]))
-    return "\n".join(lines) + "\n\n" + t["unsub"].format(url=unsub_url)
+    return lines
 
 
 def run_daily(db: Session, now: datetime) -> int:
@@ -102,7 +107,8 @@ def run_daily(db: Session, now: datetime) -> int:
     day_start = now.astimezone(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
     for user in db.scalars(select(User)):
         prefs = prefs_for(db, user)
-        if not prefs.email_enabled or not (prefs.dasha_change or prefs.major_transit):
+        tokens = list(db.scalars(select(PushToken.token).where(PushToken.user_id == user.id))) if prefs.push_enabled else []
+        if not (prefs.email_enabled or tokens) or not (prefs.dasha_change or prefs.major_transit):
             continue
         main = db.scalar(select(Profile).where(Profile.user_id == user.id, Profile.is_main.is_(True)))
         if main is None:
@@ -115,13 +121,20 @@ def run_daily(db: Session, now: datetime) -> int:
         new = [(k, e) for k, e in events_for(chart, day_start, cs, prefs) if k not in (prefs.last_sent or {})]
         if not new:
             continue
-        url = f"{settings.web_url}/api/v1/alerts/unsubscribe?token={prefs.unsubscribe_token}"
-        emailer.send(
-            user.email,
-            SUBJECT.get(user.locale, SUBJECT["en"]),
-            render(user.locale, [e for _, e in new], url),
-            headers={"List-Unsubscribe": f"<{url}>", "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"},
-        )
+        events = [e for _, e in new]
+        subject = SUBJECT.get(user.locale, SUBJECT["en"])
+        if prefs.email_enabled:
+            url = f"{settings.web_url}/api/v1/alerts/unsubscribe?token={prefs.unsubscribe_token}"
+            emailer.send(
+                user.email,
+                subject,
+                render(user.locale, events, url),
+                headers={"List-Unsubscribe": f"<{url}>", "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"},
+            )
+        if tokens:
+            dead = push.send(tokens, subject, "\n".join(event_lines(user.locale, events)), {"profile_id": str(main.id)})
+            if dead:
+                db.execute(delete(PushToken).where(PushToken.token.in_(dead)))
         ls = dict(prefs.last_sent or {})
         cutoff = (day_start - timedelta(days=400)).isoformat()
         ls = {k: v for k, v in ls.items() if v >= cutoff}

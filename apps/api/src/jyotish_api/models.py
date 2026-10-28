@@ -140,8 +140,20 @@ class AlertPrefs(Base):
     dasha_change: Mapped[bool] = mapped_column(Boolean, default=True)
     major_transit: Mapped[bool] = mapped_column(Boolean, default=True)
     email_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+    push_enabled: Mapped[bool] = mapped_column(Boolean, default=True, server_default="true")
     unsubscribe_token: Mapped[str] = mapped_column(String(64), unique=True)
     last_sent: Mapped[dict] = mapped_column(JSONB, default=dict)
+
+
+class PushToken(Base):
+    """Expo push token of one phone (US-85). A phone belongs to one user at a time."""
+
+    __tablename__ = "push_tokens"
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    token: Mapped[str] = mapped_column(String(200), unique=True)
+    platform: Mapped[str] = mapped_column(String(10))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
 class ApiKey(Base):
