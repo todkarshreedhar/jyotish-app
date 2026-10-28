@@ -1,0 +1,6 @@
+project_id  = "your-gcp-project"
+environment = "production"
+web_url     = "https://jyotish.example.org"
+api_image   = "asia-south1-docker.pkg.dev/your-gcp-project/jyotish/api:2026-11-01"
+web_image   = "asia-south1-docker.pkg.dev/your-gcp-project/jyotish/web:2026-11-01"
+alert_email = "oncall@example.org"
