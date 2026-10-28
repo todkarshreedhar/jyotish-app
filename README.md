@@ -11,7 +11,7 @@ The repository is a monorepo so the web interface, API and calculation engine ch
 - **Vimshottari Dasha:** Mahadasha, Antardasha and Pratyantardasha with exact dates.
 - **Transits:** today's planets from Lagna and Moon, Sade Sati, Saturn and Jupiter sign changes.
 - **Panchang:** sunrise, sunset, moonrise, moonset, Tithi, Nakshatra, Yoga, Karana and Vara for any day and place.
-- **Readings:** 46 YAML rules (yogas and placements), each with its classical source, in three languages.
+- **Readings:** 120 YAML rules (100 yogas and doshas, including all 32 Nabhasa yogas, and 20 placements), each with its classical source, in three languages.
 - **Strength:** Shadbala and Ashtakavarga (BAV and SAV).
 - **Matching:** Ashtakoota (36 points) and Manglik check.
 - **Accounts:** sign in with Google or an emailed link, explicit consent, saved charts in folders, CSV export, PDF reports, email alerts, data export and account deletion.
@@ -105,7 +105,7 @@ See `.env.example`. In production the API refuses to start with the development 
 
 ## Still needs expert review before launch
 
-- Interpretation rules and texts (`packages/engine/src/jyotish_engine/rules/`) by a Jyotish expert.
+- Interpretation rules and texts by a Jyotish expert: see `docs/expert-review/yogas.md` for the checklist.
 - Matching tables (Yoni, Gana, Vashya) in `matching.py`, which follow common North Indian practice.
 - Shadbala values compared with Jagannatha Hora for a sample of charts.
 - Privacy policy and terms by a lawyer (the pages are marked as drafts).

@@ -1,0 +1,371 @@
+# More classical yogas (Phaladeepika ch. 6, BPHS, Saravali, Brihat Jataka) and
+# some later-tradition doshas, marked as such in `source`. Gate M4: the domain
+# expert checks each rule, its source and its text, then sets reviewed: true.
+# `example` gives sign numbers (1 = Aries) for a chart where the yoga is present.
+- id: Y-DHARMA-KARMADHIPATI
+  topic: career
+  kind: yoga
+  source: "BPHS ch. 39 (Raja yogas)"
+  when: {any: [{lords_conjunct: {a: [9], b: [10], distinct: true}}, {exchange: {a: [9], b: [10]}}]}
+  example: {lagna: 1, jupiter: 5, saturn: 5}
+  text_key: Y-DHARMA-KARMADHIPATI
+  reviewed: false
+
+- id: Y-MAHA-PARIVARTANA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Parivartana yogas)"
+  when: {exchange: {a: [1, 2, 4, 5, 7, 9, 10, 11], b: [1, 2, 4, 5, 7, 9, 10, 11]}}
+  example: {lagna: 1, mars: 5, sun: 1}
+  text_key: Y-MAHA-PARIVARTANA
+  reviewed: false
+
+- id: Y-KHALA-PARIVARTANA
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Parivartana yogas)"
+  when: {exchange: {a: [3], b: [1, 2, 4, 5, 7, 9, 10, 11]}}
+  example: {lagna: 1, mercury: 1, mars: 3}
+  text_key: Y-KHALA-PARIVARTANA
+  reviewed: false
+
+- id: Y-DAINYA-PARIVARTANA
+  topic: general
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Parivartana yogas)"
+  when: {exchange: {a: [6, 8, 12], b: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}}
+  example: {lagna: 1, mercury: 1, mars: 6}
+  text_key: Y-DAINYA-PARIVARTANA
+  reviewed: false
+
+- id: Y-LAKSHMI
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lord_in_house: {lord_of: 9, houses: [1, 4, 5, 7, 9, 10]}}, {lord_dignity: {lord_of: 9, is: [exalted, own, moolatrikona]}}, {lord_dignity: {lord_of: 1, is: [exalted, own, moolatrikona, great_friend, friend]}}]}
+  example: {lagna: 1, jupiter: 4, mars: 10}
+  text_key: Y-LAKSHMI
+  reviewed: false
+
+- id: Y-SARASWATI
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: mercury, houses: [1, 2, 4, 5, 7, 9, 10], from: lagna}}, {in_house: {planet: jupiter, houses: [1, 2, 4, 5, 7, 9, 10], from: lagna}}, {in_house: {planet: venus, houses: [1, 2, 4, 5, 7, 9, 10], from: lagna}}, {dignity: {planet: jupiter, is: [exalted, own, moolatrikona, great_friend, friend]}}]}
+  example: {lagna: 1, mercury: 1, jupiter: 9, venus: 2}
+  text_key: Y-SARASWATI
+  reviewed: false
+
+- id: Y-CHAMARA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lord_in_house: {lord_of: 1, houses: [1, 4, 7, 10]}}, {lord_dignity: {lord_of: 1, is: [exalted]}}, {aspects: {by: jupiter, to: "lord:1"}}]}
+  example: {lagna: 1, mars: 10, jupiter: 4}
+  text_key: Y-CHAMARA
+  reviewed: false
+
+- id: Y-SHANKHA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lords_relation: {a: 5, b: 6, houses: [1, 4, 7, 10]}}, {lord_dignity: {lord_of: 1, is: [exalted, own, moolatrikona, great_friend, friend]}}]}
+  example: {lagna: 1, sun: 1, mercury: 4, mars: 10}
+  text_key: Y-SHANKHA
+  reviewed: false
+
+- id: Y-KAHALA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lords_relation: {a: 4, b: 9, houses: [1, 4, 7, 10]}}, {lord_dignity: {lord_of: 1, is: [exalted, own, moolatrikona, great_friend, friend]}}]}
+  example: {lagna: 1, moon: 1, jupiter: 4, mars: 10}
+  text_key: Y-KAHALA
+  reviewed: false
+
+- id: Y-BHERI
+  topic: family
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: venus, houses: [1, 4, 7, 10], from: lagna}}, {in_house: {planet: jupiter, houses: [1, 4, 7, 10], from: lagna}}, {lord_in_house: {lord_of: 1, houses: [1, 4, 7, 10]}}, {lord_dignity: {lord_of: 9, is: [exalted, own, moolatrikona]}}]}
+  example: {lagna: 1, venus: 7, jupiter: 4, mars: 1}
+  text_key: Y-BHERI
+  reviewed: false
+
+- id: Y-PARVATA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{any_planet_in_house: {houses: [1, 4, 7, 10], planets: [mercury, jupiter, venus]}}, {no_planet_in_house: {houses: [6, 8], planets: [sun, mars, saturn, rahu, ketu]}}]}
+  text_key: Y-PARVATA
+  reviewed: false
+
+- id: Y-VASUMATI
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {any: [{planets_within: {houses: [3, 6, 10, 11], planets: [mercury, jupiter, venus]}}, {planets_within: {houses: [3, 6, 10, 11], planets: [mercury, jupiter, venus], from: moon}}]}
+  example: {lagna: 1, mercury: 11, jupiter: 10, venus: 11}
+  text_key: Y-VASUMATI
+  reviewed: false
+
+- id: Y-SHUBHA-KARTARI
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{any_planet_in_house: {houses: [2], planets: [mercury, jupiter, venus]}}, {any_planet_in_house: {houses: [12], planets: [mercury, jupiter, venus]}}]}
+  example: {lagna: 1, mercury: 2, venus: 12}
+  text_key: Y-SHUBHA-KARTARI
+  reviewed: false
+
+- id: D-PAPA-KARTARI
+  topic: personality
+  kind: dosha
+  source: "Phaladeepika ch. 6"
+  when: {all: [{any_planet_in_house: {houses: [2], planets: [sun, mars, saturn, rahu, ketu]}}, {any_planet_in_house: {houses: [12], planets: [sun, mars, saturn, rahu, ketu]}}]}
+  example: {lagna: 1, mars: 2, saturn: 12}
+  text_key: D-PAPA-KARTARI
+  reviewed: false
+
+- id: Y-LAGNADHI
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {planets_within: {houses: [6, 7, 8], planets: [mercury, jupiter, venus]}}
+  example: {lagna: 1, mercury: 6, venus: 7, jupiter: 8}
+  text_key: Y-LAGNADHI
+  reviewed: false
+
+- id: Y-GURU-MANGALA
+  topic: career
+  kind: yoga
+  source: "Saravali (two-planet combinations)"
+  when: {conjunct: [jupiter, mars]}
+  text_key: Y-GURU-MANGALA
+  reviewed: false
+
+- id: D-GURU-CHANDALA
+  topic: spirituality
+  kind: dosha
+  source: "Later tradition (not in BPHS or Phaladeepika)"
+  when: {conjunct: [jupiter, rahu]}
+  text_key: D-GURU-CHANDALA
+  reviewed: false
+
+- id: D-GRAHANA-SURYA
+  topic: health
+  kind: dosha
+  source: "Later tradition (not in BPHS or Phaladeepika)"
+  when: {any: [{conjunct: [sun, rahu]}, {conjunct: [sun, ketu]}]}
+  text_key: D-GRAHANA-SURYA
+  reviewed: false
+
+- id: D-GRAHANA-CHANDRA
+  topic: health
+  kind: dosha
+  source: "Later tradition (not in BPHS or Phaladeepika)"
+  when: {any: [{conjunct: [moon, rahu]}, {conjunct: [moon, ketu]}]}
+  text_key: D-GRAHANA-CHANDRA
+  reviewed: false
+
+- id: D-ANGARAKA
+  topic: personality
+  kind: dosha
+  source: "Later tradition (not in BPHS or Phaladeepika)"
+  when: {conjunct: [mars, rahu]}
+  text_key: D-ANGARAKA
+  reviewed: false
+
+- id: D-VISHA
+  topic: personality
+  kind: dosha
+  source: "Later tradition (not in BPHS or Phaladeepika)"
+  when: {conjunct: [moon, saturn]}
+  text_key: D-VISHA
+  reviewed: false
+
+- id: Y-KALANIDHI
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: jupiter, houses: [2, 5], from: lagna}}, {any: [{conjunct: [jupiter, mercury]}, {aspects: {by: mercury, to: jupiter}}]}, {any: [{conjunct: [jupiter, venus]}, {aspects: {by: venus, to: jupiter}}]}]}
+  example: {lagna: 1, jupiter: 5, mercury: 5, venus: 5}
+  text_key: Y-KALANIDHI
+  reviewed: false
+
+- id: Y-BHASKARA
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: mercury, houses: [2], from: sun}}, {in_house: {planet: moon, houses: [11], from: mercury}}, {in_house: {planet: jupiter, houses: [5, 9], from: moon}}]}
+  example: {lagna: 1, sun: 1, mercury: 2, moon: 12, jupiter: 4}
+  text_key: Y-BHASKARA
+  reviewed: false
+
+- id: Y-MARUT
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: jupiter, houses: [5, 9], from: venus}}, {in_house: {planet: moon, houses: [5], from: jupiter}}, {in_house: {planet: sun, houses: [1, 4, 7, 10], from: moon}}]}
+  example: {lagna: 1, venus: 1, jupiter: 5, moon: 9, sun: 12}
+  text_key: Y-MARUT
+  reviewed: false
+
+- id: Y-BUDHA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: jupiter, houses: [1], from: lagna}}, {in_house: {planet: moon, houses: [1, 4, 7, 10], from: jupiter}}, {in_house: {planet: rahu, houses: [2], from: moon}}, {in_house: {planet: sun, houses: [3], from: rahu}}, {in_house: {planet: mars, houses: [3], from: rahu}}]}
+  example: {lagna: 1, jupiter: 1, moon: 4, rahu: 5, sun: 7, mars: 7}
+  text_key: Y-BUDHA
+  reviewed: false
+
+- id: Y-INDRA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{exchange: {a: [5], b: [11]}}, {in_house: {planet: moon, houses: [5], from: lagna}}]}
+  example: {lagna: 1, sun: 11, saturn: 5, moon: 5}
+  text_key: Y-INDRA
+  reviewed: false
+
+- id: Y-SHIVA
+  topic: spirituality
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lord_in_house: {lord_of: 5, houses: [9]}}, {lord_in_house: {lord_of: 9, houses: [10]}}, {lord_in_house: {lord_of: 10, houses: [5]}}]}
+  example: {lagna: 1, sun: 9, jupiter: 10, saturn: 5}
+  text_key: Y-SHIVA
+  reviewed: false
+
+- id: Y-SREENATHA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lord_in_house: {lord_of: 7, houses: [10]}}, {lord_dignity: {lord_of: 7, is: [exalted, moolatrikona]}}, {lords_conjunct: {a: [10], b: [9], distinct: true}}]}
+  example: {lagna: 9, mercury: 6, sun: 6}
+  text_key: Y-SREENATHA
+  reviewed: false
+
+- id: Y-KHADGA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{exchange: {a: [2], b: [9]}}, {lord_in_house: {lord_of: 1, houses: [1, 4, 5, 7, 9, 10]}}]}
+  example: {lagna: 1, venus: 9, jupiter: 2, mars: 1}
+  text_key: Y-KHADGA
+  reviewed: false
+
+- id: Y-JAYA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lord_dignity: {lord_of: 6, is: [debilitated]}}, {lord_dignity: {lord_of: 10, is: [exalted]}}]}
+  example: {lagna: 1, mercury: 12, saturn: 7}
+  text_key: Y-JAYA
+  reviewed: false
+
+- id: Y-TRILOCHANA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{in_house: {planet: moon, houses: [1, 5, 9], from: sun}}, {in_house: {planet: mars, houses: [1, 5, 9], from: sun}}, {in_house: {planet: mars, houses: [1, 5, 9], from: moon}}]}
+  example: {lagna: 1, sun: 1, moon: 5, mars: 9}
+  text_key: Y-TRILOCHANA
+  reviewed: false
+
+- id: Y-KURMA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{planets_within: {houses: [5, 6, 7], planets: [mercury, jupiter, venus]}}, {planets_within: {houses: [1, 3, 11], planets: [sun, mars, saturn]}}]}
+  example: {lagna: 1, mercury: 5, jupiter: 6, venus: 7, sun: 1, mars: 3, saturn: 11}
+  text_key: Y-KURMA
+  reviewed: false
+
+- id: Y-DHWAJA
+  topic: career
+  kind: yoga
+  source: "Saravali (Nabhasa and other yogas)"
+  when: {all: [{planets_within: {houses: [8], planets: [sun, mars, saturn]}}, {any_planet_in_house: {houses: [1], planets: [mercury, jupiter, venus]}}]}
+  example: {lagna: 1, sun: 8, mars: 8, saturn: 8, jupiter: 1}
+  text_key: Y-DHWAJA
+  reviewed: false
+
+- id: Y-PRAVRAJYA
+  topic: spirituality
+  kind: yoga
+  source: "Brihat Jataka ch. 15 (Pravrajya)"
+  when: {max_in_one_sign: {min: 4}}
+  example: {lagna: 1, sun: 5, mercury: 5, venus: 5, mars: 5}
+  text_key: Y-PRAVRAJYA
+  reviewed: false
+
+- id: Y-DARIDRA
+  topic: wealth
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {lord_in_house: {lord_of: 11, houses: [6, 8, 12]}}
+  text_key: Y-DARIDRA
+  reviewed: false
+
+- id: Y-DURYOGA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {lord_in_house: {lord_of: 10, houses: [6, 8, 12]}}
+  text_key: Y-DURYOGA
+  reviewed: false
+
+- id: Y-KEMADRUMA-BHANGA
+  topic: general
+  kind: yoga
+  source: "Phaladeepika ch. 6 (Kemadruma cancellation)"
+  when: {all: [{no_planet_in_house: {houses: [2, 12], from: moon, planets: [mars, mercury, jupiter, venus, saturn]}}, {any_planet_in_house: {houses: [1, 4, 7, 10], from: moon, planets: [sun, mars, mercury, jupiter, venus, saturn]}}]}
+  text_key: Y-KEMADRUMA-BHANGA
+  reviewed: false
+
+- id: Y-CHATUSSAGARA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {houses_occupied: {houses: [1, 4, 7, 10]}}
+  example: {lagna: 1, sun: 1, moon: 4, mars: 7, mercury: 1, jupiter: 10, venus: 2, saturn: 4}
+  text_key: Y-CHATUSSAGARA
+  reviewed: false
+
+- id: Y-SHUBHAMALA
+  topic: family
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {planets_within: {houses: [5, 6, 7], planets: [mercury, jupiter, venus], occupy_all: true}}
+  example: {lagna: 1, mercury: 5, jupiter: 6, venus: 7}
+  text_key: Y-SHUBHAMALA
+  reviewed: false
+
+- id: D-ASHUBHAMALA
+  topic: general
+  kind: dosha
+  source: "Phaladeepika ch. 6"
+  when: {planets_within: {houses: [5, 6, 7], planets: [sun, mars, saturn], occupy_all: true}}
+  example: {lagna: 1, sun: 5, mars: 6, saturn: 7}
+  text_key: D-ASHUBHAMALA
+  reviewed: false
+
+- id: Y-DEVENDRA
+  topic: career
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {all: [{lagna_sign_type: fixed}, {exchange: {a: [1], b: [11]}}, {exchange: {a: [2], b: [10]}}]}
+  example: {lagna: 2, venus: 12, jupiter: 2, mercury: 11, saturn: 3}
+  text_key: Y-DEVENDRA
+  reviewed: false
+
+- id: Y-RAJALAKSHANA
+  topic: personality
+  kind: yoga
+  source: "Phaladeepika ch. 6"
+  when: {planets_within: {houses: [1, 4, 7, 10], planets: [moon, mercury, jupiter, venus]}}
+  example: {lagna: 1, moon: 1, mercury: 4, jupiter: 7, venus: 4}
+  text_key: Y-RAJALAKSHANA
+  reviewed: false

@@ -20,6 +20,24 @@ Conditions are data, never code. Supported forms:
   {retrograde: planet}  {combust: planet}
   {all_between_nodes: true}
   {debilitated_with_cancellation: true}
+
+Shape (Nabhasa) and other forms; `planets` defaults to the seven planets
+Sun to Saturn, and `from` to the Lagna:
+  {planets_within: {houses: [1, 7], occupy_all: true}}   all planets in these houses
+  {consecutive: {length: 7, start: [1]}}                  all planets in a run of houses, each occupied
+  {houses_occupied: {houses: [1, 4, 7, 10]}}              every listed house has a planet
+  {sign_type: {type: movable|fixed|dual}}                 all planets in that kind of sign
+  {lagna_sign_type: fixed}
+  {occupied_signs: {count: [7]}}                          how many signs the planets occupy
+  {max_in_one_sign: {min: 4}}
+  {exchange: {a: [9], b: [10]}}                           sign exchange (parivartana) between lords
+  {lord_dignity: {lord_of: 9, is: [exalted, own]}}
+  {lords_relation: {a: 5, b: 6, houses: [1, 4, 7, 10]}}   lord of b counted from lord of a
+  {aspects: {by: jupiter, to: moon|lagna|lord:1}}         full sign aspect (graha drishti)
+
+A rule may carry `example`: sign numbers (1 = Aries) for lagna and planets,
+used by the tests to show the rule fires (rare yogas never appear in a
+sample of real charts).
 """
 
 from dataclasses import dataclass
@@ -35,8 +53,12 @@ RULES_DIR = Path(__file__).parent
 TOPICS = ("personality", "career", "wealth", "family", "relationships", "health", "spirituality", "general")
 KINDS = ("yoga", "placement", "dosha")
 REQUIRED = ("id", "topic", "kind", "source", "when", "text_key")
-RULESET_VERSION = "1.0.0"
+RULESET_VERSION = "1.1.0"
 PLANETS = {str(g) for g in Graha}
+SEVEN = [str(g) for g in Graha][:7]
+SIGN_TYPES = {"movable": 0, "fixed": 1, "dual": 2}
+# Special aspects in houses counted from the planet; every planet aspects the 7th.
+ASPECTS = {"mars": (4, 7, 8), "jupiter": (5, 7, 9), "saturn": (3, 7, 10)}
 
 
 class RuleError(ValueError):
@@ -54,6 +76,7 @@ class Rule:
     file: str
     line: int
     weight: int = 1
+    example: dict[str, int] | None = None
 
 
 def _check_condition(cond: Any, where: str) -> None:
@@ -91,8 +114,57 @@ def _check_condition(cond: Any, where: str) -> None:
             raise RuleError(f"{where}: '{op}' needs a planet")
     elif op in ("all_between_nodes", "debilitated_with_cancellation"):
         pass
+    elif op in ("planets_within", "houses_occupied"):
+        if not isinstance(arg, dict) or not arg.get("houses"):
+            raise RuleError(f"{where}: '{op}' needs 'houses'")
+        _check_planets(arg.get("planets", SEVEN), where)
+        if not all(isinstance(h, int) and 1 <= h <= 12 for h in arg["houses"]):
+            raise RuleError(f"{where}: houses must be 1..12")
+    elif op == "consecutive":
+        if not 1 <= int(arg.get("length", 0)) <= 12 or not arg.get("start"):
+            raise RuleError(f"{where}: 'consecutive' needs length and start")
+    elif op == "sign_type":
+        if arg.get("type") not in SIGN_TYPES:
+            raise RuleError(f"{where}: 'sign_type' needs type movable, fixed or dual")
+        _check_planets(arg.get("planets", SEVEN), where)
+    elif op == "lagna_sign_type":
+        if arg not in SIGN_TYPES:
+            raise RuleError(f"{where}: 'lagna_sign_type' must be movable, fixed or dual")
+    elif op == "occupied_signs":
+        if not arg.get("count"):
+            raise RuleError(f"{where}: 'occupied_signs' needs count")
+    elif op == "max_in_one_sign":
+        if not 1 <= int(arg.get("min", 0)) <= 9:
+            raise RuleError(f"{where}: 'max_in_one_sign' needs min")
+    elif op == "exchange":
+        if not arg.get("a") or not arg.get("b"):
+            raise RuleError(f"{where}: 'exchange' needs a and b")
+    elif op == "lord_dignity":
+        if not 1 <= int(arg.get("lord_of", 0)) <= 12 or not arg.get("is"):
+            raise RuleError(f"{where}: 'lord_dignity' needs lord_of and is")
+    elif op == "lords_relation":
+        if not (1 <= int(arg.get("a", 0)) <= 12 and 1 <= int(arg.get("b", 0)) <= 12) or not arg.get("houses"):
+            raise RuleError(f"{where}: 'lords_relation' needs a, b and houses")
+    elif op == "aspects":
+        if arg.get("by") not in SEVEN or not arg.get("to"):
+            raise RuleError(f"{where}: 'aspects' needs by (Sun to Saturn) and to")
     else:
         raise RuleError(f"{where}: unknown condition '{op}'")
+
+
+def _check_example(ex: Any, where: str) -> dict[str, int] | None:
+    if ex is None:
+        return None
+    if not isinstance(ex, dict) or "lagna" not in ex or any(k != "lagna" and k not in PLANETS for k in ex):
+        raise RuleError(f"{where}: 'example' needs lagna and planet sign numbers")
+    if not all(isinstance(v, int) and 1 <= v <= 12 for v in ex.values()):
+        raise RuleError(f"{where}: example sign numbers must be 1..12")
+    return {k: int(v) for k, v in ex.items()}
+
+
+def _check_planets(planets: Any, where: str) -> None:
+    if not isinstance(planets, list) or not planets or any(p not in PLANETS for p in planets):
+        raise RuleError(f"{where}: unknown planet in {planets!r}")
 
 
 def load_rules(directory: Path = RULES_DIR) -> list[Rule]:
@@ -134,6 +206,7 @@ def load_rules(directory: Path = RULES_DIR) -> list[Rule]:
                     path.name,
                     line,
                     int(item.get("weight", 1)),
+                    _check_example(item.get("example"), where),
                 )
             )
     return rules
@@ -159,9 +232,6 @@ class Facts:
 
     def lord_of(self, house: int, ref: str = "lagna") -> str:
         return str(SIGN_LORDS[(self.ref_sign(ref) + house - 1) % 12])
-
-
-SEVEN = [str(g) for g in Graha][:7]
 
 
 def evaluate(cond: dict[str, Any], f: Facts) -> bool:
@@ -225,7 +295,84 @@ def evaluate(cond: dict[str, Any], f: Facts) -> bool:
                 if f.house(h, "lagna") in (1, 4, 7, 10) or f.house(h, "moon") in (1, 4, 7, 10):
                     return True
         return False
+    if op == "planets_within":
+        ref = arg.get("from", "lagna")
+        hs = [f.house(p, ref) for p in arg.get("planets", SEVEN)]
+        if not all(h in arg["houses"] for h in hs):
+            return False
+        return not arg.get("occupy_all") or set(arg["houses"]) <= set(hs)
+    if op == "consecutive":
+        ref = arg.get("from", "lagna")
+        run_hs = {f.house(p, ref) for p in arg.get("planets", SEVEN)}
+        n = int(arg["length"])
+        return any(run_hs == {(int(s0) - 1 + i) % 12 + 1 for i in range(n)} for s0 in arg["start"])
+    if op == "houses_occupied":
+        ref = arg.get("from", "lagna")
+        occupied = {f.house(p, ref) for p in arg.get("planets", SEVEN) if p != ref}
+        return set(arg["houses"]) <= occupied
+    if op == "sign_type":
+        t = SIGN_TYPES[arg["type"]]
+        return all(f.sign[p] % 3 == t for p in arg.get("planets", SEVEN))
+    if op == "lagna_sign_type":
+        return int(f.lagna) % 3 == SIGN_TYPES[arg]
+    if op == "occupied_signs":
+        return len({f.sign[p] for p in arg.get("planets", SEVEN)}) in arg["count"]
+    if op == "max_in_one_sign":
+        signs = [f.sign[p] for p in arg.get("planets", SEVEN)]
+        return max(signs.count(s) for s in signs) >= int(arg["min"])
+    if op == "exchange":
+        # Planet X sits in a sign of Y and Y in a sign of X (X != Y): the
+        # houses of those two signs exchange lords.
+        for x in SEVEN:
+            y = str(SIGN_LORDS[f.sign[x]])
+            if y == x or str(SIGN_LORDS[f.sign[y]]) != x:
+                continue
+            hx, hy = f.house(x), f.house(y)
+            if (hx in arg["a"] and hy in arg["b"]) or (hx in arg["b"] and hy in arg["a"]):
+                return True
+        return False
+    if op == "lord_dignity":
+        lord = f.lord_of(int(arg["lord_of"]), arg.get("from", "lagna"))
+        return f.p[lord]["dignity"] in arg["is"]
+    if op == "lords_relation":
+        la, lb = f.lord_of(int(arg["a"])), f.lord_of(int(arg["b"]))
+        return f.house(lb, la) in arg["houses"]
+    if op == "aspects":
+        by = arg["by"]
+        to = str(arg["to"])
+        target = int(f.lagna) if to == "lagna" else f.sign[f.lord_of(int(to[5:]))] if to.startswith("lord:") else f.sign[to]
+        return house_from(target, f.sign[by]) in ASPECTS.get(by, (7,))
     raise RuleError(f"unknown condition {op}")
+
+
+def example_chart(ex: dict[str, int]) -> dict[str, Any]:
+    """A minimal chart from a rule's `example` (sign numbers, 1 = Aries)."""
+    from jyotish_engine.constants import Graha as G
+    from jyotish_engine.core import dignity
+
+    signs = {g: ex.get(str(g), 0) - 1 for g in G}
+    # Unlisted planets: nodes opposite each other, the rest with the Sun.
+    if signs[G.RAHU] < 0:
+        signs[G.RAHU] = (signs[G.KETU] + 6) % 12 if signs[G.KETU] >= 0 else 2
+    if signs[G.KETU] < 0:
+        signs[G.KETU] = (signs[G.RAHU] + 6) % 12
+    for g in G:
+        if signs[g] < 0:
+            signs[g] = max(signs[G.SUN], 0)
+    planets = []
+    for g, s in signs.items():
+        lon = s * 30 + 15.0
+        planets.append(
+            {
+                "id": str(g),
+                "sign_index": s,
+                "longitude": lon,
+                "dignity": dignity(g, lon, signs),
+                "retrograde": False,
+                "combust": False,
+            }
+        )
+    return {"lagna": {"sign_index": ex["lagna"] - 1}, "planets": planets}
 
 
 def run_rules(chart: dict[str, Any], rules: list[Rule] | None = None) -> dict[str, Any]:
