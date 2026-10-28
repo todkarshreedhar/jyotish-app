@@ -10,7 +10,7 @@ import os
 import sys
 from typing import Any
 
-from sqlalchemy import case, func, or_, select, text
+from sqlalchemy import case, func, insert, or_, select, text
 from sqlalchemy.orm import Session
 
 from jyotish_api.models import Place
@@ -83,7 +83,7 @@ def seed(db: Session, force: bool = False) -> int:
     db.execute(text("TRUNCATE places"))
     rows = rows_from_geonames()
     for i in range(0, len(rows), 5000):
-        db.execute(Place.__table__.insert(), rows[i : i + 5000])
+        db.execute(insert(Place), rows[i : i + 5000])
     db.commit()
     return len(rows)
 

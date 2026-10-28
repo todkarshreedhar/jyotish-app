@@ -10,7 +10,6 @@ from datetime import date, time
 from pathlib import Path
 
 import pytest
-
 from jyotish_engine.chart import BirthData, compute_chart
 from jyotish_engine.core import angular_distance
 
@@ -53,7 +52,7 @@ def test_planet_longitudes(pair: tuple[dict, dict]) -> None:
         exp = ref["expected"]["planets"][p["id"]]
         tol = NODE_TOL if p["id"] in ("rahu", "ketu") else PLANET_TOL
         diff = angular_distance(p["longitude"], exp["longitude"])
-        assert diff < tol, f"{ref['id']} {p['id']} longitude off by {diff * 3600:.3f}\""
+        assert diff < tol, f'{ref["id"]} {p["id"]} longitude off by {diff * 3600:.3f}"'
         assert p["retrograde"] == exp["retrograde"], f"{ref['id']} {p['id']} retrograde flag"
         assert p["sign"] == exp["sign"], f"{ref['id']} {p['id']} sign"
         assert p["nakshatra_index"] == exp["nakshatra_index"], f"{ref['id']} {p['id']} nakshatra"
@@ -69,7 +68,7 @@ def test_ketu_opposite_rahu(pair: tuple[dict, dict]) -> None:
 def test_lagna(pair: tuple[dict, dict]) -> None:
     ref, got = pair
     diff = angular_distance(got["lagna"]["longitude"], ref["expected"]["lagna"]["longitude"])
-    assert diff < LAGNA_TOL, f"{ref['id']} lagna off by {diff * 3600:.2f}\""
+    assert diff < LAGNA_TOL, f'{ref["id"]} lagna off by {diff * 3600:.2f}"'
     assert got["lagna"]["sign"] == ref["expected"]["lagna"]["sign"], ref["id"]
     assert got["houses"][0]["sign"] == got["lagna"]["sign"]
 

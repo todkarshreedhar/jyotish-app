@@ -60,9 +60,9 @@ class ChartSettings:
     def from_dict(cls, d: dict[str, object] | None) -> "ChartSettings":
         d = dict(d or {})
         return cls(
-            ayanamsa=Ayanamsa(d.get("ayanamsa", Ayanamsa.LAHIRI)),
-            node_type=NodeType(d.get("node_type", NodeType.MEAN)),
+            ayanamsa=Ayanamsa(str(d.get("ayanamsa", Ayanamsa.LAHIRI))),
+            node_type=NodeType(str(d.get("node_type", NodeType.MEAN))),
             house_system=str(d.get("house_system", "whole_sign")),
             dasha_year_days=float(d.get("dasha_year_days", DASHA_YEAR_SAVANA)),  # type: ignore[arg-type]
-            chart_style=ChartStyle(d.get("chart_style", ChartStyle.NORTH)),
+            chart_style=ChartStyle(str(d.get("chart_style", ChartStyle.NORTH))),
         )

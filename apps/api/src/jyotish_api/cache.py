@@ -8,7 +8,7 @@ import hashlib
 import json
 import threading
 from collections import OrderedDict
-from typing import Any
+from typing import Any, cast
 
 import redis
 
@@ -41,8 +41,8 @@ def get(key: str) -> str | None:
     r = _redis()
     if r is not None:
         try:
-            v = r.get(key)
-            return v.decode() if v else None
+            raw = cast(bytes | None, r.get(key))
+            return raw.decode() if raw else None
         except Exception:
             pass
     with _lock:

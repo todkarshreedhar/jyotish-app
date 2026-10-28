@@ -39,8 +39,15 @@ def open_user(user_id: str, admin: AdminUser, db: DB) -> dict[str, Any]:
     db.add(AuditLog(actor_id=admin.id, action="admin.open_user", target_user_id=u.id))
     db.commit()
     # No birth details here: those need a reason (see below).
-    return {"id": str(u.id), "email": u.email, "role": u.role, "locale": u.locale, "profiles": n,
-            "created_at": u.created_at.isoformat(), "last_login_at": u.last_login_at.isoformat() if u.last_login_at else None}
+    return {
+        "id": str(u.id),
+        "email": u.email,
+        "role": u.role,
+        "locale": u.locale,
+        "profiles": n,
+        "created_at": u.created_at.isoformat(),
+        "last_login_at": u.last_login_at.isoformat() if u.last_login_at else None,
+    }
 
 
 class Reason(BaseModel):
@@ -65,7 +72,15 @@ def set_role(user_id: str, body: RoleIn, admin: AdminUser, db: DB) -> dict[str, 
     u = _user(db, user_id)
     old = u.role
     u.role = body.role
-    db.add(AuditLog(actor_id=admin.id, action="admin.set_role", target_user_id=u.id, reason=body.reason, meta={"from": old, "to": body.role}))
+    db.add(
+        AuditLog(
+            actor_id=admin.id,
+            action="admin.set_role",
+            target_user_id=u.id,
+            reason=body.reason,
+            meta={"from": old, "to": body.role},
+        )
+    )
     db.commit()
     return {"id": str(u.id), "role": u.role}
 
@@ -75,6 +90,16 @@ def audit(admin: AdminUser, db: DB, user_id: str | None = None, limit: int = 100
     q = select(AuditLog).order_by(AuditLog.created_at.desc()).limit(min(limit, 500))
     if user_id:
         q = q.where((AuditLog.target_user_id == uuid.UUID(user_id)) | (AuditLog.actor_id == uuid.UUID(user_id)))
-    return {"items": [{"who": str(a.actor_id) if a.actor_id else None, "what": a.action,
-                       "target": str(a.target_user_id) if a.target_user_id else None, "reason": a.reason,
-                       "meta": a.meta, "when": a.created_at.isoformat()} for a in db.scalars(q)]}
+    return {
+        "items": [
+            {
+                "who": str(a.actor_id) if a.actor_id else None,
+                "what": a.action,
+                "target": str(a.target_user_id) if a.target_user_id else None,
+                "reason": a.reason,
+                "meta": a.meta,
+                "when": a.created_at.isoformat(),
+            }
+            for a in db.scalars(q)
+        ]
+    }

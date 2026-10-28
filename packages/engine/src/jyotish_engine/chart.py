@@ -12,12 +12,12 @@ from typing import Any
 from jyotish_engine import ephemeris
 from jyotish_engine.constants import GRAHAS, SIGN_LORDS, Graha
 from jyotish_engine.core import (
+    combustion_orb,
     deg_in_sign,
     dignity,
     dms,
     house_from,
     is_combust,
-    combustion_orb,
     nakshatra_of,
     sign_key,
     sign_of,

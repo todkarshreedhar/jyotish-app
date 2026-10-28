@@ -5,10 +5,9 @@ from datetime import UTC, date, datetime
 from typing import Annotated, Any
 
 from fastapi import APIRouter, HTTPException, Query, Response, status
-from sqlalchemy import func, select
-
 from jyotish_engine.settings import ChartSettings
 from jyotish_engine.timeutil import InputError
+from sqlalchemy import func, select
 
 from jyotish_api.crypto import decrypt_json, encrypt_json
 from jyotish_api.models import Profile
@@ -70,7 +69,9 @@ def _set_main(db: DB, user: Any, p: Profile) -> None:
 
 @router.get("")
 def list_profiles(user: ConsentedUser, db: DB, folder: str | None = None, q: str | None = None) -> dict[str, Any]:
-    rows = list(db.scalars(select(Profile).where(Profile.user_id == user.id).order_by(Profile.is_main.desc(), Profile.created_at)))
+    rows = list(
+        db.scalars(select(Profile).where(Profile.user_id == user.id).order_by(Profile.is_main.desc(), Profile.created_at))
+    )
     items = [profile_out(p) for p in rows]
     if folder is not None:
         items = [i for i in items if (i["folder"] or "") == folder]
@@ -87,8 +88,13 @@ def create_profile(body: ProfileIn, user: ConsentedUser, db: DB) -> dict[str, An
         raise HTTPException(status.HTTP_409_CONFLICT, f"profile limit reached ({_limit(user)})")
     payload = _birth_payload(body)
     _validate(payload)
-    p = Profile(user_id=user.id, birth_enc=encrypt_json(payload), folder=body.folder,
-                settings=body.settings.model_dump(mode="json"), is_main=body.is_main or count == 0)
+    p = Profile(
+        user_id=user.id,
+        birth_enc=encrypt_json(payload),
+        folder=body.folder,
+        settings=body.settings.model_dump(mode="json"),
+        is_main=body.is_main or count == 0,
+    )
     db.add(p)
     db.flush()
     if p.is_main:
@@ -139,8 +145,15 @@ Vargas = Annotated[str, Query(description="Comma-separated, e.g. D1,D9")]
 
 
 @router.get("/{profile_id}/chart")
-def profile_chart(profile_id: str, user: ConsentedUser, db: DB, vargas: Vargas = "D1,D9", bhava_chalit: bool = False,
-                  ayanamsa: str | None = None, node_type: str | None = None) -> Response:
+def profile_chart(
+    profile_id: str,
+    user: ConsentedUser,
+    db: DB,
+    vargas: Vargas = "D1,D9",
+    bhava_chalit: bool = False,
+    ayanamsa: str | None = None,
+    node_type: str | None = None,
+) -> Response:
     p = get_owned(db, user, profile_id)
     codes = tuple(v.strip().upper() for v in vargas.split(",") if v.strip())
     bad = [c for c in codes if c not in VARGA_CODES]
@@ -187,13 +200,58 @@ def profile_csv(profile_id: str, user: ConsentedUser, db: DB) -> Response:
     c = charts.chart_dict(birth, cs, ("D1", "D9"))
     buf = io.StringIO()
     w = csv.writer(buf)
-    w.writerow(["body", "sign", "degree_in_sign", "dms", "longitude", "nakshatra", "pada", "house", "retrograde",
-                "combust", "dignity", "navamsa_sign"])
-    w.writerow(["lagna", c["lagna"]["sign"], c["lagna"]["degree_in_sign"], c["lagna"]["dms"], c["lagna"]["longitude"],
-                c["lagna"]["nakshatra"], c["lagna"]["pada"], 1, "", "", "", c["vargas"]["D9"]["lagna_sign"]])
+    w.writerow(
+        [
+            "body",
+            "sign",
+            "degree_in_sign",
+            "dms",
+            "longitude",
+            "nakshatra",
+            "pada",
+            "house",
+            "retrograde",
+            "combust",
+            "dignity",
+            "navamsa_sign",
+        ]
+    )
+    w.writerow(
+        [
+            "lagna",
+            c["lagna"]["sign"],
+            c["lagna"]["degree_in_sign"],
+            c["lagna"]["dms"],
+            c["lagna"]["longitude"],
+            c["lagna"]["nakshatra"],
+            c["lagna"]["pada"],
+            1,
+            "",
+            "",
+            "",
+            c["vargas"]["D9"]["lagna_sign"],
+        ]
+    )
     for pl in c["planets"]:
-        w.writerow([pl["id"], pl["sign"], pl["degree_in_sign"], pl["dms"], pl["longitude"], pl["nakshatra"], pl["pada"],
-                    pl["house"], pl["retrograde"], pl["combust"], pl["dignity"], c["vargas"]["D9"]["planets"][pl["id"]]["sign"]])
+        w.writerow(
+            [
+                pl["id"],
+                pl["sign"],
+                pl["degree_in_sign"],
+                pl["dms"],
+                pl["longitude"],
+                pl["nakshatra"],
+                pl["pada"],
+                pl["house"],
+                pl["retrograde"],
+                pl["combust"],
+                pl["dignity"],
+                c["vargas"]["D9"]["planets"][pl["id"]]["sign"],
+            ]
+        )
     name = "".join(ch for ch in decrypt_json(p.birth_enc)["name"] if ch.isalnum() or ch in " -_")[:40] or "chart"
-    return Response("﻿" + buf.getvalue(), media_type="text/csv; charset=utf-8",
-                    headers={"Content-Disposition": f'attachment; filename="{name}.csv"'})
+    return Response(
+        "﻿" + buf.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{name}.csv"'},
+    )

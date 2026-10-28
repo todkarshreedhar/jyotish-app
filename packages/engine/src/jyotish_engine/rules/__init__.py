@@ -59,7 +59,7 @@ class Rule:
 def _check_condition(cond: Any, where: str) -> None:
     if not isinstance(cond, dict) or len(cond) != 1:
         raise RuleError(f"{where}: a condition must be a mapping with exactly one key, got {cond!r}")
-    (op, arg), = cond.items()
+    ((op, arg),) = cond.items()
     if op in ("all", "any"):
         if not isinstance(arg, list) or not arg:
             raise RuleError(f"{where}: '{op}' needs a non-empty list")
@@ -107,7 +107,7 @@ def load_rules(directory: Path = RULES_DIR) -> list[Rule]:
             raise RuleError(f"{path.name}: invalid YAML: {exc}") from exc
         if not isinstance(data, list):
             raise RuleError(f"{path.name}: the file must be a list of rules")
-        for item, item_node in zip(data, node.value, strict=True):  # type: ignore[union-attr]
+        for item, item_node in zip(data, node.value, strict=True):
             line = item_node.start_mark.line + 1
             where = f"{path.name}:{line}"
             if not isinstance(item, dict):
@@ -123,8 +123,19 @@ def load_rules(directory: Path = RULES_DIR) -> list[Rule]:
                 raise RuleError(f"{where}: unknown kind {item['kind']}")
             _check_condition(item["when"], where)
             seen.add(item["id"])
-            rules.append(Rule(item["id"], item["topic"], item["kind"], item["source"], item["when"],
-                              item["text_key"], path.name, line, int(item.get("weight", 1))))
+            rules.append(
+                Rule(
+                    item["id"],
+                    item["topic"],
+                    item["kind"],
+                    item["source"],
+                    item["when"],
+                    item["text_key"],
+                    path.name,
+                    line,
+                    int(item.get("weight", 1)),
+                )
+            )
     return rules
 
 
@@ -154,7 +165,7 @@ SEVEN = [str(g) for g in Graha][:7]
 
 
 def evaluate(cond: dict[str, Any], f: Facts) -> bool:
-    (op, arg), = cond.items()
+    ((op, arg),) = cond.items()
     if op == "all":
         return all(evaluate(c, f) for c in arg)
     if op == "any":

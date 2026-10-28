@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import Any
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-
 from jyotish_engine.core import dms
 from jyotish_engine.names import names
 from jyotish_engine.timeutil import julian_day_ut
@@ -23,7 +22,7 @@ def _render(template: str, ctx: dict[str, Any]) -> bytes:
     from weasyprint import HTML  # imported lazily: heavy, and only the worker needs it
 
     html = env.get_template(template).render(font_dir=FONT_DIR, **ctx)
-    return HTML(string=html, base_url=str(HERE)).write_pdf()  # type: ignore[no-any-return]
+    return HTML(string=html, base_url=str(HERE)).write_pdf()
 
 
 def _brand(user: Any) -> dict[str, Any]:
@@ -42,7 +41,15 @@ def _footer(chart: dict[str, Any], lang: str) -> str:
     )
 
 
-def natal_pdf(profile: dict[str, Any], chart: dict[str, Any], readings: list[dict[str, Any]], lang: str, style: str, user: Any = None, now: datetime | None = None) -> bytes:
+def natal_pdf(
+    profile: dict[str, Any],
+    chart: dict[str, Any],
+    readings: list[dict[str, Any]],
+    lang: str,
+    style: str,
+    user: Any = None,
+    now: datetime | None = None,
+) -> bytes:
     L, N = LABELS[lang], names(lang)
     now = now or datetime.now(UTC)
     jd_now = julian_day_ut(now)
@@ -58,12 +65,18 @@ def natal_pdf(profile: dict[str, Any], chart: dict[str, Any], readings: list[dic
     off = chart["input"]["utc_offset_minutes"]
     acc = chart["input"].get("time_accuracy", "exact")
     ctx = {
-        "lang": lang, "L": L, "N": N, "profile": profile, "chart": chart, "moon": moon,
+        "lang": lang,
+        "L": L,
+        "N": N,
+        "profile": profile,
+        "chart": chart,
+        "moon": moon,
         "offset": f"{'+' if off >= 0 else '-'}{abs(off) // 60:02d}:{abs(off) % 60:02d}",
         "ayanamsa_dms": dms(chart["meta"]["ayanamsa_value"]),
         "svg_d1": svg.draw(chart, "D1", style, N, ASC[lang], ""),
         "svg_d9": svg.draw(chart, "D9", style, N, ASC[lang], "D9") if "D9" in chart["vargas"] else "",
-        "current_maha": cur_maha, "antars": antars,
+        "current_maha": cur_maha,
+        "antars": antars,
         "readings": list(by_topic.items()),
         "time_note": L["time_note"].format(acc=L["accuracy"][acc]) if acc != "exact" else None,
         "footer": _footer(chart, lang),
@@ -76,7 +89,12 @@ def match_pdf(data: dict[str, Any], lang: str, style: str, user: Any = None) -> 
     L, N = LABELS[lang], names(lang)
     boy, girl = data["boy"], data["girl"]
     ctx = {
-        "lang": lang, "L": L, "N": N, "boy": boy, "girl": girl, "score": data["ashtakoota"],
+        "lang": lang,
+        "L": L,
+        "N": N,
+        "boy": boy,
+        "girl": girl,
+        "score": data["ashtakoota"],
         "boy_moon": next(p for p in boy["chart"]["planets"] if p["id"] == "moon"),
         "girl_moon": next(p for p in girl["chart"]["planets"] if p["id"] == "moon"),
         "svg_boy": svg.draw(boy["chart"], "D1", style, N, ASC[lang]),

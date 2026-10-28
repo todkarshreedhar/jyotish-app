@@ -24,7 +24,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import swisseph as swe
-from skyfield.api import load_file, Loader
+from skyfield.api import Loader, load_file
 from skyfield.framelib import ecliptic_frame
 from skyfield_data import get_skyfield_data_path
 
@@ -48,8 +48,20 @@ BODIES = {
 NAK = 360 / 27
 LORDS = ["ketu", "venus", "sun", "moon", "mars", "rahu", "jupiter", "saturn", "mercury"]
 YEARS = [7, 20, 6, 10, 7, 18, 16, 19, 17]
-SIGNS = ["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio",
-         "sagittarius", "capricorn", "aquarius", "pisces"]
+SIGNS = [
+    "aries",
+    "taurus",
+    "gemini",
+    "cancer",
+    "leo",
+    "virgo",
+    "libra",
+    "scorpio",
+    "sagittarius",
+    "capricorn",
+    "aquarius",
+    "pisces",
+]
 
 swe.set_ephe_path(str(EPHE))
 
@@ -81,8 +93,9 @@ def mean_node_tropical(jd_ut: float) -> float:
 def ascendant_tropical(jd_ut: float, lat: float, lon: float) -> float:
     # Sidereal time depends on the Earth's rotation angle, i.e. on UT1 itself.
     t = ts.ut1_jd(jd_ut)
-    from skyfield.nutationlib import iau2000b_radians
     from skyfield.earthlib import sidereal_time  # noqa: F401 (documented dependency)
+    from skyfield.nutationlib import iau2000b_radians
+
     gast_h = t.gast
     dpsi, deps = iau2000b_radians(t)
     eps = t._mean_obliquity_radians + deps
@@ -100,8 +113,7 @@ def lahiri(jd_ut: float) -> float:
 def nak_info(lon: float) -> dict:
     i = int(lon // NAK)
     within = lon - i * NAK
-    return {"nakshatra_index": i, "pada": int(within // (NAK / 4)) + 1, "lord": LORDS[i % 9],
-            "fraction": within / NAK}
+    return {"nakshatra_index": i, "pada": int(within // (NAK / 4)) + 1, "lord": LORDS[i % 9], "fraction": within / NAK}
 
 
 def julian_day(dt: datetime) -> float:
@@ -121,13 +133,21 @@ def main() -> None:
         for name in BODIES:
             lon, speed = tropical(name, jd)
             sid = (lon - ayan) % 360
-            planets[name] = {"longitude": round(sid, 7), "retrograde": bool(speed < 0),
-                             "sign": SIGNS[int(sid // 30)], **{k: v for k, v in nak_info(sid).items() if k != "fraction"}}
+            planets[name] = {
+                "longitude": round(sid, 7),
+                "retrograde": bool(speed < 0),
+                "sign": SIGNS[int(sid // 30)],
+                **{k: v for k, v in nak_info(sid).items() if k != "fraction"},
+            }
         rahu = (mean_node_tropical(jd) - ayan) % 360
         ketu = (rahu + 180) % 360
         for name, val in (("rahu", rahu), ("ketu", ketu)):
-            planets[name] = {"longitude": round(val, 7), "retrograde": True, "sign": SIGNS[int(val // 30)],
-                             **{k: v for k, v in nak_info(val).items() if k != "fraction"}}
+            planets[name] = {
+                "longitude": round(val, 7),
+                "retrograde": True,
+                "sign": SIGNS[int(val // 30)],
+                **{k: v for k, v in nak_info(val).items() if k != "fraction"},
+            }
         asc = (ascendant_tropical(jd, c["lat"], c["lon"]) - ayan) % 360
 
         # Navamsa signs by plain arithmetic: each 3°20' from Aries is one sign.
@@ -144,22 +164,24 @@ def main() -> None:
             mahas.append({"lord": lord, "start_jd": round(start, 6)})
             start += YEARS[(k + j) % 9] * 365.25
 
-        out.append({
-            **c,
-            "expected": {
-                "julian_day_ut": round(jd, 8),
-                "utc": utc.isoformat(),
-                "utc_offset_minutes": int(local.utcoffset().total_seconds() // 60),
-                "ayanamsa": round(ayan, 7),
-                "lagna": {"longitude": round(asc, 7), "sign": SIGNS[int(asc // 30)]},
-                "planets": planets,
-                "navamsa_sign_index": d9,
-                "navamsa_lagna_index": int(asc // (10 / 3)) % 12,
-                "mahadashas": mahas,
-            },
-            "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
-            "expert_check": {"jagannatha_hora": None, "signed_off_by": None},
-        })
+        out.append(
+            {
+                **c,
+                "expected": {
+                    "julian_day_ut": round(jd, 8),
+                    "utc": utc.isoformat(),
+                    "utc_offset_minutes": int(local.utcoffset().total_seconds() // 60),
+                    "ayanamsa": round(ayan, 7),
+                    "lagna": {"longitude": round(asc, 7), "sign": SIGNS[int(asc // 30)]},
+                    "planets": planets,
+                    "navamsa_sign_index": d9,
+                    "navamsa_lagna_index": int(asc // (10 / 3)) % 12,
+                    "mahadashas": mahas,
+                },
+                "source": "Skyfield 1.x + JPL DE421; Meeus mean node; classical ascendant formula",
+                "expert_check": {"jagannatha_hora": None, "signed_off_by": None},
+            }
+        )
     OUT.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
     print(f"wrote {len(out)} charts to {OUT}")
 

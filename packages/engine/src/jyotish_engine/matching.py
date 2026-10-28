@@ -99,27 +99,23 @@ def ashtakoota(boy_moon: float, girl_moon: float) -> dict[str, Any]:
 
     bv, gv = VARNA_OF_SIGN[bs], VARNA_OF_SIGN[gs]
     # Lower index = higher varna. Full point if the boy's varna is equal or higher.
-    kootas.append({"koota": "varna", "max": 1, "points": 1.0 if bv <= gv else 0.0,
-                   "boy": VARNAS[bv], "girl": VARNAS[gv]})
+    kootas.append({"koota": "varna", "max": 1, "points": 1.0 if bv <= gv else 0.0, "boy": VARNAS[bv], "girl": VARNAS[gv]})
 
     bva, gva = vashya_of(boy_moon), vashya_of(girl_moon)
-    kootas.append({"koota": "vashya", "max": 2, "points": VASHYA_POINTS[bva][gva],
-                   "boy": VASHYAS[bva], "girl": VASHYAS[gva]})
+    kootas.append({"koota": "vashya", "max": 2, "points": VASHYA_POINTS[bva][gva], "boy": VASHYAS[bva], "girl": VASHYAS[gva]})
 
     tara = 1.5 * _tara_ok(gn, bn) + 1.5 * _tara_ok(bn, gn)
     kootas.append({"koota": "tara", "max": 3, "points": tara})
 
     by, gy = YONI_OF_NAKSHATRA[bn], YONI_OF_NAKSHATRA[gn]
-    kootas.append({"koota": "yoni", "max": 4, "points": float(YONI_POINTS[by][gy]),
-                   "boy": YONIS[by], "girl": YONIS[gy]})
+    kootas.append({"koota": "yoni", "max": 4, "points": float(YONI_POINTS[by][gy]), "boy": YONIS[by], "girl": YONIS[gy]})
 
     bl, gl = SIGN_LORDS[bs], SIGN_LORDS[gs]
     maitri = 5.0 if bl == gl else _MAITRI[(natural_relation(bl, gl), natural_relation(gl, bl))]
     kootas.append({"koota": "graha_maitri", "max": 5, "points": maitri, "boy": str(bl), "girl": str(gl)})
 
     bg, gg = GANA_OF_NAKSHATRA[bn], GANA_OF_NAKSHATRA[gn]
-    kootas.append({"koota": "gana", "max": 6, "points": float(GANA_POINTS[gg][bg]),
-                   "boy": GANAS[bg], "girl": GANAS[gg]})
+    kootas.append({"koota": "gana", "max": 6, "points": float(GANA_POINTS[gg][bg]), "boy": GANAS[bg], "girl": GANAS[gg]})
 
     dist = house_from(gs, bs)  # girl's sign counted from boy's
     back = house_from(bs, gs)
@@ -127,8 +123,7 @@ def ashtakoota(boy_moon: float, girl_moon: float) -> dict[str, Any]:
     kootas.append({"koota": "bhakoot", "max": 7, "points": 0.0 if bad else 7.0, "distance": [dist, back]})
 
     bnad, gnad = NADI_OF_NAKSHATRA[bn], NADI_OF_NAKSHATRA[gn]
-    kootas.append({"koota": "nadi", "max": 8, "points": 0.0 if bnad == gnad else 8.0,
-                   "boy": NADIS[bnad], "girl": NADIS[gnad]})
+    kootas.append({"koota": "nadi", "max": 8, "points": 0.0 if bnad == gnad else 8.0, "boy": NADIS[bnad], "girl": NADIS[gnad]})
 
     total = sum(k["points"] for k in kootas)
     return {

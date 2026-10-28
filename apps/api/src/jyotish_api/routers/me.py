@@ -7,7 +7,7 @@ from typing import Any, Literal
 
 from fastapi import APIRouter, HTTPException, Request, Response, UploadFile, status
 from pydantic import BaseModel
-from sqlalchemy import delete, select
+from sqlalchemy import delete, select, update
 
 from jyotish_api.crypto import decrypt_json
 from jyotish_api.models import AlertPrefs, ApiKey, AuditLog, Consent, LoginToken, Profile, Report, SessionRow, User
@@ -85,8 +85,14 @@ def give_consent(body: ConsentIn, user: CurrentUser, db: DB) -> dict[str, Any]:
         raise HTTPException(status.HTTP_409_CONFLICT, "consent text has changed; please reload")
     if not has_consent(db, user):
         db.add(Consent(user_id=user.id, purpose=CONSENT_PURPOSE, version=CONSENT_VERSION))
-        db.add(AuditLog(actor_id=user.id, action="consent.given", target_user_id=user.id,
-                        meta={"purpose": CONSENT_PURPOSE, "version": CONSENT_VERSION}))
+        db.add(
+            AuditLog(
+                actor_id=user.id,
+                action="consent.given",
+                target_user_id=user.id,
+                meta={"purpose": CONSENT_PURPOSE, "version": CONSENT_VERSION},
+            )
+        )
         db.commit()
     return user_out(db, user)
 
@@ -94,26 +100,38 @@ def give_consent(body: ConsentIn, user: CurrentUser, db: DB) -> dict[str, Any]:
 @router.get("/me/export")
 def export(user: CurrentUser, db: DB) -> Response:
 
-
     profiles = []
     for p in db.scalars(select(Profile).where(Profile.user_id == user.id)):
-        profiles.append({"id": str(p.id), **decrypt_json(p.birth_enc), "folder": p.folder, "settings": p.settings,
-                         "is_main": p.is_main, "created_at": p.created_at.isoformat()})
-    consents = [{"purpose": c.purpose, "version": c.version, "accepted_at": c.accepted_at.isoformat()}
-                for c in db.scalars(select(Consent).where(Consent.user_id == user.id))]
+        profiles.append(
+            {
+                "id": str(p.id),
+                **decrypt_json(p.birth_enc),
+                "folder": p.folder,
+                "settings": p.settings,
+                "is_main": p.is_main,
+                "created_at": p.created_at.isoformat(),
+            }
+        )
+    consents = [
+        {"purpose": c.purpose, "version": c.version, "accepted_at": c.accepted_at.isoformat()}
+        for c in db.scalars(select(Consent).where(Consent.user_id == user.id))
+    ]
     data = {
         "exported_at": datetime.now(UTC).isoformat(),
         "account": {k: v for k, v in user_out(db, user).items() if k != "has_brand_logo"},
         "profiles": profiles,
         "consents": consents,
-        "reports": [{"id": str(r.id), "kind": r.kind, "status": r.status, "created_at": r.created_at.isoformat()}
-                    for r in db.scalars(select(Report).where(Report.user_id == user.id))],
+        "reports": [
+            {"id": str(r.id), "kind": r.kind, "status": r.status, "created_at": r.created_at.isoformat()}
+            for r in db.scalars(select(Report).where(Report.user_id == user.id))
+        ],
     }
     db.add(AuditLog(actor_id=user.id, action="account.export", target_user_id=user.id))
     db.commit()
     body = json.dumps(data, ensure_ascii=False, indent=2, default=str)
-    return Response(body, media_type="application/json",
-                    headers={"Content-Disposition": 'attachment; filename="jyotish-my-data.json"'})
+    return Response(
+        body, media_type="application/json", headers={"Content-Disposition": 'attachment; filename="jyotish-my-data.json"'}
+    )
 
 
 class DeleteIn(BaseModel):
@@ -128,12 +146,12 @@ def delete_me(body: DeleteIn, user: CurrentUser, request: Request, response: Res
     end_session(db, request, response)
     # Child rows go first; most also cascade, this keeps it explicit.
     for model in (Report, Profile, SessionRow, Consent, AlertPrefs, ApiKey):
-        db.execute(delete(model).where(model.user_id == uid))  # type: ignore[attr-defined]
+        db.execute(delete(model).where(model.user_id == uid))
     db.execute(delete(LoginToken).where(LoginToken.email == user.email))
     # Audit rows are kept for accountability but no longer point at an identity.
     db.add(AuditLog(actor_id=None, action="account.deleted", target_user_id=None, meta={}))
-    db.execute(AuditLog.__table__.update().where(AuditLog.actor_id == uid).values(actor_id=None))
-    db.execute(AuditLog.__table__.update().where(AuditLog.target_user_id == uid).values(target_user_id=None))
+    db.execute(update(AuditLog).where(AuditLog.actor_id == uid).values(actor_id=None))
+    db.execute(update(AuditLog).where(AuditLog.target_user_id == uid).values(target_user_id=None))
     db.delete(user)
     db.commit()
     return {"ok": True}

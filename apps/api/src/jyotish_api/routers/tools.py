@@ -6,7 +6,6 @@ from datetime import date
 from typing import Annotated, Any
 
 from fastapi import APIRouter, HTTPException, Query, Request, Response, status
-
 from jyotish_engine.matching import ashtakoota, manglik
 from jyotish_engine.panchang import panchang
 from jyotish_engine.settings import Ayanamsa, ChartSettings
@@ -40,7 +39,9 @@ def chart_preview(body: ChartRequest, request: Request) -> Response:
 
 
 @router.get("/places/search")
-def place_search(db: DB, request: Request, q: Annotated[str, Query(min_length=2, max_length=100)], limit: int = 10) -> dict[str, Any]:
+def place_search(
+    db: DB, request: Request, q: Annotated[str, Query(min_length=2, max_length=100)], limit: int = 10
+) -> dict[str, Any]:
     _rate_limit(request, "places", 120)
     return {"items": places.search(db, q, min(max(limit, 1), 20))}
 
@@ -52,14 +53,21 @@ def place_timezone(lat: Annotated[float, Query(ge=-90, le=90)], lon: Annotated[f
 
 
 @router.get("/panchang")
-def get_panchang(request: Request, on: date, lat: Annotated[float, Query(ge=-66, le=66)],
-                 lon: Annotated[float, Query(ge=-180, le=180)], tz: str | None = None,
-                 ayanamsa: Ayanamsa = Ayanamsa.LAHIRI) -> dict[str, Any]:
+def get_panchang(
+    request: Request,
+    on: date,
+    lat: Annotated[float, Query(ge=-66, le=66)],
+    lon: Annotated[float, Query(ge=-180, le=180)],
+    tz: str | None = None,
+    ayanamsa: Ayanamsa = Ayanamsa.LAHIRI,
+) -> dict[str, Any]:
     _rate_limit(request, "panchang", 60)
     tz_name = tz or charts.timezone_at(lat, lon)
     if not tz_name:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "unknown time zone for these coordinates")
-    key = cache.make_key("panchang", {"d": on.isoformat(), "lat": round(lat, 4), "lon": round(lon, 4), "tz": tz_name, "a": str(ayanamsa)})
+    key = cache.make_key(
+        "panchang", {"d": on.isoformat(), "lat": round(lat, 4), "lon": round(lon, 4), "tz": tz_name, "a": str(ayanamsa)}
+    )
     hit = cache.get(key)
     if hit:
         return json.loads(hit)
@@ -86,7 +94,9 @@ def match_data(db: DB, user: Any, boy_id: str, girl_id: str, lang: str) -> dict[
         out[role] = {
             "profile": {"id": po["id"], "name": po["name"], "birth_date": po["birth_date"]},
             "chart": c,
-            "manglik": manglik(by["mars"]["sign_index"], c["lagna"]["sign_index"], by["moon"]["sign_index"], by["venus"]["sign_index"]),
+            "manglik": manglik(
+                by["mars"]["sign_index"], c["lagna"]["sign_index"], by["moon"]["sign_index"], by["venus"]["sign_index"]
+            ),
         }
     out["ashtakoota"] = ashtakoota(moons["boy"], moons["girl"])
     out["lang"] = lang

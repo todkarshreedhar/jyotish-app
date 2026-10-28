@@ -9,9 +9,7 @@ import os
 
 os.environ.setdefault("ENVIRONMENT", "test")
 os.environ["ENVIRONMENT"] = "test"
-os.environ.setdefault(
-    "TEST_DATABASE_URL", "postgresql+psycopg://jyotish:jyotish@localhost:5432/jyotish_test"
-)
+os.environ.setdefault("TEST_DATABASE_URL", "postgresql+psycopg://jyotish:jyotish@localhost:5432/jyotish_test")
 os.environ["DATABASE_URL"] = os.environ["TEST_DATABASE_URL"]
 os.environ.setdefault("REDIS_URL", "redis://localhost:6379/15")
 
@@ -21,10 +19,9 @@ from pathlib import Path  # noqa: E402
 
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
-from sqlalchemy import text  # noqa: E402
-
 from jyotish_api import emailer  # noqa: E402
 from jyotish_api.db import database_is_up, engine  # noqa: E402
+from sqlalchemy import text  # noqa: E402
 
 API_DIR = Path(__file__).resolve().parent.parent
 _migrated = False
@@ -55,12 +52,14 @@ def db_ready() -> Iterator[None]:
     _migrate()
     with engine.begin() as conn:
         conn.execute(text(f"TRUNCATE {TABLES} RESTART IDENTITY CASCADE"))
-        conn.execute(text(
-            "INSERT INTO places (id, name, ascii_name, name_deva, search, admin1, country_code, country, latitude, longitude, tz, population) VALUES "
-            "(1259229, 'Pune', 'Pune', 'पुणे', '|pune|poona|पुणे|', 'Maharashtra', 'IN', 'India', 18.51957, 73.85535, 'Asia/Kolkata', 3124458),"
-            "(1275339, 'Mumbai', 'Mumbai', 'मुंबई', '|mumbai|bombay|मुंबई|', 'Maharashtra', 'IN', 'India', 19.07283, 72.88261, 'Asia/Kolkata', 12691836),"
-            "(1264527, 'Chennai', 'Chennai', 'चेन्नई', '|chennai|madras|', 'Tamil Nadu', 'IN', 'India', 13.08784, 80.27847, 'Asia/Kolkata', 4646732)"
-        ))
+        conn.execute(
+            text(
+                "INSERT INTO places (id, name, ascii_name, name_deva, search, admin1, country_code, country, latitude, longitude, tz, population) VALUES "
+                "(1259229, 'Pune', 'Pune', 'पुणे', '|pune|poona|पुणे|', 'Maharashtra', 'IN', 'India', 18.51957, 73.85535, 'Asia/Kolkata', 3124458),"
+                "(1275339, 'Mumbai', 'Mumbai', 'मुंबई', '|mumbai|bombay|मुंबई|', 'Maharashtra', 'IN', 'India', 19.07283, 72.88261, 'Asia/Kolkata', 12691836),"
+                "(1264527, 'Chennai', 'Chennai', 'चेन्नई', '|chennai|madras|', 'Tamil Nadu', 'IN', 'India', 13.08784, 80.27847, 'Asia/Kolkata', 4646732)"
+            )
+        )
     from jyotish_api import cache
 
     cache._local.clear()

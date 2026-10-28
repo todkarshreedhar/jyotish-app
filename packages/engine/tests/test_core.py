@@ -1,7 +1,6 @@
 from datetime import date, time
 
 import pytest
-
 from jyotish_engine import ephemeris
 from jyotish_engine.constants import Graha
 from jyotish_engine.core import dignity, dms, is_combust, nakshatra_of

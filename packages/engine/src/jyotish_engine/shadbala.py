@@ -145,7 +145,9 @@ def _motion_class(g: Graha, speed: float) -> tuple[str, float]:
     return "atichara", 30.0
 
 
-def shadbala(jd: float, lat: float, lon_geo: float, planets: dict[str, dict[str, Any]], lagna_lon: float, ayanamsa: Any) -> dict[str, Any]:
+def shadbala(
+    jd: float, lat: float, lon_geo: float, planets: dict[str, dict[str, Any]], lagna_lon: float, ayanamsa: Any
+) -> dict[str, Any]:
     """planets: chart["planets"] keyed by id (sidereal longitudes, speeds)."""
     lon = {g: float(planets[str(g)]["longitude"]) for g in SEVEN_GRAHAS}
     speed = {g: float(planets[str(g)]["speed"]) for g in SEVEN_GRAHAS}
@@ -272,4 +274,8 @@ def shadbala(jd: float, lat: float, lon_geo: float, planets: dict[str, dict[str,
             "ratio": round(total / 60 / REQUIRED_RUPAS[g], 2),
         }
     ranking = sorted(out, key=lambda k: -out[k]["ratio"])
-    return {"planets": out, "ranking": ranking, "method_notes": __doc__.split("Method notes for the domain expert (gate for US-62):")[1].strip()}  # type: ignore[union-attr]
+    return {
+        "planets": out,
+        "ranking": ranking,
+        "method_notes": __doc__.split("Method notes for the domain expert (gate for US-62):")[1].strip(),
+    }

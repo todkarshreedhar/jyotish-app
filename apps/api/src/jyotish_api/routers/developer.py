@@ -5,14 +5,13 @@ from datetime import UTC, datetime
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, Response, status
-from pydantic import BaseModel, Field
-from sqlalchemy import select
-from sqlalchemy.dialects.postgresql import insert
-
 from jyotish_engine.matching import ashtakoota
 from jyotish_engine.panchang import panchang
 from jyotish_engine.settings import ChartSettings
 from jyotish_engine.timeutil import InputError
+from pydantic import BaseModel, Field
+from sqlalchemy import select
+from sqlalchemy.dialects.postgresql import insert
 
 from jyotish_api import cache
 from jyotish_api.crypto import new_token, token_hash
@@ -30,9 +29,16 @@ class KeyIn(BaseModel):
 
 
 def _key_out(k: ApiKey, usage_today: int = 0) -> dict[str, Any]:
-    return {"id": str(k.id), "name": k.name, "prefix": k.prefix, "daily_limit": k.daily_limit,
-            "per_minute_limit": k.per_minute_limit, "created_at": k.created_at.isoformat() if k.created_at else None,
-            "revoked_at": k.revoked_at.isoformat() if k.revoked_at else None, "used_today": usage_today}
+    return {
+        "id": str(k.id),
+        "name": k.name,
+        "prefix": k.prefix,
+        "daily_limit": k.daily_limit,
+        "per_minute_limit": k.per_minute_limit,
+        "created_at": k.created_at.isoformat() if k.created_at else None,
+        "revoked_at": k.revoked_at.isoformat() if k.revoked_at else None,
+        "used_today": usage_today,
+    }
 
 
 def _usage_today(db: DB, key_id: Any) -> int:
@@ -83,8 +89,12 @@ def _uuid(s: str) -> Any:
 
 @router.get("/usage")
 def admin_usage(admin: AdminUser, db: DB) -> dict[str, Any]:
-    rows = db.execute(select(ApiKey.prefix, ApiKey.name, ApiUsage.day, ApiUsage.count).join(ApiUsage, ApiUsage.key_id == ApiKey.id)
-                      .order_by(ApiUsage.day.desc()).limit(500))
+    rows = db.execute(
+        select(ApiKey.prefix, ApiKey.name, ApiUsage.day, ApiUsage.count)
+        .join(ApiUsage, ApiUsage.key_id == ApiKey.id)
+        .order_by(ApiUsage.day.desc())
+        .limit(500)
+    )
     return {"items": [{"prefix": p, "name": n, "day": d.isoformat(), "count": c} for p, n, d, c in rows]}
 
 
@@ -96,8 +106,12 @@ def api_key(db: DB, request: Request, x_api_key: Annotated[str | None, Header()]
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "invalid API key")
     minute = cache.incr_window(f"jy:rl:key:{k.id}:m", 60)
     today = datetime.now(UTC).date()
-    stmt = insert(ApiUsage).values(key_id=k.id, day=today, count=1).on_conflict_do_update(
-        index_elements=["key_id", "day"], set_={"count": ApiUsage.count + 1}).returning(ApiUsage.count)
+    stmt = (
+        insert(ApiUsage)
+        .values(key_id=k.id, day=today, count=1)
+        .on_conflict_do_update(index_elements=["key_id", "day"], set_={"count": ApiUsage.count + 1})
+        .returning(ApiUsage.count)
+    )
     day_count = int(db.execute(stmt).scalar_one())
     db.commit()
     # Added to the response by the middleware in main.py
@@ -147,4 +161,3 @@ def public_match(body: PublicMatchIn, key: Key) -> dict[str, Any]:
         c = charts.chart_dict(charts.birth_from(b.model_dump(mode="json")), ChartSettings(), ("D1",))
         moons.append(next(p["longitude"] for p in c["planets"] if p["id"] == "moon"))
     return ashtakoota(moons[0], moons[1])
-

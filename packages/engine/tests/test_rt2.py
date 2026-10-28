@@ -1,17 +1,15 @@
 """Release 2 engine parts: Panchang, Ashtakavarga, matching, Sade Sati."""
 
 from datetime import UTC, date, datetime, time
-from pathlib import Path
 
 import pytest
-
 from jyotish_engine.ashtakavarga import BENEFIC_PLACES, EXPECTED_TOTALS, ashtakavarga
 from jyotish_engine.chart import BirthData, compute_chart
 from jyotish_engine.constants import SEVEN_GRAHAS, Graha
 from jyotish_engine.matching import ashtakoota, manglik
 from jyotish_engine.panchang import find_change, panchang, tithi_index
 from jyotish_engine.settings import ChartSettings
-from jyotish_engine.timeutil import julian_day_ut, jd_to_utc
+from jyotish_engine.timeutil import jd_to_utc, julian_day_ut
 from jyotish_engine.transits import sade_sati, sign_ingresses
 
 
@@ -64,7 +62,9 @@ def test_panchang_purnima_2024_04_23_delhi() -> None:
 
 def test_saturn_enters_pisces_march_2025() -> None:
     s = ChartSettings()
-    ing = sign_ingresses(Graha.SATURN, julian_day_ut(datetime(2025, 1, 1, tzinfo=UTC)), julian_day_ut(datetime(2025, 12, 31, tzinfo=UTC)), s)
+    ing = sign_ingresses(
+        Graha.SATURN, julian_day_ut(datetime(2025, 1, 1, tzinfo=UTC)), julian_day_ut(datetime(2025, 12, 31, tzinfo=UTC)), s
+    )
     assert ing and ing[0].to_sign == 11
     assert jd_to_utc(ing[0].jd).date() == date(2025, 3, 29)
 
@@ -107,7 +107,14 @@ def test_shadbala_shape_and_ranges() -> None:
 
     b = BirthData(date(1990, 5, 15), time(10, 30), 18.5204, 73.8567, "Asia/Kolkata")
     c = compute_chart(b)
-    r = shadbala(c["input"]["julian_day_ut"], b.latitude, b.longitude, {p["id"]: p for p in c["planets"]}, c["lagna"]["longitude"], Ayanamsa.LAHIRI)
+    r = shadbala(
+        c["input"]["julian_day_ut"],
+        b.latitude,
+        b.longitude,
+        {p["id"]: p for p in c["planets"]},
+        c["lagna"]["longitude"],
+        Ayanamsa.LAHIRI,
+    )
     assert set(r["planets"]) == {"sun", "moon", "mars", "mercury", "jupiter", "venus", "saturn"}
     for p in r["planets"].values():
         assert 0 <= p["sthana"]["uchcha"] <= 60

@@ -20,7 +20,20 @@ NORTH = {
     10: ((300, 200), (220, 200)), 11: ((364, 100), (316, 100)), 12: ((300, 36), (300, 86)),
 }  # fmt: skip
 # South Indian: sign index -> grid cell (col, row); Pisces sits top-left.
-SOUTH = {11: (0, 0), 0: (1, 0), 1: (2, 0), 2: (3, 0), 3: (3, 1), 4: (3, 2), 5: (3, 3), 6: (2, 3), 7: (1, 3), 8: (0, 3), 9: (0, 2), 10: (0, 1)}
+SOUTH = {
+    11: (0, 0),
+    0: (1, 0),
+    1: (2, 0),
+    2: (3, 0),
+    3: (3, 1),
+    4: (3, 2),
+    5: (3, 3),
+    6: (2, 3),
+    7: (1, 3),
+    8: (0, 3),
+    9: (0, 2),
+    10: (0, 1),
+}
 
 LINE = 'stroke="#7a4b16" stroke-width="2" fill="none"'
 
@@ -60,7 +73,9 @@ def north_layout(lagna_sign: int, planets: list[dict[str, Any]], abbr: dict[str,
     return lines, labels
 
 
-def south_layout(lagna_sign: int, planets: list[dict[str, Any]], abbr: dict[str, str], sign_short: list[str], asc_label: str, title: str) -> tuple[str, list[Label]]:
+def south_layout(
+    lagna_sign: int, planets: list[dict[str, Any]], abbr: dict[str, str], sign_short: list[str], asc_label: str, title: str
+) -> tuple[str, list[Label]]:
     c = SIZE / 4
     parts = [f'<rect x="1" y="1" width="398" height="398" {LINE}/>']
     for i in (1, 2, 3):
@@ -88,12 +103,21 @@ def varga_planets(chart: dict[str, Any], code: str) -> tuple[int, list[dict[str,
     out = []
     for p in chart["planets"]:
         vp = v["planets"][p["id"]]
-        out.append({"id": p["id"], "house": vp["house"], "sign_index": vp["sign_index"],
-                    "degree_in_sign": p["degree_in_sign"] if code == "D1" else None, "retrograde": p["retrograde"]})
+        out.append(
+            {
+                "id": p["id"],
+                "house": vp["house"],
+                "sign_index": vp["sign_index"],
+                "degree_in_sign": p["degree_in_sign"] if code == "D1" else None,
+                "retrograde": p["retrograde"],
+            }
+        )
     return v["lagna_sign_index"], out
 
 
-def layout(chart: dict[str, Any], code: str, style: str, names: dict[str, Any], asc_label: str, title: str = "") -> tuple[str, list[Label]]:
+def layout(
+    chart: dict[str, Any], code: str, style: str, names: dict[str, Any], asc_label: str, title: str = ""
+) -> tuple[str, list[Label]]:
     lagna, planets = varga_planets(chart, code)
     abbr = names["planet_abbr"]
     if style == "south":

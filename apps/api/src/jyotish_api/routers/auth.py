@@ -26,9 +26,18 @@ GOOGLE_ISSUERS = ("https://accounts.google.com", "accounts.google.com")
 STATE_COOKIE = "jy_oauth"
 
 LINK_TEXT = {
-    "en": ("Your sign-in link", "Open this link to sign in to Jyotish. It works once and expires in {m} minutes.\n\n{url}\n\nIf you did not ask for this, ignore this email."),
-    "hi": ("आपका साइन-इन लिंक", "ज्योतिष में साइन इन करने के लिए यह लिंक खोलें। यह एक बार काम करता है और {m} मिनट में समाप्त हो जाता है।\n\n{url}\n\nयदि आपने इसका अनुरोध नहीं किया, तो इस ईमेल को अनदेखा करें।"),
-    "mr": ("तुमची साइन-इन लिंक", "ज्योतिषमध्ये साइन इन करण्यासाठी ही लिंक उघडा. ती एकदाच चालते आणि {m} मिनिटांत संपते.\n\n{url}\n\nतुम्ही ही विनंती केली नसल्यास, हा ईमेल दुर्लक्षित करा."),
+    "en": (
+        "Your sign-in link",
+        "Open this link to sign in to Jyotish. It works once and expires in {m} minutes.\n\n{url}\n\nIf you did not ask for this, ignore this email.",
+    ),
+    "hi": (
+        "आपका साइन-इन लिंक",
+        "ज्योतिष में साइन इन करने के लिए यह लिंक खोलें। यह एक बार काम करता है और {m} मिनट में समाप्त हो जाता है।\n\n{url}\n\nयदि आपने इसका अनुरोध नहीं किया, तो इस ईमेल को अनदेखा करें।",
+    ),
+    "mr": (
+        "तुमची साइन-इन लिंक",
+        "ज्योतिषमध्ये साइन इन करण्यासाठी ही लिंक उघडा. ती एकदाच चालते आणि {m} मिनिटांत संपते.\n\n{url}\n\nतुम्ही ही विनंती केली नसल्यास, हा ईमेल दुर्लक्षित करा.",
+    ),
 }
 
 
@@ -68,7 +77,9 @@ def email_start(body: EmailStart, request: Request, db: DB) -> dict[str, str]:
     if cache.incr_window(f"jy:rl:login:{email}", 3600) > 5 or cache.incr_window(f"jy:rl:loginip:{ip}", 3600) > 30:
         raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, "too many sign-in requests; try again later")
     token = new_token()
-    db.add(LoginToken(email=email, token_hash=token_hash(token), expires_at=now() + timedelta(minutes=settings.login_link_minutes)))
+    db.add(
+        LoginToken(email=email, token_hash=token_hash(token), expires_at=now() + timedelta(minutes=settings.login_link_minutes))
+    )
     db.commit()
     url = f"{settings.web_url}/auth/verify?" + urlencode({"token": token, "next": _safe_next(body.next)})
     subject, text = LINK_TEXT.get(body.locale, LINK_TEXT["en"])
@@ -111,8 +122,15 @@ def google_login(next: Annotated[str | None, Query()] = None) -> RedirectRespons
         "prompt": "select_account",
     }
     resp = RedirectResponse(GOOGLE_AUTH + "?" + urlencode(params), status_code=302)
-    resp.set_cookie(STATE_COOKIE, f"{state}.{nonce}.{_safe_next(next)}", max_age=600, httponly=True,
-                    secure=settings.cookie_secure, samesite="lax", path="/")
+    resp.set_cookie(
+        STATE_COOKIE,
+        f"{state}.{nonce}.{_safe_next(next)}",
+        max_age=600,
+        httponly=True,
+        secure=settings.cookie_secure,
+        samesite="lax",
+        path="/",
+    )
     return resp
 
 
@@ -143,13 +161,17 @@ def google_callback(request: Request, db: DB, code: str = "", state: str = "") -
         return fail
     _, nonce, nxt = parts
     try:
-        r = httpx.post(GOOGLE_TOKEN, data={
-            "code": code,
-            "client_id": settings.google_client_id,
-            "client_secret": settings.google_client_secret,
-            "redirect_uri": f"{settings.web_url}/api/v1/auth/google/callback",
-            "grant_type": "authorization_code",
-        }, timeout=10)
+        r = httpx.post(
+            GOOGLE_TOKEN,
+            data={
+                "code": code,
+                "client_id": settings.google_client_id,
+                "client_secret": settings.google_client_secret,
+                "redirect_uri": f"{settings.web_url}/api/v1/auth/google/callback",
+                "grant_type": "authorization_code",
+            },
+            timeout=10,
+        )
         r.raise_for_status()
         claims = _verify_google_id_token(r.json()["id_token"], nonce)
     except Exception:

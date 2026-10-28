@@ -44,7 +44,9 @@ def create_report(body: ReportIn, user: ConsentedUser, db: DB) -> dict[str, Any]
         if not body.partner_profile_id:
             raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "partner_profile_id is required for a match report")
         partner = get_owned(db, user, body.partner_profile_id)
-    r = Report(user_id=user.id, profile_id=p.id, partner_profile_id=partner.id if partner else None, kind=body.kind, lang=body.lang)
+    r = Report(
+        user_id=user.id, profile_id=p.id, partner_profile_id=partner.id if partner else None, kind=body.kind, lang=body.lang
+    )
     db.add(r)
     db.commit()
     from jyotish_api.worker import build_report
@@ -82,8 +84,11 @@ def download(report_id: str, user: ConsentedUser, db: DB) -> Response:
         raise HTTPException(status.HTTP_409_CONFLICT, "report is not ready")
     if r.expires_at and r.expires_at < datetime.now(UTC):
         raise HTTPException(status.HTTP_410_GONE, "report has expired")
-    return Response(bytes(r.pdf), media_type="application/pdf",
-                    headers={"Content-Disposition": f'attachment; filename="jyotish-{r.kind}-{str(r.id)[:8]}.pdf"'})
+    return Response(
+        bytes(r.pdf),
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="jyotish-{r.kind}-{str(r.id)[:8]}.pdf"'},
+    )
 
 
 @router.delete("/{report_id}", status_code=204)

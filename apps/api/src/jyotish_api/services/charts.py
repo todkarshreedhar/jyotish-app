@@ -4,8 +4,6 @@ import json
 from datetime import UTC, date, datetime, time
 from typing import Any
 
-from timezonefinder import TimezoneFinder
-
 from jyotish_engine.ashtakavarga import ashtakavarga
 from jyotish_engine.chart import BirthData, compute_chart
 from jyotish_engine.constants import SEVEN_GRAHAS, Graha
@@ -16,6 +14,7 @@ from jyotish_engine.shadbala import shadbala
 from jyotish_engine.timeutil import InputError, julian_day_ut
 from jyotish_engine.transits import sade_sati, transit_positions
 from jyotish_engine.version import ENGINE_VERSION
+from timezonefinder import TimezoneFinder
 
 from jyotish_api import cache
 
@@ -54,12 +53,18 @@ def _key_payload(birth: BirthData, settings: ChartSettings, extra: dict[str, Any
     return {
         "engine": ENGINE_VERSION,
         "rules": RULES_VERSION,
-        "birth": [birth.birth_date.isoformat(), birth.birth_time.isoformat(), birth.latitude, birth.longitude,
-                  birth.tz_name, birth.utc_offset_minutes, birth.time_accuracy],
+        "birth": [
+            birth.birth_date.isoformat(),
+            birth.birth_time.isoformat(),
+            birth.latitude,
+            birth.longitude,
+            birth.tz_name,
+            birth.utc_offset_minutes,
+            birth.time_accuracy,
+        ],
         "settings": settings.to_dict(),
         **extra,
     }
-
 
 
 def chart(birth: BirthData, settings: ChartSettings, vargas: tuple[str, ...] = ("D1", "D9"), bhava_chalit: bool = False) -> str:
@@ -75,7 +80,9 @@ def chart(birth: BirthData, settings: ChartSettings, vargas: tuple[str, ...] = (
     return out
 
 
-def chart_dict(birth: BirthData, settings: ChartSettings, vargas: tuple[str, ...] = ("D1", "D9"), bhava_chalit: bool = False) -> dict[str, Any]:
+def chart_dict(
+    birth: BirthData, settings: ChartSettings, vargas: tuple[str, ...] = ("D1", "D9"), bhava_chalit: bool = False
+) -> dict[str, Any]:
     return json.loads(chart(birth, settings, vargas, bhava_chalit))
 
 
@@ -123,7 +130,11 @@ def strength(birth: BirthData, settings: ChartSettings) -> dict[str, Any]:
     return {
         "ashtakavarga": ashtakavarga(signs, c["lagna"]["sign_index"]),
         "shadbala": shadbala(
-            c["input"]["julian_day_ut"], birth.latitude, birth.longitude,
-            {p["id"]: p for p in c["planets"]}, c["lagna"]["longitude"], settings.ayanamsa,
+            c["input"]["julian_day_ut"],
+            birth.latitude,
+            birth.longitude,
+            {p["id"]: p for p in c["planets"]},
+            c["lagna"]["longitude"],
+            settings.ayanamsa,
         ),
     }

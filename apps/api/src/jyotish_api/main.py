@@ -30,8 +30,14 @@ if settings.sentry_dsn:
         event.pop("user", None)
         return event
 
-    sentry_sdk.init(dsn=settings.sentry_dsn, environment=settings.environment, release=settings.app_version,
-                    send_default_pii=False, before_send=_scrub, traces_sample_rate=0.05)
+    sentry_sdk.init(
+        dsn=settings.sentry_dsn,
+        environment=settings.environment,
+        release=settings.app_version,
+        send_default_pii=False,
+        before_send=_scrub,
+        traces_sample_rate=0.05,
+    )
 
 app = FastAPI(
     title="Jyotish API",
@@ -62,13 +68,28 @@ async def security_headers(request: Request, call_next: Any) -> Response:
     if request.url.path.startswith(("/v1/", "/public/")):
         response.headers.setdefault("Cache-Control", "no-store")
     # Log path and timing only: never query strings or bodies (they can hold birth data).
-    log.info("%s %s %s %.0fms rid=%s", request.method, request.url.path, response.status_code,
-             (time.perf_counter() - start) * 1000, rid)
+    log.info(
+        "%s %s %s %.0fms rid=%s",
+        request.method,
+        request.url.path,
+        response.status_code,
+        (time.perf_counter() - start) * 1000,
+        rid,
+    )
     return response
 
 
-for r in (auth.router, me.router, profiles.router, tools.router, reports.router, admin.router, alerts.router,
-          developer.router, developer.public):
+for r in (
+    auth.router,
+    me.router,
+    profiles.router,
+    tools.router,
+    reports.router,
+    admin.router,
+    alerts.router,
+    developer.router,
+    developer.public,
+):
     app.include_router(r)
 
 

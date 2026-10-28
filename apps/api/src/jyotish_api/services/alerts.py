@@ -8,13 +8,12 @@ unsubscribe link.
 from datetime import UTC, datetime, timedelta
 from typing import Any
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-
 from jyotish_engine.constants import Graha
 from jyotish_engine.names import names
 from jyotish_engine.timeutil import julian_day_ut
 from jyotish_engine.transits import sign_ingresses
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from jyotish_api import emailer
 from jyotish_api.crypto import decrypt_json, new_token
@@ -26,12 +25,24 @@ SLOW = (Graha.SATURN, Graha.JUPITER, Graha.RAHU)
 
 SUBJECT = {"en": "Your Jyotish update", "hi": "आपका ज्योतिष अपडेट", "mr": "तुमचे ज्योतिष अपडेट"}
 LINES = {
-    "en": {"maha": "Your {lord} Mahadasha begins today.", "antar": "Your {maha}/{lord} Antardasha begins today.",
-           "transit": "{planet} enters {sign} today, the {house} house from your Moon.", "unsub": "Stop these emails: {url}"},
-    "hi": {"maha": "आज से आपकी {lord} महादशा आरंभ होती है।", "antar": "आज से आपकी {maha}/{lord} अंतर्दशा आरंभ होती है।",
-           "transit": "आज {planet} {sign} में प्रवेश करता है, जो आपके चंद्र से {house}वाँ भाव है।", "unsub": "ये ईमेल बंद करें: {url}"},
-    "mr": {"maha": "आजपासून तुमची {lord} महादशा सुरू होते.", "antar": "आजपासून तुमची {maha}/{lord} अंतर्दशा सुरू होते.",
-           "transit": "आज {planet} {sign} राशीत प्रवेश करतो, जे तुमच्या चंद्रापासून {house}वे स्थान आहे.", "unsub": "हे ईमेल बंद करा: {url}"},
+    "en": {
+        "maha": "Your {lord} Mahadasha begins today.",
+        "antar": "Your {maha}/{lord} Antardasha begins today.",
+        "transit": "{planet} enters {sign} today, the {house} house from your Moon.",
+        "unsub": "Stop these emails: {url}",
+    },
+    "hi": {
+        "maha": "आज से आपकी {lord} महादशा आरंभ होती है।",
+        "antar": "आज से आपकी {maha}/{lord} अंतर्दशा आरंभ होती है।",
+        "transit": "आज {planet} {sign} में प्रवेश करता है, जो आपके चंद्र से {house}वाँ भाव है।",
+        "unsub": "ये ईमेल बंद करें: {url}",
+    },
+    "mr": {
+        "maha": "आजपासून तुमची {lord} महादशा सुरू होते.",
+        "antar": "आजपासून तुमची {maha}/{lord} अंतर्दशा सुरू होते.",
+        "transit": "आज {planet} {sign} राशीत प्रवेश करतो, जे तुमच्या चंद्रापासून {house}वे स्थान आहे.",
+        "unsub": "हे ईमेल बंद करा: {url}",
+    },
 }
 
 
@@ -44,7 +55,9 @@ def prefs_for(db: Session, user: User) -> AlertPrefs:
     return p
 
 
-def events_for(chart: dict[str, Any], day_start: datetime, settings_obj: Any, prefs: AlertPrefs) -> list[tuple[str, dict[str, Any]]]:
+def events_for(
+    chart: dict[str, Any], day_start: datetime, settings_obj: Any, prefs: AlertPrefs
+) -> list[tuple[str, dict[str, Any]]]:
     jd0 = julian_day_ut(day_start)
     jd1 = jd0 + 1
     out: list[tuple[str, dict[str, Any]]] = []
@@ -60,7 +73,12 @@ def events_for(chart: dict[str, Any], day_start: datetime, settings_obj: Any, pr
         for g in SLOW:
             for ing in sign_ingresses(g, jd0, jd1, settings_obj, step=0.25):
                 house = (ing.to_sign - moon_sign) % 12 + 1
-                out.append((f"transit:{g}:{round(ing.jd, 2)}", {"type": "transit", "planet": str(g), "sign": ing.to_sign, "house": house}))
+                out.append(
+                    (
+                        f"transit:{g}:{round(ing.jd, 2)}",
+                        {"type": "transit", "planet": str(g), "sign": ing.to_sign, "house": house},
+                    )
+                )
     return out
 
 
@@ -98,8 +116,12 @@ def run_daily(db: Session, now: datetime) -> int:
         if not new:
             continue
         url = f"{settings.web_url}/api/v1/alerts/unsubscribe?token={prefs.unsubscribe_token}"
-        emailer.send(user.email, SUBJECT.get(user.locale, SUBJECT["en"]), render(user.locale, [e for _, e in new], url),
-                     headers={"List-Unsubscribe": f"<{url}>", "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"})
+        emailer.send(
+            user.email,
+            SUBJECT.get(user.locale, SUBJECT["en"]),
+            render(user.locale, [e for _, e in new], url),
+            headers={"List-Unsubscribe": f"<{url}>", "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"},
+        )
         ls = dict(prefs.last_sent or {})
         cutoff = (day_start - timedelta(days=400)).isoformat()
         ls = {k: v for k, v in ls.items() if v >= cutoff}

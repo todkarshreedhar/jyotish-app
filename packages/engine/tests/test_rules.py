@@ -4,9 +4,8 @@ from datetime import date, time, timedelta
 from pathlib import Path
 
 import pytest
-
 from jyotish_engine.chart import BirthData, compute_chart
-from jyotish_engine.rules import RuleError, evaluate, Facts, load_rules, run_rules, texts
+from jyotish_engine.rules import Facts, RuleError, evaluate, load_rules, run_rules, texts
 
 RULES = load_rules()
 
@@ -55,7 +54,10 @@ def _write(tmp: Path, body: str) -> Path:
 
 
 def test_missing_field_reports_file_and_line(tmp_path: Path) -> None:
-    _write(tmp_path, "- id: A\n  topic: career\n  kind: yoga\n  source: x\n  when: {retrograde: mars}\n  text_key: A\n\n- id: B\n  topic: career\n")
+    _write(
+        tmp_path,
+        "- id: A\n  topic: career\n  kind: yoga\n  source: x\n  when: {retrograde: mars}\n  text_key: A\n\n- id: B\n  topic: career\n",
+    )
     with pytest.raises(RuleError, match=r"bad.yaml:8: rule B is missing"):
         load_rules(tmp_path)
 
@@ -71,7 +73,9 @@ def test_gajakesari_by_construction() -> None:
     planets = []
     signs = {"sun": 5, "moon": 0, "mars": 6, "mercury": 5, "jupiter": 3, "venus": 7, "saturn": 8, "rahu": 2, "ketu": 8}
     for pid, s in signs.items():
-        planets.append({"id": pid, "sign_index": s, "longitude": s * 30 + 10.0, "dignity": "neutral", "retrograde": False, "combust": False})
+        planets.append(
+            {"id": pid, "sign_index": s, "longitude": s * 30 + 10.0, "dignity": "neutral", "retrograde": False, "combust": False}
+        )
     chart = {"lagna": {"sign_index": 0}, "planets": planets}
     rule = next(r for r in RULES if r.id == "Y-GAJAKESARI")
     assert evaluate(rule.when, Facts(chart))

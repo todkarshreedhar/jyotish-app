@@ -3,14 +3,12 @@
 import json
 from datetime import UTC, datetime, timedelta
 
+from conftest import PUNE, sign_in
 from fastapi.testclient import TestClient
-from sqlalchemy import select, text, update
-
 from jyotish_api import emailer
 from jyotish_api.db import SessionLocal, engine
 from jyotish_api.models import LoginToken, Profile
-
-from conftest import PUNE, sign_in
+from sqlalchemy import select, text, update
 
 
 def _new_client() -> TestClient:
@@ -22,6 +20,7 @@ def _new_client() -> TestClient:
 
 
 # --- US-07 / US-08: sign-in and access control ------------------------------
+
 
 def test_email_sign_in_and_me(client: TestClient) -> None:
     sign_in(client, "Ravi@Example.com", consent=False)
@@ -82,6 +81,7 @@ def test_other_users_profile_is_404(client: TestClient) -> None:
 
 # --- US-09: consent ----------------------------------------------------------
 
+
 def test_consent_required_before_profiles(client: TestClient) -> None:
     sign_in(client, "c@example.com", consent=False)
     r = client.post("/v1/profiles", json=PUNE)
@@ -95,6 +95,7 @@ def test_consent_required_before_profiles(client: TestClient) -> None:
 
 
 # --- US-13 to US-18: profiles -------------------------------------------------
+
 
 def test_impossible_date_is_rejected(user: TestClient) -> None:
     r = user.post("/v1/profiles", json={**PUNE, "birth_date": "1990-02-31"})
@@ -144,11 +145,17 @@ def test_ayanamsa_setting_shifts_longitudes(user: TestClient) -> None:
     for pa, pb in zip(a["planets"], b["planets"], strict=True):
         assert abs(((pb["longitude"] - pa["longitude"]) % 360) - diff) < 1e-5
     assert b["meta"]["settings"]["ayanamsa"] == "raman"
-    assert a["meta"]["settings"] == {"ayanamsa": "lahiri", "node_type": "mean", "house_system": "whole_sign",
-                                     "dasha_year_days": 365.25, "chart_style": "north"}
+    assert a["meta"]["settings"] == {
+        "ayanamsa": "lahiri",
+        "node_type": "mean",
+        "house_system": "whole_sign",
+        "dasha_year_days": 365.25,
+        "chart_style": "north",
+    }
 
 
 # --- US-25: chart API ---------------------------------------------------------
+
 
 def test_chart_is_byte_identical_and_versioned(user: TestClient) -> None:
     p = user.post("/v1/profiles", json=PUNE).json()
@@ -195,6 +202,7 @@ def test_csv_export(user: TestClient) -> None:
 
 # --- places, Panchang, names ---------------------------------------------------
 
+
 def test_place_search(client: TestClient) -> None:
     items = client.get("/v1/places/search", params={"q": "pun"}).json()["items"]
     assert items[0]["label"] == "Pune, Maharashtra, India" and items[0]["tz_name"] == "Asia/Kolkata"
@@ -215,6 +223,7 @@ def test_names(client: TestClient) -> None:
 
 # --- matching and reports ------------------------------------------------------
 
+
 def test_match_and_pdf_reports(user: TestClient) -> None:
     a = user.post("/v1/profiles", json={**PUNE, "name": "Arjun", "gender": "male"}).json()
     b = user.post("/v1/profiles", json={**PUNE, "name": "Meera", "birth_date": "1992-08-01", "gender": "female"}).json()
@@ -232,6 +241,7 @@ def test_match_and_pdf_reports(user: TestClient) -> None:
 
 # --- US-10 / US-11: export and delete ------------------------------------------
 
+
 def test_export_and_delete_account(user: TestClient) -> None:
     user.post("/v1/profiles", json=PUNE)
     data = json.loads(user.get("/v1/me/export").content)
@@ -242,10 +252,14 @@ def test_export_and_delete_account(user: TestClient) -> None:
     with engine.begin() as conn:
         for t in ("users", "profiles", "sessions", "consents", "login_tokens"):
             assert conn.execute(text(f"SELECT count(*) FROM {t}")).scalar() == 0, t
-        assert conn.execute(text("SELECT count(*) FROM audit_log WHERE actor_id IS NOT NULL OR target_user_id IS NOT NULL")).scalar() == 0
+        assert (
+            conn.execute(text("SELECT count(*) FROM audit_log WHERE actor_id IS NOT NULL OR target_user_id IS NOT NULL")).scalar()
+            == 0
+        )
 
 
 # --- US-12: admin audit -------------------------------------------------------
+
 
 def test_admin_needs_reason_for_birth_details(client: TestClient) -> None:
     u = sign_in(client, "user@example.com")
@@ -267,6 +281,7 @@ def test_admin_needs_reason_for_birth_details(client: TestClient) -> None:
 
 
 # --- alerts ------------------------------------------------------------------
+
 
 def test_alert_prefs_and_unsubscribe(user: TestClient) -> None:
     assert user.get("/v1/alerts").json()["email_enabled"] is True
@@ -293,6 +308,7 @@ def test_daily_alerts_send_once(user: TestClient) -> None:
 
 
 # --- US-77 to US-80: partner API -----------------------------------------------
+
 
 def test_api_keys_and_limits(user: TestClient) -> None:
     k = user.post("/v1/developer/keys", json={"name": "test"}).json()

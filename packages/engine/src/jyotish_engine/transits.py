@@ -73,7 +73,9 @@ PHASES = {-1: "rising", 0: "peak", 1: "setting"}
 MERGE_GAP_DAYS = 400
 
 
-def sade_sati(natal_moon_sign: int, birth_jd: float, settings: ChartSettings, years: int = 100, now_jd: float | None = None) -> dict[str, Any]:
+def sade_sati(
+    natal_moon_sign: int, birth_jd: float, settings: ChartSettings, years: int = 100, now_jd: float | None = None
+) -> dict[str, Any]:
     """Sade Sati: transit Saturn in the 12th, 1st or 2nd sign from the natal
     Moon. Retrograde back-and-forth is folded into one cycle; each phase runs
     from the first entry to the last exit of its sign within the cycle."""
